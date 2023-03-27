@@ -68,10 +68,12 @@
   form .registrationPage-user-details .registrationPage-input-box{
     margin-bottom: 15px;
     width: calc(100% / 2 - 20px);
+    
   }
+  
   form .registrationPage-input-box span.registrationPage-details{
     display: block;
-    
+    text-align: start;
     font-family: 'Brandon Grotesque';
     font-style: normal;
     font-weight: 390;
@@ -160,7 +162,7 @@
     background: linear-gradient(-135deg,rgba(255, 148, 140, 1)rgba(253, 187, 104, 1),rgba(255, 148, 140, 1));
     }
     .registrationPage-student-checkbox {
-      
+      text-align: start;
       align-items: center;
     }
     .registrationPage-student-checkbox input[type="checkbox"] {
