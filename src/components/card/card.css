@@ -1,0 +1,88 @@
+@import url('https://fonts.cdnfonts.com/css/brandon-grotesque');
+
+.root {
+  position: relative;
+}
+.upper-side {
+  width: 264px;
+  height: 365px;
+  position: relative;
+  margin-bottom: 14px;
+}
+.lower-side {
+  width: 259px;
+  height: 70px;
+}
+.shop-btn {
+  position: absolute;
+  bottom: 19px;
+  left: 27.5px;
+  width: 209px;
+  height: 33px;
+  padding-top: 0em;
+  padding-right: 0em;
+  padding-bottom: 0em;
+  padding-left: 0em;
+  background-color: #ff6301;
+  border-radius: 5px;
+  font-family: 'Brandon Grotesque', sans-serif;
+  font-weight: 390;
+  font-size: 20px;
+  line-height: 28.6px;
+  color: #f3f3f3;
+  border: 0px solid black;
+}
+.product-img {
+  width: 264px;
+  height: 365px;
+  border-radius: 5px;
+  background-color: #d9d9d9;
+  box-shadow: 0 0 black;
+}
+.status-price {
+  width: 259px;
+  height: 18px;
+  border-left: 1px solid #171717;
+  display: flex;
+  flex-direction: row;
+  justify-items: start;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+}
+.Status-txt {
+  font-family: 'Brandon Grotesque', sans-serif;
+  color: #171717;
+  font-weight: 420;
+  font-size: 16px;
+}
+.price-txt {
+  color: #171717;
+  font-family: 'Brandon Grotesque', sans-serif;
+  font-size: 15px;
+  font-weight: 420;
+  line-height: 21.45px;
+}
+.product-title {
+  font-family: 'Brandon Grotesque', sans-serif;
+  margin: 0px;
+  height: 29px;
+  color: #4a4a4a;
+  font-weight: 390;
+  font-size: 20px;
+  line-height: 28.6px;
+  display: flex;
+  justify-items: start;
+}
+.prodoct-color-txt {
+  font-family: 'Brandon Grotesque', sans-serif;
+  margin: 0px;
+  height: 23px;
+  font-weight: 420;
+  font-size: 16px;
+  color: #6d6d6d;
+  line-height: 22.88px;
+  display: flex;
+  justify-items: start;
+}
