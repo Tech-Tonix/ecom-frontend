@@ -1,0 +1,327 @@
+@import url('https://fonts.cdnfonts.com/css/brandon-grotesque');
+::-webkit-calendar-picker-indicator {
+    filter: contrast(30%);
+  }
+  
+  input[type=date]:invalid::-webkit-datetime-edit {
+    color: #838282;
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Brandon Grotesque',sans-serif;
+  }
+  .registrationPage{
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  .registrationPage-body{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .registrationPage-container{
+    max-width: 700px;
+    width: 100%;
+    
+    background-color: #fff;
+    padding: 25px 30px;
+    
+  }
+  .registrationPage-container .registrationPage-title{
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 450;
+    font-size: 48px;
+    line-height: 69px;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+    color: #000000;
+    position: relative;
+    text-align: center;
+    
+  }
+  .registrationPage-container .registrationPage-title::before{
+    content: "";
+    position: absolute;
+    left: 30%;
+    transform: translateX(-30%);
+    bottom: 0;
+    height: 3px;
+    width: 40px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(253, 187, 104, 1),rgba(255, 148, 140, 1));
+  }
+  .registrationPage-content form .registrationPage-user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+  }
+  form .registrationPage-user-details .registrationPage-input-box{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+  }
+  form .registrationPage-input-box span.registrationPage-details{
+    display: block;
+    
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 390;
+    font-size: 14px;
+    line-height: 29px;
+   
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+    color: #4A4A4A;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    
+  }
+  form .registrationPage-input-box input.registrationPage-details_date{
+      display: inline-block;
+      margin-bottom: 5px;   
+  }
+  .registrationPage-user-details .registrationPage-input-box input{
+    height: 45px;
+    width: 100%;
+    justify-content: flex-start;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+  }
+  .registrationPage-user-details .registrationPage-input-box input:focus,
+  .registrationPage-user-details .registrationPage-input-box input:valid{
+    border-color:rgba(255, 148, 140, 1)
+  }
+   form .registrationPage-category{
+     display: flex;
+     width: 80%;
+     margin: 14px 0 ;
+     justify-content: space-evenly;
+     
+     
+   }
+   form .registrationPage-category label{
+     display: flex;
+     align-items: center;
+     cursor: pointer;
+   }
+   form .registrationPage-category label .registrationPage-dot{
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background: #d9d9d9;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+  }
+   #dot-1:checked ~ .category label .one,
+   #dot-2:checked ~ .category label .two,
+   #dot-3:checked ~ .category label .three{
+     background: #9b59b6;
+     border-color: #d9d9d9;
+   }
+   form input[type="radio"]{
+     display: none;
+   }
+   form .registrationPage-button{
+     height: 45px;
+     margin-top: 35px;
+     margin-bottom: 50px;
+   }
+   form .registrationPage-button input{
+     height: 100%;
+     margin-bottom: 50px;
+     width: 100%;
+     border-radius: 5px;
+     border: none;
+     color: #fff;
+     font-size: 18px;
+     font-weight: 500;
+     letter-spacing: 1px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     background: linear-gradient(135deg, rgba(253, 187, 104, 1),rgba(255, 148, 140, 1));
+   }
+   form .registrationPage-button input:hover{
+    /* transform: scale(0.99); */
+    background: linear-gradient(-135deg,rgba(255, 148, 140, 1)rgba(253, 187, 104, 1),rgba(255, 148, 140, 1));
+    }
+    .registrationPage-student-checkbox {
+      
+      align-items: center;
+    }
+    .registrationPage-student-checkbox input[type="checkbox"] {
+      width: 20px; /* set the width of the checkbox */
+      height: 20px; /* set the height of the checkbox */
+      vertical-align: middle;
+      margin-bottom: 15px; /* align the checkbox with the text */
+    }
+    .registrationPage-p__student{
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+    
+    .registrationPage-upgrade-card{
+      justify-content: space-between;
+      flex-direction: column;
+      display: flex;
+      margin: 3rem 4rem;
+      padding: 2rem 2rem;
+      box-sizing: border-box;
+      background: #F9F9F9;
+      border: 2px solid #4A4A4A;
+      border-radius: 5px;
+      height: 350px;
+      width: 450px;
+    }
+    .registrationPage-upgrade_header{
+    align-items: center;}
+  .registrationPage-upgrade_header__title{
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 34px;
+    text-align: center;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+    }
+  .registrationPage-upgrade_header__p{
+  font-family: 'Brandon Grotesque';
+  font-style: normal;
+  font-weight: 390;
+  font-size: 15px;
+  line-height: 29px;
+  text-align: center;
+  letter-spacing: 0.065em;
+  color: #171717;
+  }
+  .registrationPage-upgrade_signUp__p{
+  display: inline;
+  font-family: 'Brandon Grotesque';
+  font-style: normal;
+  font-weight: 390;
+  font-size: 15px;
+  line-height: 29px;
+  letter-spacing: 0.065em;
+  
+  }
+  .registrationPage-upgrade_signUp__p span {
+    color: #3CA8D7;
+  }
+  
+  .registrationPage-upgrade_signUp__p a {
+    text-decoration: underline;
+  }
+  
+  
+  .registrationPage-upgrade_signUp__checkbox{
+     /* set the width of the checkbox */
+    height: 30px; /* set the height of the checkbox */
+    display: flex;
+    align-items: center;
+    
+  }
+  .registrationPage-upgrade_signUp__checkbox input[type="checkbox"] {
+    width: 20px; /* set the width of the checkbox */
+    height: 20px; /* set the height of the checkbox */ /* align the checkbox with the text */
+    background: #F3F3F3;
+    border: 1px solid #4A4A4A;
+    border-radius: 2px;
+  }
+  .registrationPage-upgrade_signUp__checkbox__p{
+    margin-left: 5px;
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 390;
+    font-size: 15px;
+    letter-spacing: 0.065em;
+    color: #000000;
+    }
+  
+    .registrationPage-rectangle {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;;
+        justify-content: space-between;
+        height: 46px;
+        width: 430px;
+        left: 0px;
+        top: 46px;
+        background: linear-gradient(180deg, #FDBB68 2.67%, #FF948C 100%);
+        border-radius: 5px;
+    
+      }
+      
+      .registrationPage-rectangle p {
+        
+        font-family: 'Brandon Grotesque';
+        padding: 1rem 1rem;
+        font-style: normal;
+        font-weight: 390;
+        font-size: 15px;
+        line-height: 29px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        letter-spacing: 0.065em;
+    
+        color: #000000; 
+      }
+    
+      .registrationPage-rectangle img{
+        height: 23px;
+        width: 23pxpx;
+    
+      }
+
+
+
+
+  
+  
+  
+  
+   @media(max-width: 1150px){
+   .registrationPage-container{
+    max-width: 100%;
+  }
+  form .registrationPage-user-details .registrationPage-input-box{
+      margin-bottom: 15px;
+      width: 100%;
+    }
+    form .registrationPage-category{
+      width: 100%;
+    }
+    .registrationPage-content form .registrationPage-user-details{
+      max-height: 300px;
+      overflow-y: scroll;
+    }
+    .registrationPage-user-details::-webkit-scrollbar{
+      width: 5px;
+    }
+    .registrationPage-upgrade-card{
+      margin:3rem 2rem ;
+    }
+    }
+    @media(max-width: 459px){
+    .registrationPage-container .content .category{
+      flex-direction: column;
+    }
+    .registrationPage-upgrade-card{
+      padding:2rem 2rem ;
+    }
+  }

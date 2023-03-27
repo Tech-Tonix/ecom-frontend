@@ -11,7 +11,9 @@ function App() {
 
 
       <Router>
+        {/* Navigation bar section  */}
         <NavBar/>
+
         <Routes>
           <Route path='/' element={<LandingPage/>}/>
           <Route path='/Registration' element={<RegistrationPage/>}/>
