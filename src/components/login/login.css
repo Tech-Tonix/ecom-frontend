@@ -1,0 +1,104 @@
+.login-wrapper{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+.font-header{
+  font-family:Brandon Grotesque;
+  font-weight: bold;
+  font-size: 48px;
+  letter-spacing: 6.5%;
+  color: #171717;
+  text-transform: uppercase;
+
+}
+
+.font-elements{
+    font-family:Brandon Grotesque;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing:1.17px;
+    font-weight: 400;
+    color: #4A4A4A;
+
+}
+
+
+
+.button-style{
+    width: 320px;
+    height: 71px;
+    border-radius: 46px;
+    background-color: #FF6301;
+    font-size: 18PX;
+    font-family: Brandon Grotesque;
+    text-transform: uppercase;
+    font-weight: bold ;
+    text-align: center;
+    color: #F9F9F9 ;
+    margin: 0 auto;
+    
+    
+}
+
+.center-button{
+    display: block;
+    margin: 0 auto;
+    margin-top: 32px;
+}
+
+.container-one {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.container-one p{
+    font-family: Brandon Grotesque;
+    font-weight: bold ;
+    font-size: 12px;
+    letter-spacing: 1.17px;
+    margin-bottom: 0;
+
+}
+
+.container-one .signup{
+    color: #3ca8d7;
+}
+
+.container-one .no-acc{
+    color: #000000;
+}
+
+p {
+    margin-bottom: 0rem; 
+  }
+  
+  input {
+    padding: 1rem;
+  }
+  
+input{
+    width: 400px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #F9F9F9;
+    border: 1px solid #4A4A4A;
+
+}
+
+
+body{
+    background-color: #F9F9F9;
+}
+
+label:last-of-type {
+    margin-top: 32px;
+  }
