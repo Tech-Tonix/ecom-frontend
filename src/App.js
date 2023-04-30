@@ -5,6 +5,7 @@ import { RegistrationPage } from './pages/registration/registration';
 import { LoginPage } from './pages/loginPage/login_page';
 import { NavBar } from './components/navbar/navbar';
 
+
 function App() {
   return (
     <div className="App">
