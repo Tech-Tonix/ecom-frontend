@@ -1,0 +1,164 @@
+hr{
+    width: 600px;
+    border: 1px solid #828282;
+    height: 0px;
+
+}
+.bigContainer{
+    display: flex;
+    flex-direction: column;
+    height: 1036px;
+    width: 751px;
+    background-color: #FFF4ED;
+    align-items: center;
+    
+}
+.bigContainer-title{
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 420;
+    font-size: 15px;
+    line-height: 46px;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+    color: #171717;
+    align-items: center;
+
+}
+
+.topContainer{
+    height: 226px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    align-items: center;
+    
+}
+.topContainer-line{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+    gap: 35px;
+}
+.topContainer-line-leftButton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+.topContainer-line-leftButton input{
+    width: 200px;
+    height: 60px;
+    background: white;
+    text-align: center;
+    border-radius: 3px;
+    color: #666666;
+    border-color: transparent;
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 390;
+    
+    line-height: 29px;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+
+    
+}
+
+.topContainer-line-rightButton{
+    width: 150px;
+    height: 60px;
+    background: #676767;
+    border-radius: 3px;
+    text-align: center;
+    border-radius: 3px;
+    border-color: transparent;
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 420;   
+    line-height: 29px;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #F3F3F3;
+}
+
+.middleContainer{
+    height: 226px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.middleContainer-line{
+    display: flex;
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 13px;
+    line-height: 25px;
+    letter-spacing: 0.070em;
+    text-transform: uppercase;
+
+color: #363636;
+
+    color: #363636;
+}
+
+.bottomContainer{
+    height: 350px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    
+    }
+    .bottomContainer-top{
+        display: flex;
+    }
+.bottomContainer-line{
+    display: flex;
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 420;
+    
+    line-height: 29px;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+
+    color: #363636;
+}
+
+.bottomContainer-buttons{
+    display: flex;
+    flex-direction: column;
+    
+
+}
+.bottomContainer-line-topButton{
+    margin-bottom: 1rem;
+    width: 350px;
+    height: 52px;
+    background: #13BA33;
+    border-radius: 3px;
+    text-align: center;
+    border-radius: 3px;
+    border-color: transparent;
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 420;   
+    line-height: 29px;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #F3F3F3;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+
+
+
