@@ -33,8 +33,7 @@ export const RegistrationPage = ()=>{
       <form action="#">
         <div class="registrationPage-user-details">
           <div class="registrationPage-input-box">
-            
-            <span class="registrationPage-details" >last name :</span>
+            <span class="registrationPage-details" >first name :</span>
             <input type="text" placeholder="Enter your first name" required/>
             
             <div class="registrationPage-input-box">
@@ -138,7 +137,7 @@ export const RegistrationPage = ()=>{
         </div> */}
         <div className="registrationPage-button">
           <input type="submit" value="Register"/>
-          </div>
+        </div>
       </form>
     </div>
     </div>
