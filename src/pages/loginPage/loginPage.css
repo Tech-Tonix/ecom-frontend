@@ -1,49 +1,73 @@
 .login-wrapper{
-
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 12%;
-    margin-bottom: 50%;
+    margin-top: 15%;
+    margin-bottom: 20%;
     
 }
 
 .font-header{
-  font-family:Brandon Grotesque;
-  font-weight: bold;
-  font-size: 48px;
-  letter-spacing: 6.5%;
-  color: #171717;
-  text-transform: uppercase;
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 450;
+    font-size: 52px;
+    line-height: 69px;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+    color: #000000;
+    position: relative;
+    text-align: center;
+    margin-bottom: 50px;
 
+}
+.font-header::before{
+    content: "";
+    position: absolute;
+    left: 3%;
+    transform: translateX(-30%);
+    bottom: 0;
+    height: 3px;
+    width: 40px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(253, 187, 104, 1),rgba(255, 148, 140, 1));
 }
 
 .font-elements{
-    font-family:Brandon Grotesque;
+    display: block;
+    text-align: start;
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 390;
+    font-size: 14px;
+    line-height: 29px;
+   
+    letter-spacing: 0.065em;
     text-transform: uppercase;
-    font-size: 18px;
-    letter-spacing:1.17px;
-    font-weight: 400;
     color: #4A4A4A;
-
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 
 
 .button-style{
-    width: 320px;
-    height: 71px;
-    border-radius: 46px;
-    background-color: #FF6301;
-    font-size: 18PX;
-    font-family: Brandon Grotesque;
-    text-transform: uppercase;
-    font-weight: bold ;
-    text-align: center;
-    color: #F9F9F9 ;
-    margin: 0 auto;
-    
+     height: 50px;
+     margin-top: 35px;
+     
+     width: 70%;
+     border-radius: 5px;
+     border: none;
+     color: #fff;
+     font-size: 18px;
+     font-weight: 500;
+     letter-spacing: 1px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     background: linear-gradient(135deg, rgba(253, 187, 104, 1),rgba(255, 148, 140, 1));
+
     
 }
 
@@ -71,29 +95,50 @@
 }
 
 .container-one .signup{
+    cursor: pointer;
+    font-family: 'Brandon Grotesque';
     color: #3ca8d7;
+    padding-left: 5px;
 }
 
 .container-one .no-acc{
-    color: #000000;
+font-family: 'Brandon Grotesque';
+  font-style: normal;
+  font-weight: 390;
+  font-size: 15px;
+  line-height: 29px;
+  text-align: center;
+  letter-spacing: 0.065em;
+  color: #171717;
 }
+    
 
-p {
-    margin-bottom: 0rem; 
-  }
-  
+
+
+
+
+
+
   input {
-    padding: 1rem;
+    height: 45px;
+    width: 600px;
+    justify-content: flex-start;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+  }
+  input:focus,input:valid{
+    border-color:rgba(255, 148, 140, 1)
+  }
+  input[type=date]:invalid::-webkit-datetime-edit {
+    color: #838282;
   }
   
-input{
-    width: 400px;
-    height: 50px;
-    border-radius: 5px;
-    background-color: #F9F9F9;
-    border: 1px solid #4A4A4A;
 
-}
 
 
 body{
@@ -103,3 +148,9 @@ body{
 label:last-of-type {
     margin-top: 32px;
   }
+
+
+
+
+
+

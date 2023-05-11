@@ -1,7 +1,8 @@
 .categories-wrapper{
-    margin: 78px;
+   
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     width: 220px ;
     height: 654px;
@@ -19,6 +20,9 @@
 
 .profile-pic-container{
     margin-bottom: 10px;
+    background: url("D:/react/ecom-frontend/src/assets/portrait-homme-sport-assis-ballon-fitness.jpg");
+    background-position: center;
+    background-size: cover;
 }
 .categories{
     border: 50px ;
@@ -29,32 +33,31 @@
     justify-content: space-between;
     padding: 0;
     box-sizing: border-box;
-    
+    align-items: center;
 }
 
 .categories ul{
     list-style: none;
     margin: 0;
     padding: 0%;
-    
+    width: 100%;
     
 }
 .categories li{
     margin: 0; /* Add this line to remove the default margin */
-    
+    display: flex;
+    justify-content: center;
+    width: 100%;
 
 }
 
-.categories li {
-    display: flex;
-    justify-content: center;
-  }
   
 
 .categorie-container-filled{
     background-color: #878787;
     margin-bottom: 7px;
     width: 100%;
+    align-items: center;
     padding: 10px ;
     border-radius: 5px;
     box-sizing: border-box;

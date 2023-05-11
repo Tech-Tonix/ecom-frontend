@@ -1,0 +1,100 @@
+.heroSection2-container{
+    
+    margin-bottom: 100px;
+    height: 977px;
+    width: 100%;
+    padding: 4rem 6rem;
+    background: url('../../assets/Images-20230511T152215Z-001/Images/pexels-pixabay-260447.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: left;
+    display: flex;
+}
+.heroSection-titles{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.heroSection-titles-h1{
+    padding-right: 20%;
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 74px;
+    letter-spacing: 0.55px;
+    color: #F3F3F3;
+}
+.heroSection-titles p{
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 37px;
+
+    color: #EDEDED;
+}
+.heroSection-buttons{
+    display: flex;
+    
+    font-family: 'Helvetica';
+font-weight: 700;
+font-size: 16px;
+line-height: 18px;
+gap: 30px;
+color: #171717;
+
+}
+.heroSection-buttons button{
+    height: 70px;
+    width: 212px;
+    }
+
+@media screen and (max-width : 1150px) {
+        .heroSection{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+@media screen and (max-width : 850px) {
+}
+    
+@media screen and (max-width : 650px) {
+    .heroSection-titles-h1{
+        font-size: 40px;
+
+    }
+    .heroSection-titles-h1{
+        padding-left: 40px;
+        line-height: 60px;
+    }
+    .heroSection-titles p{
+        padding-left: 40px;
+        padding-top: 20px;
+        font-family: 'Helvetica';
+        font-weight: 500;
+        font-size: 23px;
+        line-height: 37px;
+        
+        
+    }
+    .heroSection-buttons{
+        display: flex;
+        padding-left: 20px;
+        font-family: 'Helvetica';
+    font-size: 14px;
+    gap: 40px;
+    
+    }
+    .heroSection-buttons button{
+        height: 70px;
+        width: 125px;
+        }
+        
+    }

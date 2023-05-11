@@ -1,0 +1,217 @@
+.productPage{
+    margin-top: 20%;
+    margin-bottom: 20%;
+    display: flex;
+    gap: 25px;
+    margin-left: 20%;
+    
+}
+.productPage-details{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 600px;
+    height: 800px;
+    align-items: start;
+}
+.product-details-image image{
+    height: 600px;
+    width: 50%;
+
+}
+.product-details-image {
+    height: 600px;
+    width: 50%;
+    background-image: url('D:/react/ecom-frontend/src/assets/portrait-homme-sport-assis-ballon-fitness.jpg');
+
+}
+
+
+
+.productPage-details-title-reviews-price{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 140px;
+
+}
+.productPage-details-title-reviews{
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+
+}
+.productPage-details-title-reviews p{
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 420;
+    font-size: 32px;
+    line-height: 51px;
+    letter-spacing: 0.065em;
+
+    color: #171717;
+
+}
+.productPage-details-reviews{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.productPage-details-reviews p{
+    font-family: 'Brandon Grotesque';
+font-style: normal;
+font-weight: 450;
+font-size: 14px;
+line-height: 20px;
+letter-spacing: 0.065em;
+
+color: #171717;
+
+}
+.productPage-details-reviews hr{
+    height: 30px;
+    width: 1px;
+}
+
+.productPage-details-price{
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 450;
+    font-size: 26px;
+    line-height: 51px;
+    letter-spacing: 0.065em;
+
+    color: #171717;
+}
+
+.productPage-details-color{
+    display: flex;
+    flex-direction: column;
+    
+    
+
+}
+
+.color{
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 450;
+    font-size: 26px;
+    line-height: 40px;
+    letter-spacing: 0.065em;
+    display: flex;
+    align-items: center;
+    color: #171717;
+    gap: 10px;
+
+}
+
+
+.productPage-details-colorSquares{
+    display: flex;
+    
+}
+.color span{
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 390;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: 0.065em;
+    color: #171717;
+
+}
+.productPage-details-sizeSquares{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.productPage-details-size{
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+}
+.p__size span{
+    
+font-family: 'Brandon Grotesque';
+font-style: normal;
+font-weight: 390;
+font-size: 15px;
+line-height: 29px;
+/* identical to box height */
+
+letter-spacing: 0.065em;
+
+color: #171717;
+}
+.p__size{
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 450;
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: 0.065em;
+
+color: #171717;
+}
+.productPage-details-amount-button{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+.productPage-details-amount{
+    display: flex;
+    gap: 20px;
+}
+.productPage-details-button{
+    display: flex;
+    gap: 15px;
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 420;
+    font-size: 26px;
+    line-height: 46px;
+    margin-bottom: 90px;
+/* identical to box height */
+
+letter-spacing: 0.065em;
+
+color: #F3F3F3;
+}
+.productPage-details-button button{
+    position: absolute;
+    width: 450px;
+    height: 62px;
+    
+
+    background: #FF6301;
+    border-radius: 5px;
+}
+
+.productPage-details-description{
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+}
+.p__description p{
+    
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 450;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0.065em;
+
+    color: #171717;
+}
+.productPage-details-description p {
+    
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 390;
+    font-size: 20px;
+    line-height: 34px;
+    letter-spacing: 0.065em;
+
+    color: #171717;
+    }

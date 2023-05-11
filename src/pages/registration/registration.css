@@ -18,9 +18,10 @@
     height: 100vh;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    margin-top: 10%;
-    margin-bottom: 50%;
+    
+    margin-top: 13%;
+    margin-bottom: 60%;
+    
   }
   .registrationPage-body{
     
@@ -34,7 +35,7 @@
     max-width: 700px;
     width: 100%;
     
-    background-color: #fff;
+    
     padding: 25px 30px;
     
   }
@@ -42,19 +43,20 @@
     font-family: 'Brandon Grotesque';
     font-style: normal;
     font-weight: 450;
-    font-size: 48px;
+    font-size: 52px;
     line-height: 69px;
     letter-spacing: 0.065em;
     text-transform: uppercase;
     color: #000000;
     position: relative;
     text-align: center;
+    margin-bottom: 50px;
     
   }
   .registrationPage-container .registrationPage-title::before{
     content: "";
     position: absolute;
-    left: 30%;
+    left: 3%;
     transform: translateX(-30%);
     bottom: 0;
     height: 3px;
@@ -325,4 +327,4 @@
     .registrationPage-upgrade-card{
       padding:2rem 2rem ;
     }
-  }
+  } 

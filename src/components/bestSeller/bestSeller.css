@@ -1,35 +1,42 @@
 @import url('https://fonts.cdnfonts.com/css/brandon-grotesque');
 
-.root {
-}
-.section {
+
+.bestSeller-section {
+ overflow-x: auto;
+ max-width: 1500px;
   width: 100%;
   margin-right: 0px;
   margin-left: 0px;
   margin-bottom: 81px;
   padding-left: 96px;
 }
-.section-title {
+.bestSeller-section::-webkit-scrollbar {
+  display: none;
+}
+.bestSeller-section-title {
   height: 44px;
-  width: 100vh;
+  width: 95%;
   border-left: 5.9px solid #171717;
-  display: flex;
+  display:flex;
+  justify-content:space-between;
   flex-direction: row;
-  align-items: center;
+  align-items: start;
   margin-bottom: 28px;
   margin-left: 0px;
 }
-.section-cards {
-  overflow-x: scroll;
+
+.bestSeller-section-cards {
+  display: flex;
+  
   flex-direction: row;
   gap: 0px 79px;
   width: 100%;
-  display: flex;
+ 
   justify-content: space-between;
   margin-left: 0px;
 }
 
-.section-cards::-webkit-scrollbar {
+.bestSeller-section-cards::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }
 .section-title-txt {

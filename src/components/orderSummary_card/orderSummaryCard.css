@@ -7,11 +7,11 @@ hr{
 .bigContainer{
     display: flex;
     flex-direction: column;
-    height: 1036px;
+    height: 1000px;
     width: 751px;
     background-color: #FFF4ED;
     align-items: center;
-    
+    padding-top: 25px;
 }
 .bigContainer-title{
     font-family: 'Brandon Grotesque';
@@ -25,6 +25,14 @@ hr{
     align-items: center;
 
 }
+
+.ticket-icon{
+    width: 50px;
+    background-color: white;
+    display: flex;
+    justify-content:flex-end;
+}
+
 
 .topContainer{
     height: 226px;
@@ -42,22 +50,29 @@ hr{
     gap: 35px;
 }
 .topContainer-line-leftButton{
+    justify-content: center;
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
+   
     
 }
 .topContainer-line-leftButton input{
-    width: 200px;
+    outline: none;
+    width: 130px;
     height: 60px;
     background: white;
-    text-align: center;
+    text-align: start;
     border-radius: 3px;
     color: #666666;
     border-color: transparent;
     font-family: 'Brandon Grotesque';
     font-style: normal;
     font-weight: 390;
+    border: 0px;
     
     line-height: 29px;
     letter-spacing: 0.065em;
@@ -94,14 +109,12 @@ hr{
     display: flex;
     font-family: 'Brandon Grotesque';
     font-style: normal;
-    font-weight: lighter;
-    font-size: 13px;
-    line-height: 25px;
-    letter-spacing: 0.070em;
+    font-weight: 420;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: 0.065em;
     text-transform: uppercase;
-
-color: #363636;
-
+    
     color: #363636;
 }
 
@@ -110,7 +123,8 @@ color: #363636;
     width: 600px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    gap: 60px;
     
     
     }
@@ -122,7 +136,7 @@ color: #363636;
     font-family: 'Brandon Grotesque';
     font-style: normal;
     font-weight: 420;
-    
+    font-size: 20px;
     line-height: 29px;
     letter-spacing: 0.065em;
     text-transform: uppercase;
@@ -133,6 +147,7 @@ color: #363636;
 .bottomContainer-buttons{
     display: flex;
     flex-direction: column;
+    align-items: center;
     
 
 }

@@ -1,6 +1,8 @@
 
 import './orderSummaryCard.css'
 import 'font-awesome/css/font-awesome.min.css';
+import { TicketDiagonal24Regular} from '@fluentui/react-icons';
+
 
 
 export const OrderSummaryCard = () => {
@@ -14,12 +16,12 @@ export const OrderSummaryCard = () => {
                 
                 <div className="topContainer-line">
                     <div className='topContainer-line-leftButton'>
-                    {/* <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }}>
-        <FaTicketAlt /> 
-
-      </span> */}
-             <div><i className="fas fa-ticket-alt"></i></div>
+                        <div className='ticket-icon'>
+                            <TicketDiagonal24Regular color='#787878'/>
+                            
+                        </div>
                         <input type="text"  placeholder="ENTER CODE" />
+                        
                     </div>
                     <div>
                         <button className='topContainer-line-rightButton' >Apply</button>
@@ -30,16 +32,16 @@ export const OrderSummaryCard = () => {
             <hr />
             <div className="middleContainer">
                 <div className="middleContainer-line">
-                    <h3>PRODUCTS : </h3>
-                    <h3> 2 </h3>
+                    <p>PRODUCTS : </p>
+                    <p> 2 </p>
                 </div>
                 <div className="middleContainer-line">
-                    <h3>SUB-TOTAL : </h3>
-                    <h3> 8000DZD</h3>
+                    <p>SUB-TOTAL : </p>
+                    <p> 8000DZD</p>
                 </div>
                 <div className="middleContainer-line">
-                    <h3>SHIPPING(FREE FOR MEMBERS) :</h3>
-                    <h3> 1000DZD</h3>
+                    <p>SHIPPING(FREE FOR MEMBERS) :</p>
+                    <p> 1000DZD</p>
                 </div>
                 <hr />
             </div>
@@ -49,20 +51,21 @@ export const OrderSummaryCard = () => {
 
                 
                 <div className="bottomContainer-line">
-                    <h3>TOTAL :</h3>
-                    <h3> 9000 DZD</h3>
+                    <p>TOTAL :</p>
+                    <p> 9000 DZD</p>
                 </div>
                 </div>
             
                 <div className='bottomContainer-buttons'>
+                    
+                    <div>
+                        <button className='bottomContainer-line-topButton' > SECURE CHECKOUT</button>
+                    </div>
                     <div>
                         <button className='bottomContainer-line-topButton' style={{background:'#3b7bbf'}} > 
                         <i className="fa fa-paypal fa-2x"></i>
 
                         </button>
-                    </div>
-                    <div>
-                        <button className='bottomContainer-line-topButton' > SECURE CHECKOUT</button>
                     </div>
             </div>
             </div>

@@ -1,0 +1,101 @@
+.myBag{
+    height: 232px;
+    width: 956;
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFF4ED;
+    
+}
+.myBag-left{
+    width: 40%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    padding-left: 2%;
+    padding-top:2% ;
+    padding-bottom: 2%;
+    gap: 30px;
+}
+.heyhey{
+    width: 122px;
+    height: 171;
+    
+}
+.heyhey img{
+    height: 100%;
+    width: 100%;
+}
+
+.myBag-left{
+    font-family: 'Brandon Grotesque';
+font-style: normal;
+font-weight: 420;
+font-size: 16px;
+line-height: 23px;
+letter-spacing: 0.065em;
+
+color: #646464;
+
+}
+.__title {
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 420;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: 0.065em;
+
+color: #494949;
+}
+.myBag-right{
+    padding-top:2% ;
+    padding-bottom: 2%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.rectangle-container{
+    display: flex;
+    width: 100px;
+    height: 30px;
+    align-items: center;
+}
+.rectangle-part1{
+    width: 30%;
+    border: 1px solid #353535;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+.rectangle-part2{
+    width: 40%;
+    border: 1px solid #353535;
+    display: flex;
+    justify-content: center;
+
+}
+.rectangle-part3{
+    cursor: pointer;
+    width: 30%;
+    border: 1px solid #353535;
+    display: flex;
+    justify-content: center;
+
+}
+.price{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
+.price hr{
+    width: 0;
+    height: 25px;
+    color: #929292;
+}
+.icons{
+    width: 10%;
+    display: flex;
+    gap: 10px;
+    
+}

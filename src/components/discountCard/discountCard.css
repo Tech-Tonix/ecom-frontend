@@ -1,0 +1,43 @@
+.discountCard{
+    margin-top: 50px;
+    padding: 10% 0;
+    height: 600px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 170px;
+    background-color: rebeccapurple;
+    background: url('D:/react/ecom-frontend/src/assets/Images-20230511T152215Z-001/Images/pexels-cottonbro-studio-4325439.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    border-radius: 5px;
+}
+.discountCard-title{
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 55px;
+    text-align: center;
+    letter-spacing: 7.55px;
+    text-transform: uppercase;
+    color: #F3F3F3;
+
+}
+
+.discountCard-button button{
+    height: 70px;
+    width: 212px;
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+
+    color: #F9F9F9;
+    }
+

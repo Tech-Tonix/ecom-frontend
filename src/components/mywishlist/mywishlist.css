@@ -1,0 +1,30 @@
+
+.mywishlist-container{
+    background-color:#FFF4ED;
+    max-width: 956px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items:baseline;  
+    margin: 30px;
+    padding: 27px 56px 16px 56px; 
+    border-radius: 5px;
+}
+
+.mywishlist-title{
+    font-weight: 420;
+    font-size: 36px;
+    line-height: 51px;
+    letter-spacing: 0.065em;
+    color: #171717;
+}
+
+.mywishlist-description{
+    font-style: normal;
+    font-weight: 420;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0.065em;
+    color: #656565;
+    text-align: left;
+}

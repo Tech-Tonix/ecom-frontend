@@ -1,20 +1,40 @@
 import './card.css';
+import { Link } from "react-router-dom";
+import { useInView } from 'react-intersection-observer';
+import { useState } from 'react';
 
-export const Card = () => {
+export const Card = (product) => {
+
+
+
+    const [shouldLoadImages, setShouldLoadImages] = useState(false);
+    const { ref, inView } = useInView({
+        threshold: 0,
+        triggerOnce: true,
+        rootMargin: '0px 0px 200px 0px',
+        onChange: (inView) => setShouldLoadImages(inView),
+      });
+    const {imgUrl, productPrice, productName, productColor} = product;
     return (
+        <Link to={`/product-page/${product?.id}`}>
         <div className='root'>
-            <div className='upper-side'>
-                <img src='url' alt='img' className='product-img'/>
+        
+
+            <div className='upper-side' style={{backgroundImage: shouldLoadImages ?`url(${imgUrl})`:null  ,backgroundPosition:'center',backgroundSize:'cover' }} ref={ref} >
+                
                 <button className='shop-btn'>Shop now</button>
             </div>
             <div className='lower-side'>
                 <div className='status-price'>
                     <h5 className='Status-txt'>New</h5>
-                    <h5 className='price-txt'>2000 DZD</h5>
+                    <h5 className='price-txt'>{productPrice} DZD</h5>
                 </div>
-                <h4 className='product-title'>Power T-Shirt</h4>
-                <h4 className='prodoct-color-txt'>Evening blue</h4>
+                <h4 className='product-title'>{productName}</h4>
+                <h4 className='prodoct-color-txt'>{productColor}</h4>
             </div>
+           
         </div>
+        
+        </Link>
     );
 };

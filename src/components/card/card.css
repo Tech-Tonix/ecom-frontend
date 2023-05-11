@@ -1,13 +1,16 @@
 @import url('https://fonts.cdnfonts.com/css/brandon-grotesque');
 
 .root {
-  position: relative;
+  margin-bottom: 20px;
+  
 }
 .upper-side {
+  
   width: 264px;
   height: 365px;
   position: relative;
   margin-bottom: 14px;
+ 
 }
 .lower-side {
   width: 259px;
