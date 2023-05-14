@@ -3,7 +3,7 @@
     margin-left: 8%;
     flex-direction: row;
     display: flex;
-    gap: 60px;
+    gap: 60px; 
     
     
 }
@@ -75,7 +75,36 @@
 
     color: #F3F3F3;
     }
+    .rectangle-container{
+        display: flex;
+        width: 100px;
+        height: 30px;
+        align-items: center;
+    }
+    .rectangle-part1{
+        width: 30%;
+        border: 1px solid #353535;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+    }
+    .rectangle-part2{
+        
+        width: 30%;
+        border: 1px solid #353535;
+        display: flex;
+        justify-content: center;
+    
+    }    
 
+    .rectangle-part3{
+        cursor: pointer;
+        width: 30%;
+        border: 1px solid #353535;
+        display: flex;
+        justify-content: center;
+    
+    }    
 
 
 

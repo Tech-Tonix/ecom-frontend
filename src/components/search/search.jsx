@@ -1,5 +1,5 @@
 import './search.css';
-import sports from 'D:/react/ecom-frontend/src/assets/Images-20230511T152215Z-001/Images/bckground-search.png'
+import sports from 'D:/react/ecom-frontend/src/assets/bckground-search.png'
 
 export const Search = () => {
     return(

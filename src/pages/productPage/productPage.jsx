@@ -4,19 +4,38 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 // import { Rating } from '@fluentui/react';
 import { StarRating } from './rating';
-import { Heart28Regular } from '@fluentui/react-icons';
+import Slider from "react-slick";
+import { Link } from 'react-router-dom';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Heart48Filled } from '@fluentui/react-icons';
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import productImage1 from '../../assets/pexels-cottonbro-studio-4325439.jpg'
+import productImage2 from '../../assets/pic1.jpg'
+import productImage3 from '../../assets/pic3-men.jpg'
+
+
+
+
+
+
+
+
+
 export const ProductPage =() =>{
 
     
 
-
+  let [heartColor,setHeartColor]=useState(true)
   const [product, setProduct] = useState({})
   const [cartButtonClickStatus,setCartButtonClickStatus] = useState(false)
-  const [count, setCount] = useState(0);
+  const [count1, setCount] = useState(0);
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const colors = ["red", "blue", "green", "yellow"];
   const sizes = ["XS", "S", "M", "L","XL","XXL"]; 
+
   const handleColorClick = (color) => {
     setSelectedColor(color);
     
@@ -25,32 +44,84 @@ export const ProductPage =() =>{
     setSelectedSize(size);
     
   };
-  const handleIncrement = () => {
+  
+
+  
+  
+
+  const CustomPrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+
+          
+          background: "#C2C2C2",
+          padding:'20px',
+          borderRadius:'15px'
+        }}
+        onClick={onClick}
+      >
+        <FontAwesomeIcon icon={faChevronLeft} style={{}} />
+      </div>
+    );
+  }
+
+  const CustomNextArrow = (props) => {
+    const { className, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+
+          
+          background: "#C2C2C2",
+          padding:'20px',
+          borderRadius:'15px'
+        }}
+        onClick={onClick}
+      >
+        <FontAwesomeIcon icon={faChevronRight} style={{}} />
+      </div>
+
+    );
+  }
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />
+  };
+  const settings2 = {
     
-    setCount(count + 1);
+    infinite: true,
+    vertical:true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />
   };
 
-  const handleDecrement = () => {
-    if (count > 0){
-    setCount(count - 1);}
-  };
-  // const {id} = useParams()
- 
-  // useEffect(()=>{
-  //     getSinglProduct();
-  // },[])
-  // const getSinglProduct = async () => {
-  //   const {data} = await axios.get(`https://gymrat-app.onrender.com/store/products/`+{id})
-  //   console.log(data)
-  //     setProduct(data)
-  // }
+
+
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await axios.get(`https://gymrat-app.onrender.com/store/products/`+id);
+        const res = await axios.get('https://gymrat-app.onrender.com/store/products/'+id+'/');
         setProduct(res.data);
         setLoading(false);
       } catch (error) {
@@ -58,120 +129,122 @@ export const ProductPage =() =>{
       }
     };
     getProduct();
-  }, );
+  }, []);
+  const [products, setProducts] = useState([])
+  const getProducts = async () => {
+      const response = await axios.get('https://gymrat-app.onrender.com/store/products/')
+      setProducts(response.data)
+  }
+  useEffect(()=>{
+      getProducts();
+  },[])
 
- // const [product, setProduct] = useState({})
-  // const [cartButtonClickStatus,setCartButtonClickStatus] = useState(false)
-
-  // const {id} = useParams()
- 
-  // useEffect(()=>{
-  //     getSinglProduct();
-  // },[])
-  // const getSinglProduct = async () => {
-  //   const {data} = await axios.get(`https://gymrat-app.onrender.com/store/products/`+{id})
-  //   console.log(data)
-  //     setProduct(data)
-  // }
-  // const [loading, setLoading] = useState(true);
-  // const { id } = useParams();
-
-  // useEffect(() => {
-  //   const getProduct = async () => {
-  //     try {
-  //       const res = await axios.get(`https://gymrat-app.onrender.com/store/products/`+id);
-  //       setProduct(res.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getProduct();
-  // }, );
-  // useEffect(() => {
-  //   const fetchProductData = async () => {
-  //     try {
-  //       const response = await axios.get('https://gymrat-app.onrender.com/store/products/%3Cint:id%3E//'+id);
-  //       const data = response.data;
-  //       setProduct(data);
-  //     } catch (error) {
-  //       alert(error.message);
-  //     }
-  //   };
   
-  //   fetchProductData();
-  //   console.log(id)
-  // }, []);
 
-
-  const cartAddButtonHandler = () =>{
-    let previousCart = localStorage.getItem('cartData')
-
+  const cartAddButtonHandler = () => {
+    if (!selectedColor) {
+      alert("Please select a color.");
+      return;
+    }
+    if (!selectedSize) {
+      alert("Please select a size.");
+      return;
+    }
+  
+    let previousCart = localStorage.getItem('cartData');
     let cartJson = JSON.parse(previousCart);
-    
-    const cartData=[
-      {'product':{
-        'id' : product.id,
-        'name': product.name,
-        'price':product.unit_price,
-    },
-      'user':{
-        'id':1
-      }
+  
+    const cartData = [
+      {
+        'product': {
+          'id': product.id,
+          'name': product.name,
+          'color': selectedColor,
+          'size': selectedSize,
+          'price': product.unit_price,
+          'description': product.description,
+          'image': product.image
+        },
+        'user': {
+          'id': 1
+        },
+        'count1': count1,
       }
     ];
-    if (cartJson==null){
-      let allCartData = cartJson.push(cartData);
-      let cartString = JSON.stringify(allCartData);
-      localStorage.setItem('cartData',cartString)
-    }else{
-      let cartString = JSON.stringify(cartData);
-      localStorage.setItem('cartData',cartString)
-    }
-}
   
+    if (Array.isArray(cartJson)) {
+      let allCartData = cartJson.concat(cartData);
+      let cartString = JSON.stringify(allCartData);
+      localStorage.setItem('cartData', cartString);
+    } else {
+      let cartString = JSON.stringify(cartData);
+      localStorage.setItem('cartData', cartString);
+    }
+  
+    setCartButtonClickStatus(true);
+    alert("Product added to cart!");
+  }
+  
+  const wishListAddButtonHandler =() =>{
+      
+    let previousWishList = localStorage.getItem('wishListData')
+    let wishListJson = JSON.parse(previousWishList);
     
-
-
-
-  //   setCartButtonClickStatus(true)  
-  // }
-  // const cartRemoveButtonHandler = () =>{
-  //   // localStorage.removeItem('cartData')
-  //   setCartButtonClickStatus(false) 
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    const wishListData = [
+      {
+        'product': {
+          'id': product.id,
+          'name': product.name,
+          'color': selectedColor, // include selected color here
+          'size': selectedSize,
+          'price': product.unit_price,
+          'description': product.description,
+          'image': product.image
+        },
+        'user': {
+          'id': 1
+        }
+      }
+    ];
+  
+    if (Array.isArray(wishListJson)) {
+      let allWishListData = wishListJson.concat(wishListData);
+      let wishListString = JSON.stringify(allWishListData);
+      localStorage.setItem('wishListData', wishListString);
+    } else {
+      let wishListString = JSON.stringify(wishListData);
+      localStorage.setItem('wishListData', wishListString);
+    }
+  
+    setHeartColor(!heartColor);  
+  
+}
     return(
 
     <div className="productPage">
-        {loading?
-      ( <>
+        {!loading?
+      ( <div style={{display:'flex',flexDirection:'column'}}>
+        <div className="productPage-product" style={{display:'flex',gap:'50px',marginBottom:"70px",marginLeft:'10%'}}>
+        <div className="slider" style={{width:'150px'}}>
+        <Slider  {...settings2}>
+        {
+            products.map((product)=>{
+               
+                return (
+                    <Link to={`/show-ProductsItems/${product.id}/`} key={product.id}>
+                    <div className='root' style={{marginLeft:'25px',height:'120px',backgroundColor:'red',width:'100px'}}>
+                      <img src={productImage2} alt="imggg" style={{height:'120',width:'100px'}} />
+                    </div>
+                    </Link>
+                )
+                
+            })
+
+        }
+            </Slider>
+            </div>
         <div className="productPage-image">
-            <img style={{width:'450px',height:'450px'}} src={product.image} alt="imaage" />
+            <img style={{width:'450px',height:'450px',borderRadius:'10px'}} src={productImage1} alt="imaage" />
         </div>
         <div className="productPage-details">
             <div className="productPage-details-title-reviews-price">
@@ -185,7 +258,7 @@ export const ProductPage =() =>{
                     </div>
                 </div>
                 <div className="productPage-details-price">
-                    <p>{product.unit_price}</p>
+                    <p>{product.unit_price} DZD</p>
                 </div>
             </div>
             <div className="productPage-details-color">
@@ -216,10 +289,10 @@ export const ProductPage =() =>{
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)"
-            }}
-        ></div>
-    </div>
-))}
+                              }}
+                          ></div>
+                      </div>
+                  ))}
 
                 </div>
             </div>
@@ -246,17 +319,10 @@ export const ProductPage =() =>{
                 </div>
                 </div>
             <div className="productPage-details-amount-button">
-                <div className="productPage-details-amount">
-                    <p className="p__amount">Amount</p>
-                    <div className="rectangle-container" style={{alignItems:"start"}}>
-                        <div className="rectangle-part1" onClick={handleDecrement}>-</div>
-                        <div className="rectangle-part2">{count}</div>
-                        <div className="rectangle-part3" onClick={handleIncrement}>+</div>
-            </div>
-                </div>
                 <div className="productPage-details-button">
-                    <button type='button' onClick={cartAddButtonHandler}>ADD TO BAG </button>
-                    <Heart28Regular/>
+                <button type='button' onClick={cartAddButtonHandler}>ADD TO BAG </button> 
+                <Heart48Filled onClick={wishListAddButtonHandler} style={{color:heartColor?'#C2C2C2':'red',marginBottom:'9px'}}/>
+                    
                 </div>
             </div>
             <div className="productPage-details-description">
@@ -274,7 +340,56 @@ export const ProductPage =() =>{
                 </p>
             </div>
         </div>
-                    </>):(<h1>LOADING...</h1>
+        </div>
+        <div className='you-might-like'>
+        <div className="you-might-like-title" style={{display:'flex',justifyContent:'space-between',margin:'0 10%',alignItems:"center"}}>
+          <p style={{
+            fontSize: '32px',
+            fontWeight: 'bold',
+            lineHeight: '51.48px',
+            transition: 'all 0.2s'}}>
+            You might like
+          </p>
+          {/* <div style={{display:'flex',gap:'10px'}}><ArrowCircleLeft48Filled/>
+          <ArrowCircleRight48Filled/> </div> */}
+          
+                  
+        </div>
+        <div className="slider" style={{margin:'8px 8%'}}>
+        <Slider  {...settings}>
+        {
+            products.map((product)=>{
+               
+                return (
+                    <Link to={`/show-ProductsItems/${product.id}/`} key={product.id}>
+                    <div className='root' style={{marginLeft:'25px'}}>
+                        <div className='upper-side' style={{backgroundImage: `url(${product.image})`  ,backgroundPosition:'center',backgroundSize:'cover'}}>
+                            
+                            <button className='shop-btn'>Shop now</button>
+                        </div>
+                        <div className='lower-side'>
+                            <div >
+                                <h5 style={{textAlign:'end'}} className='price-txt'>{product.unit_price} DZD</h5>
+                            </div>
+                            <h4 className='product-title'>{product.name}</h4>
+                            <h4 className='prodoct-color-txt'>{product.description}</h4>
+                        </div>
+                    </div>
+                    </Link>
+                )
+                
+            })
+
+        }
+            </Slider>
+            </div>
+
+        </div>
+        
+
+                    </div>
+                    
+                    ):(<h1>LOADING...</h1>
       )}
     </div>
     )

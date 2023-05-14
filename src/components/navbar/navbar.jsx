@@ -46,7 +46,7 @@ export const NavBar = () => {
           </Link>
           
           
-          <Link to='/Registration'>
+          <Link to='/My-bag'>
             <img className="navbar-top-bar-icon" src={require('./assets/ic_fluent_shopping_bag_24_regular.svg').default} alt="Shopping bag"/>
           </Link>
           

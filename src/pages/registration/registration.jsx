@@ -1,9 +1,13 @@
-import{useState} from "react";
+import{useState,useContext,useEffect} from "react";
 import './registration.css'
+import AuthContext from '../../context/AuthContext'
 // import { useNavigate } from 'react-router-dom';
 
 import axios from "axios";
 export const RegistrationPage = ()=>{
+  const {  registerUser } = useContext(AuthContext)
+  const [login , setlogin]=useState(false) 
+  const [loading , setLoading]=useState(false) 
   const [first_name, setFirstName] = useState('');
   const [birth_date,setBirthDay] = useState('')
   const [last_name, setLastName] = useState('');
@@ -15,16 +19,53 @@ export const RegistrationPage = ()=>{
   const [address, setAddress] = useState('');
   const [postal_code, setPostalCode] = useState('');
   const [is_student, setIsStudent] = useState(false);
+  const [is_member_club, setIsMemberClub] = useState(false);
   // const navigate = useNavigate();
-  
+  useEffect(() => { 
+    setFirstName("") 
+    setLastName("") 
+    setEmail("") 
+    setPassword1("") 
+    setConfirmPassword2("")
+    setPhoneNumber("")
+    setCity("")
+    setAddress("")
+    setPostalCode("")
+    setIsStudent(false)
+    setIsMemberClub(false)
+    
+  }, [login]) 
   
   
   const handleCheckboxChange = (event) => {
     setIsStudent(event.target.checked);
   };
+  const handleRegister = async () => { 
+    if(first_name==="" || last_name==="" || birth_date==="" || email==="" || password1==="" ||   password2===""    ||  phone_number==="" || city==="" || postal_code===""  ) { 
+      alert("Some fields are missing") 
+      return 
+    } 
+
+    setLoading(true) 
+    const res = await registerUser(first_name, password1,password2, last_name, email,birth_date, phone_number,city,postal_code) 
+    setLoading(false) 
+  } 
+   
+  
+const handleSubmit = (e) => { 
+  e.preventDefault() 
+  handleRegister() 
+}  
 
 
-  // const registerUser = (e) => {
+
+
+
+
+
+
+
+  // const registerUserr = (e) => {
     
   //       fetch('https://gymrat-app.onrender.com/rest-auth/registration/', {
   //     method: 'POST',
@@ -45,23 +86,23 @@ export const RegistrationPage = ()=>{
   //     });
   // };
     
-    const handleRegister = async (event) => {
+    // const handleRegister = async (event) => {
       
-      event.preventDefault();
-      // token = localStorage.getItem("token")
-      try {
-        const response = await axios.post('https://gymrat-app.onrender.com/rest-auth/registration/', { first_name,last_name,email,password1,password2,phone_number,city,address,postal_code,is_student},
-       {
-        // headers: { "Content-Type": 'application/json', Authorization: "Bearer "+ token },
-      });
+    //   event.preventDefault();
+    //   // token = localStorage.getItem("token")
+    //   try {
+    //     const response = await axios.post('https://gymrat-app.onrender.com/rest-auth/registration/', { first_name,last_name,email,password1,password2,phone_number,city,address,postal_code,is_student},
+    //    {
+    //     // headers: { "Content-Type": 'application/json', Authorization: "Bearer "+ token },
+    //   });
 
-      localStorage.setItem("token", response.data.token)
-      localStorage.setItem("user")
-      } catch (error) {
-      }
+    //   localStorage.setItem("token", response.data.token)
+    //   localStorage.setItem("user")
+    //   } catch (error) {
+    //   }
       
 
-    };
+    // };
 
     // fetch('https://gymrat-app.onrender.com/rest-auth/registration/', {
     //   method: 'POST',
@@ -105,37 +146,13 @@ export const RegistrationPage = ()=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
     return (
     <div className="registrationPage">
     <div className="registrationPage-body">
     <div className="registrationPage-container">
     <div className="registrationPage-title">SIGN INTO MY GYMRAT</div>
     <div className="registrationPage-content">
-      <form >
+      <form onSubmit={handleSubmit} >
         <div className="registrationPage-user-details">
           <div className="registrationPage-input-box">
             <span className="registrationPage-details" >first name :</span>

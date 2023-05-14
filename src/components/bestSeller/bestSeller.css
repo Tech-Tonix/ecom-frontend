@@ -3,10 +3,10 @@
 
 .bestSeller-section {
  overflow-x: auto;
- max-width: 1500px;
+ max-width: 98%;
   width: 100%;
-  margin-right: 0px;
-  margin-left: 0px;
+  margin-right: 40px;
+  margin-left: 40px;
   margin-bottom: 81px;
   padding-left: 96px;
 }
@@ -15,14 +15,14 @@
 }
 .bestSeller-section-title {
   height: 44px;
-  width: 95%;
+  width: 100%;
   border-left: 5.9px solid #171717;
   display:flex;
   justify-content:space-between;
   flex-direction: row;
-  align-items: start;
+  align-items: center;
   margin-bottom: 28px;
-  margin-left: 0px;
+  margin-left: 46%;
 }
 
 .bestSeller-section-cards {

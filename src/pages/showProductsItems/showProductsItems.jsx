@@ -3,12 +3,7 @@ import { useEffect,useState } from "react"
 import { Filter24Filled } from '@fluentui/react-icons';
 import { Link } from "react-router-dom";
 import axios from "axios";
-import p1 from '../../components/bestSeller/assets/p1.jpg';
-import p2 from '../../components/bestSeller/assets/p2.jpg';
-import p3 from '../../components/bestSeller/assets/p3.jpg';
-import p4 from '../../components/bestSeller/assets/p4.jpg';
-import p5 from '../../components/bestSeller/assets/p5.jpg';
-import p6 from '../../components/bestSeller/assets/p6.jpg';
+
 import './showProductsItems.css'
 export const ShowProductsItems = () =>{
   
@@ -23,141 +18,6 @@ export const ShowProductsItems = () =>{
 
 
 
-    // const products = [
-    //     {
-    //       id: 1,
-    //       productPrice: '2000 ',
-    //       productName: 'nike t-shirt',
-    //       productColor: 'sky blue',
-    //       imgUrl: {p1}
-    //     },
-    //     {
-    //         id: 2,
-    //         productPrice: '2000 ',
-    //         productName: 'nike t-shirt',
-    //         productColor: 'sky blue',
-    //         imgUrl: {p2}
-    //       },
-    //       {
-    //         id: 3,
-    //         productPrice: '2000 ',
-    //         productName: 'nike t-shirt',
-    //         productColor: 'sky blue',
-    //         imgUrl: {p3}
-    //       },
-    //       {
-    //         id: 4,
-    //         productPrice: '2000',
-    //         productName: 'nike t-shirt',
-    //         productColor: 'sky blue',
-    //         imgUrl: {p4}
-    //       },
-    //       {
-    //         id: 5,
-    //         productPrice: '2000 ',
-    //         productName: 'nike t-shirt',
-    //         productColor: 'sky blue',
-    //         imgUrl: {p5}
-    //       },{
-    //       id: 5,
-    //         productPrice: '2000 ',
-    //         productName: 'nike t-shirt',
-    //         productColor: 'sky blue',
-    //         imgUrl: {p6}
-    //       },{
-    //         id: 5,
-    //           productPrice: '2000 ',
-    //           productName: 'nike t-shirt',
-    //           productColor: 'sky blue',
-    //           imgUrl: {p6}
-    //         },{
-    //           id: 5,
-    //             productPrice: '2000 ',
-    //             productName: 'nike t-shirt',
-    //             productColor: 'sky blue',
-    //             imgUrl: {p6}
-    //           },{
-    //             id: 5,
-    //               productPrice: '2000 ',
-    //               productName: 'nike t-shirt',
-    //               productColor: 'sky blue',
-    //               imgUrl: {p6}
-    //             },{
-    //               id: 5,
-    //                 productPrice: '2000 ',
-    //                 productName: 'nike t-shirt',
-    //                 productColor: 'sky blue',
-    //                 imgUrl: {p6}
-    //               },{
-    //                 id: 5,
-    //                   productPrice: '2000 ',
-    //                   productName: 'nike t-shirt',
-    //                   productColor: 'sky blue',
-    //                   imgUrl: {p6}
-    //                 },{
-    //                   id: 5,
-    //                     productPrice: '2000 ',
-    //                     productName: 'nike t-shirt',
-    //                     productColor: 'sky blue',
-    //                     imgUrl: {p6}
-    //                   },{
-    //                     id: 5,
-    //                       productPrice: '2000 ',
-    //                       productName: 'nike t-shirt',
-    //                       productColor: 'sky blue',
-    //                       imgUrl: {p6}
-    //                     },{
-    //                       id: 5,
-    //                         productPrice: '2000 ',
-    //                         productName: 'nike t-shirt',
-    //                         productColor: 'sky blue',
-    //                         imgUrl: {p6}
-    //                       },{
-    //                         id: 5,
-    //                           productPrice: '2000 ',
-    //                           productName: 'nike t-shirt',
-    //                           productColor: 'sky blue',
-    //                           imgUrl: {p6}
-    //                         },{
-    //                           id: 5,
-    //                             productPrice: '2000 ',
-    //                             productName: 'nike t-shirt',
-    //                             productColor: 'sky blue',
-    //                             imgUrl: {p6}
-    //                           },{
-    //                             id: 5,
-    //                               productPrice: '2000 ',
-    //                               productName: 'nike t-shirt',
-    //                               productColor: 'sky blue',
-    //                               imgUrl: {p6}
-    //                             },{
-    //                               id: 5,
-    //                                 productPrice: '2000 ',
-    //                                 productName: 'nike t-shirt',
-    //                                 productColor: 'sky blue',
-    //                                 imgUrl: {p6}
-    //                               },{
-    //                                 id: 5,
-    //                                   productPrice: '2000 ',
-    //                                   productName: 'nike t-shirt',
-    //                                   productColor: 'sky blue',
-    //                                   imgUrl: {p6}
-    //                                 },{
-    //                                   id: 5,
-    //                                     productPrice: '2000 ',
-    //                                     productName: 'nike t-shirt',
-    //                                     productColor: 'sky blue',
-    //                                     imgUrl: {p6}
-    //                                   },{
-    //                                     id: 5,
-    //                                       productPrice: '2000 ',
-    //                                       productName: 'nike t-shirt',
-    //                                       productColor: 'sky blue',
-    //                                       imgUrl: {p6}
-    //                                     },
-          
-    //     // add more products here
-    //   ];
       let quantityy=products.length;
     return(
         <div className="productsPage">
@@ -172,10 +32,10 @@ export const ShowProductsItems = () =>{
         </div>
         <div className="showAllTheProducts">
         {
-            products.map((product,index)=>{
+            products.map((product)=>{
                
                 return (
-                    <Link to={`/product-page/${product?.id}`}>
+                    <Link to={`/show-ProductsItems/${product.id}/`} key={product.id}>
                     <div className='root'>
                         <div className='upper-side' style={{backgroundImage: `url(${product.image})`  ,backgroundPosition:'center',backgroundSize:'cover'}}>
                             

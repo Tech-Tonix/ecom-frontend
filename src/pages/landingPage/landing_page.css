@@ -3,3 +3,72 @@
     margin-bottom: 20%;
     
 }
+.productsPage{
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+
+
+
+
+.showAllTheProducts{
+     
+    margin-left:  5%;
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-content: space-evenly;
+}
+
+.showProducts{
+    height: 80px;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-left:  5%;
+    margin-bottom: 50px;
+
+}
+.showProducs_p-title{
+    
+
+    display: flex;
+    align-items: center;
+    gap: 10px;    
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 450;
+    font-size: 40px;
+    line-height: 57px;
+    letter-spacing: 0.065em;
+
+    color: #171717;
+}
+.showProducs_p-title span{
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 330;
+    font-size: 32px;
+    line-height: 46px;
+    letter-spacing: 0.065em;
+
+    color: #171717be;
+}
+.showProducts-filterYourReasearch{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+}
+.showProducts-filterYourReasearch p {
+    font-family: 'Brandon Grotesque';
+font-style: normal;
+font-weight: 390;
+font-size: 25px;
+line-height: 46px;
+letter-spacing: 0.065em;
+
+color: #171717;
+}

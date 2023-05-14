@@ -18,7 +18,7 @@ export const MyBagCard = ({ count, handleIncrement, handleDecrement}) =>{
             setheartIsClicked(!heartIsClicked);
         }   
 
-    return(
+    return( 
         <div className="myBag">
         <div className="myBag-left">
             <div className="heyhey">
