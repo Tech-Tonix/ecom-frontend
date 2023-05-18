@@ -1,0 +1,112 @@
+.filtersAndSortWrapperpannel{
+    background-color: #FFF6F6;
+    width:350px ;
+    height: 1080px;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+
+h2{
+    font-family: Brandon Grotesque;
+    font-weight: 400;
+    text-align: center;
+    margin: 20px;
+    margin-bottom: 40px;
+    font-size: 28px;
+    color: #252525;
+}
+
+
+.arrowIconpannel{
+    transform: rotate(90deg); /* Corrected property name */
+    width: 24px;
+    height: 24px;
+    display: flex; /* Added property */
+    align-items: center; /* Added property */
+    justify-content: center; /* Added property */
+}
+
+
+.filtersContainerpannel{
+    margin-bottom: 50px;
+  
+
+}
+
+
+.HeaderPlusArrowPricepannel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+   
+}
+.HeaderPlusArrowCategpannel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.HeaderPlusArrowColorpannel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.HeaderPlusArrowBrandpannel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.HeaderPlusArrowSizepannel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.titleFilterspannel{
+    font-family: Brandon Grotesque;
+    font-weight:400;
+    font-size: 20px;
+
+}
+
+
+hr{
+    width: 290px;
+    background-color: #575757;
+    height: 1px;
+    border: none;
+    margin: 10px 0;
+    margin-bottom: 30px;
+}
+
+.btnContainerpannel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.btnFiltersPannel{
+    margin-top: 70px;
+    border-radius: 29px;
+    width: 299px;
+    height: 50px;
+    background-color: #171717;
+    font-family: Brandon Grotesque;
+    color: #F9F9F9;
+    font-size: 22px;
+}

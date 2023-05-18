@@ -9,7 +9,7 @@
     justify-content: flex-end;
     gap: 170px;
     background-color: rebeccapurple;
-    background: url('D:/react/ecom-frontend/src/assets/pexels-cottonbro-studio-4325439.jpg');
+    background: url('../../assets/pexels-cottonbro-studio-4325439.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: repeat;

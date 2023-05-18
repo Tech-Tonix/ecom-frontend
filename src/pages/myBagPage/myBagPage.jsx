@@ -3,11 +3,6 @@ import { MyBag } from "../../components/myBag/mybag"
 import './myBagPage.css'
 import { useState,useEffect } from "react"
 import {Subtotal} from "./subtotal"
-// import p1 from 'D:/react/ecom-frontend/src/assets/Images-20230511T152215Z-001/Images/Gymshark Official Store_ Men_s _ Women_s Workout Apparel.jpg';
-// import p2 from 'D:/react/ecom-frontend/src/assets/Images-20230511T152215Z-001/Images/pic1.jpg';
-// import p3 from 'D:/react/ecom-frontend/src/assets/Images-20230511T152215Z-001/Images/pic3-men.jpg';
-// import p4 from "D:/react/ecom-frontend/src/assets/Images-20230511T152215Z-001/Images/Shop Men_s Gym Clothes _ Men's Activewear - Gymshark.jpg";
-
 
 
 // const bags = [
@@ -143,7 +138,7 @@ export const MyBagPage = () =>{
           <div className="myBag-left">
             <div className="heyhey">
               <img
-                src={require('D:/react/ecom-frontend/src/assets/Gymshark Official Store_ Men_s _ Women_s Workout Apparel.jpg').default}
+                src={require('../../assets/Gymshark Official Store_ Men_s _ Women_s Workout Apparel.jpg').default}
                 alt="Favourites"
               />
             </div>

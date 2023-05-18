@@ -20,7 +20,7 @@
 
 .profile-pic-container{
     margin-bottom: 10px;
-    background: url("D:/react/ecom-frontend/src/assets/portrait-homme-sport-assis-ballon-fitness.jpg");
+    background: url('../../assets/portrait-homme-sport-assis-ballon-fitness.jpg');
     background-position: center;
     background-size: cover;
 }
@@ -100,3 +100,5 @@
     align-items: center;
     
 }
+
+
