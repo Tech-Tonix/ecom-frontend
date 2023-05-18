@@ -9,7 +9,7 @@ import { DiscountCard } from '../../components/discountCard/discountCard'
 import { ShopCard, ShopCard2 } from '../../components/shopCard/shopCard'
 import {BestSeller} from '../../components/bestSeller/bestSeller'
 import { Card } from '../../components/card/card'
-import sports from 'D:/react/ecom-frontend/src/assets/bckground-search.png'
+import sports from '../../assets/bckground-search.png'
 import p1 from '../../components/bestSeller/assets/p6.jpg'
 export const LandingPage = () => {
     const [products, setProducts] = useState([]);

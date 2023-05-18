@@ -34,3 +34,17 @@
     transform: rotate(360deg);
   }
 }
+
+
+.screen{
+  position: relative;
+}
+
+.screen.blur{
+  filter: blur(3px);
+}
+
+
+.blur{
+  backdrop-filter: blur(6px);
+}

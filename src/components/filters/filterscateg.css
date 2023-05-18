@@ -1,0 +1,189 @@
+.filtersAndSortWrapper{
+    background-color: #FFF6F6;
+    width:350px ;
+    height: 1080px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    
+}
+
+
+h2{
+    font-family: Brandon Grotesque;
+    font-weight: 400;
+    text-align: center;
+    margin: 20px;
+    font-size: 28px;
+    color: #252525;
+}
+
+
+
+.filtersContainerCateg{
+    margin: 30px;
+    
+
+}
+
+.arrowIconCateg{
+    transform: rotate(90deg); /* Corrected property name */
+    width: 24px;
+    height: 24px;
+    display: flex; /* Added property */
+    align-items: center; /* Added property */
+    justify-content: center; /* Added property */
+}
+
+.HeaderPlusArrowPriceCateg{
+    display: flex;
+    align-items: center;
+    gap: 230px;
+    margin-bottom: 10px;
+}
+
+.titleFilterscateg{
+    font-family: Brandon Grotesque;
+    font-weight:400;
+    font-size: 20px;
+
+}
+
+hr{
+    width: 290px;
+    background-color: #575757;
+    height: 1px;
+    border: none;
+    margin: 10px 0;
+}
+
+.hrOfSelectedFilter{
+    width: 290px;
+    background-color: #575757;
+    height: 1px;
+    border: none;
+    margin-top: 50px;
+    margin-bottom: -40px;
+}
+
+.priceOption{
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: -20px;
+    cursor: pointer;
+    font-size: 19px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+
+
+    
+}
+
+
+.priceOption label {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+
+.priceOption input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.priceOption input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.priceOption .checkmark:after {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #171717;
+}
+
+.optionsPricewithtext{
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+
+}
+
+.HeaderPlusArrowCateg{
+    display: flex;
+    align-items: center;
+    gap: 200px;
+    margin-bottom: 10px;
+    
+}
+
+.HeaderPlusArrowColor{
+    display: flex;
+    align-items: center;
+    gap: 230px;
+    margin-bottom: 10px;
+
+}
+
+.HeaderPlusArrowBrand{
+    display: flex;
+    align-items: center;
+    gap: 230px;
+    margin-bottom: 10px;
+}
+
+.HeaderPlusArrowSize{
+    display: flex;
+    align-items: center;
+    gap: 230px;
+    margin-bottom: 10px;
+
+}
+
+.btnContainerPrice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.btnFiltersPriceOpt{
+    margin-top: 70px;
+    border-radius: 29px;
+    width: 299px;
+    height: 50px;
+    background-color: #171717;
+    font-family: Brandon Grotesque;
+    color: #F9F9F9;
+    font-size: 22px;
+}
