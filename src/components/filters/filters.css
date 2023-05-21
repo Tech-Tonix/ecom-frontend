@@ -1,25 +1,46 @@
-.filtersAndSortWrapper{
+.filtersAndSortWrapperPrice{
     background-color: #FFF6F6;
     width:350px ;
     height: 1080px;
     position: fixed;
     top: 0;
     right: 0;
+    z-index: 200;
+}
+
+
+.filtersContainerPrice{
+    margin-bottom: 50px;
+    margin-left:20 ;
+  
+
+}
+
+
+.HeaderPlusArrowPricePrice{
     
+    width: 38vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+   
 }
 
 
-h2{
+
+.titleFiltersPrice{
     font-family: Brandon Grotesque;
-    font-weight: 400;
-    text-align: center;
-    margin: 20px;
-    font-size: 28px;
-    color: #252525;
+    font-weight:400;
+    font-size: 20px;
+
 }
 
-.arrowIcon{
-    transform: rotate(90deg); /* Corrected property name */
+
+
+.arrowIconPrice{
+    transform: rotate(270deg); /* Corrected property name */
     width: 24px;
     height: 24px;
     display: flex; /* Added property */
@@ -27,42 +48,12 @@ h2{
     justify-content: center; /* Added property */
 }
 
-.filtersContainer{
-    margin: 30px;
-    
-
-}
-
-
-.HeaderPlusArrow{
-    display: flex;
-    align-items: center;
-    gap: 230px;
-    margin-bottom: 10px;
-}
-
-.titleFilters{
-    font-family: Brandon Grotesque;
-    font-weight:400;
-    font-size: 20px;
-
-}
-
-hr{
-    width: 290px;
-    background-color: #575757;
-    height: 1px;
-    border: none;
-    margin: 10px 0;
-}
-
-.hrOfSelectedFilter{
-    width: 290px;
-    background-color: #575757;
-    height: 1px;
-    border: none;
-    margin-top: 50px;
-    margin-bottom: -40px;
+.optionsPricewithtextPrice{
+display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    margin-bottom: 50px;
+    margin-top: 20px;
 }
 
 .priceOption{
@@ -77,12 +68,7 @@ hr{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    
-
-
-    
 }
-
 
 .priceOption label {
     display: flex;
@@ -90,12 +76,13 @@ hr{
     flex: 1;
   }
 
-
+  
 .priceOption input{
     position: absolute;
     opacity: 0;
     cursor: pointer;
 }
+
 
 .checkmark{
     position: absolute;
@@ -108,7 +95,6 @@ hr{
 }
 
 
-
 .checkmark:after {
     content: "";
     position: absolute;
@@ -119,6 +105,7 @@ hr{
     display: block;
 }
 
+
 .priceOption .checkmark:after {
     top: 50%;
     left: 50%;
@@ -128,45 +115,70 @@ hr{
     border-radius: 50%;
     background: #171717;
 }
-
-.optionsPricewithtext{
-    display: flex;
-    flex-direction: column;
-    font-size: 22px;
-    margin-bottom: 50px;
-    margin-top: 20px;
-
+h2{
+    font-family: Brandon Grotesque;
+    font-weight: 400;
+    text-align: center;
+    margin: 20px;
+    margin-bottom: 40px;
+    font-size: 28px;
+    color: #252525;
+}
+.hrOfPrice{
+    width: 290px;
+    background-color: #575757;
+    height: 1px;
+    border: none;
+    margin: 10px 0;
+    margin-bottom: 30px;
 }
 
-.HeaderPlusArrowCateg{
+
+
+.HeaderPlusArrowCategpannel{
+    width: 38vh;
     display: flex;
     align-items: center;
-    gap: 200px;
-    margin-bottom: 10px;
-    
-}
-
-.HeaderPlusArrowColor{
-    display: flex;
-    align-items: center;
-    gap: 230px;
-    margin-bottom: 10px;
-
-}
-
-.HeaderPlusArrowBrand{
-    display: flex;
-    align-items: center;
-    gap: 230px;
+    justify-content: space-between;
+    gap: 20px;
     margin-bottom: 10px;
 }
 
-.HeaderPlusArrowSize{
+.HeaderPlusArrowColorpannel{
+    width: 38vh;
     display: flex;
     align-items: center;
-    gap: 230px;
+    justify-content: space-between;
+    gap: 20px;
     margin-bottom: 10px;
+}
 
+.HeaderPlusArrowBrandpannel{
+    width: 38vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.HeaderPlusArrowSizepannel{
+    width: 38vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+
+hr{
+    width: 290px;
+    background-color: #575757;
+    height: 1px;
+    border: none;
+    margin: 10px 0;
+    margin-bottom: 30px;
 }
 
 .btnContainerPrice{

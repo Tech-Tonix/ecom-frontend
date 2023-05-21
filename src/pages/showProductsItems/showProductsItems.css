@@ -14,6 +14,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     justify-content: space-evenly;
+    margin-top: 100px;
 }
 
 .showProducts{
@@ -73,6 +74,7 @@ color: #171717;
 
 .screen{
     position: relative;
+    z-index: 20;
 }
 
 .screen.blur{

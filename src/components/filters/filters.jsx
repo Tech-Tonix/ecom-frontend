@@ -3,25 +3,29 @@ import './filters.css';
 import { Select } from '@material-ui/core';
 import { ChevronRight20Filled } from '@fluentui/react-icons';
 import Button from '@mui/material/Button';
-
+import Filterpannel from './filterpannel';
 
 
 const Filters = () => {
   
+  const [hideFilters,setHideFilters] = useState(false);
 
+  const handleArrowClickPrice = () =>{
+      setHideFilters(!hideFilters);
+  }
  
   return (
-    <div className='filtersAndSortWrapper'>
-      <div className='contentwrapperPlusbtn'>
-        <div className='filtersContainer'>
+    <div className='filtersAndSortWrapperPrice'>
+      <div className='contentwrapperPlusbtnPrice'>
+        <div className='filtersContainerPrice'>
           <h2 > Filter & Sort</h2>
             
-          <div className='HeaderPlusArrowPricepannel'>
-              <h3 className='titleFilterspannel'>Price</h3>
-              <ChevronRight20Filled className='arrowIcon'/>
+          <div className='HeaderPlusArrowPricePrice' onClick={handleArrowClickPrice}>
+              <h3 className='titleFiltersPrice'>Price</h3>
+              <ChevronRight20Filled className='arrowIconPrice'/>
             </div>
             
-            <div className='optionsPricewithtext'>
+            <div className='optionsPricewithtextPrice'>
               <label className='priceOption'> 
                 High to Low
                 <input type='radio' name='radio'/>
@@ -31,9 +35,11 @@ const Filters = () => {
                 <input type='radio' name='radio'/>
                 <span class='checkmark'></span>
               </label>
-              <hr className='hrOfSelectedFilter'/>
+              
             </div>
+            <hr className='hrOfPrice' />
 
+            {hideFilters && <Filterpannel/>}
 
             
           <div className='HeaderPlusArrowPricepannel'>

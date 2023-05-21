@@ -1,0 +1,204 @@
+.filtersAndSortWrapperColor{
+    background-color: #FFF6F6;
+    width:350px ;
+    height: 1080px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 200;
+    
+}
+
+
+.filtersContainerColor{
+    margin-bottom: 50px;
+    margin-left:20 ;
+  
+
+}
+
+
+.HeaderPlusArrowPriceColor{
+    
+    width: 38vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+   
+}
+
+
+.titleFilterscolor{
+    font-family: Brandon Grotesque;
+    font-weight:400;
+    font-size: 20px;
+
+
+}
+
+
+
+.arrowIconColor{
+    transform: rotate(90deg); 
+    width: 24px;
+    height: 24px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+
+
+.arrowIconColorCOLOR{
+    transform: rotate(270deg); 
+    width: 24px;
+    height: 24px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+
+
+h2{
+    font-family: Brandon Grotesque;
+    font-weight: 400;
+    text-align: center;
+    margin: 20px;
+    margin-bottom: 40px;
+    font-size: 28px;
+    color: #252525;
+}
+
+
+
+.hrOfColor{
+    width: 290px;
+    background-color: #575757;
+    height: 1px;
+    border: none;
+    margin: 10px 0;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+
+hr{
+    width: 290px;
+    background-color: #575757;
+    height: 1px;
+    border: none;
+    margin: 10px 0;
+    margin-bottom: 30px;
+}
+
+
+.btnContainerColor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -25px;
+    
+}
+
+.btnFiltersColorOpt{
+    margin-top: 8px;
+    border-radius: 29px;
+    width: 299px;
+    height: 50px;
+    background-color: #171717;
+    font-family: Brandon Grotesque;
+    color: #F9F9F9;
+    font-size: 22px;
+}
+
+
+
+.colorOptions{
+    
+    display: grid;
+    grid-template-rows: auto;
+    justify-content: space-evenly;
+    grid-gap: 5px;
+    margin-bottom: 10px;
+}
+
+.colorOptionsRow {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 52px;
+    row-gap: 15px;
+    align-items:center;
+    margin-right: 18px;
+    margin-left: -10px;
+  }
+
+
+
+.colorOption {
+    width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 5px;
+  border: 2.5px solid #1b1b1b;
+  box-sizing: border-box;
+  background-clip: padding-box;
+  box-shadow: inset 0 0 0 5px #FFF6F6;
+  margin-top: 10px;
+    
+  }
+  
+.selected {
+    
+    border-width: 2px;
+    border: 2.5px solid #171717;
+    width: 30px;
+    height: 30px;
+    padding: 15px;
+  }
+  
+  .green {
+    background-color: green;
+  }
+  
+  .red {
+    background-color: red;
+  }
+
+.yellow {
+    background-color: yellow;
+}
+
+.white{
+    background-color: #F9F9F9;
+}
+
+.Black {
+    background-color: #000000;
+}
+
+.Brown{
+    background-color: #864100;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

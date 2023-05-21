@@ -6,7 +6,13 @@ import axios from "axios";
 import Filterpannel from "../../components/filters/filterpannel";
 import Filters from "../../components/filters/filters"; 
 import Filterscateg from "../../components/filters/filterscateg"; 
+import Filtersbrand from "../../components/filters/filtersbrand";
+import Filterscolor from "../../components/filters/filterscolor";
+
+
+
 import './showProductsItems.css'
+import Filterssize from "../../components/filters/filterssize";
 
 
 
@@ -24,18 +30,24 @@ export const ShowProductsItems = (props) => {
 
   const quantityy = products.length;
 
-
-
  
  const handleFilterToggle = () => {
   props.setIsFiltersVisible(!props.isFiltersVisible);
 };
 
+const availbleColors = ['Red', 'Blue', 'Green', 'yellow','Black'];
+
+const [selectedColor, setSelectedColor] = useState(null);
+
+const handleColorChange = (selectedColor) => {
+  setSelectedColor(selectedColor);
+}
+
 
   return (
     
     <div className='productsPage'>
-      {props.isFiltersVisible && <Filterscateg/>}
+      {props.isFiltersVisible && <Filters/>}
       <div  className= {` screen ${props.isFiltersVisible ? 'blur' : ''}`}>
       <div className='showProducts'>
         <p className="showProducts_p-title">TRACKLIST <span>({quantityy} results)</span></p>

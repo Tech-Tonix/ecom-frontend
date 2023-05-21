@@ -5,6 +5,7 @@
     position: fixed;
     top: 0;
     right: 0;
+    z-index: 200;
 }
 
 
@@ -31,12 +32,15 @@ h2{
 
 .filtersContainerpannel{
     margin-bottom: 50px;
+    margin-left:20 ;
   
 
 }
 
 
 .HeaderPlusArrowPricepannel{
+    
+    width: 38vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -45,6 +49,7 @@ h2{
    
 }
 .HeaderPlusArrowCategpannel{
+    width: 38vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -53,6 +58,7 @@ h2{
 }
 
 .HeaderPlusArrowColorpannel{
+    width: 38vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -61,6 +67,7 @@ h2{
 }
 
 .HeaderPlusArrowBrandpannel{
+    width: 38vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -69,6 +76,7 @@ h2{
 }
 
 .HeaderPlusArrowSizepannel{
+    width: 38vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
