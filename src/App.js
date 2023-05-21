@@ -18,6 +18,7 @@ import { SpeceficCategory } from './pages/speceficCategoryPage/speceficCategoryP
 import { ProductList } from './pages/productList/productList';
 import Signout from './components/signOut/signout';
 import Filterpannel from './components/filters/filterpannel';
+import Filters from './components/filters/filters';
 
 
 
