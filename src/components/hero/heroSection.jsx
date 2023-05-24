@@ -6,7 +6,7 @@ export const HeroSection = () => {
 
     const steps = [
   'You know what they say ?', 3000,
-  'Succes starts with a good outfit', 3000,
+  'Succes starts with a good outfit', 5000,
 ];
 
 

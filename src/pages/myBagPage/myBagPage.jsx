@@ -1,70 +1,12 @@
 import {Categories} from "../../components/categoriespannel/categories"
 import { MyBag } from "../../components/myBag/mybag"
 import './myBagPage.css'
-import { useState,useEffect } from "react"
+import { useState,useEffect,useContext } from "react"
 import {Subtotal} from "./subtotal"
-// import p1 from 'D:/react/ecom-frontend/src/assets/Images-20230511T152215Z-001/Images/Gymshark Official Store_ Men_s _ Women_s Workout Apparel.jpg';
-// import p2 from 'D:/react/ecom-frontend/src/assets/Images-20230511T152215Z-001/Images/pic1.jpg';
-// import p3 from 'D:/react/ecom-frontend/src/assets/Images-20230511T152215Z-001/Images/pic3-men.jpg';
-// import p4 from "D:/react/ecom-frontend/src/assets/Images-20230511T152215Z-001/Images/Shop Men_s Gym Clothes _ Men's Activewear - Gymshark.jpg";
+import axios from "axios"
+import AuthContext from '../../context/AuthContext'
 
-
-
-// const bags = [
-//     {
-//       id: 1,
-//       price: '2000',
-//       title: 'nike t-shirt',
-//       color: 'sky blue',
-//     //   imageUrl: p1
-//     },
-//     {
-//       id: 2,
-//       price: '2000',
-//       title: 'nike t-shirt',
-//       color: 'sky blue',
-//     //   imageUrl: p2
-//     },
-//     {
-//       id: 3,
-//       price: '2000',
-//       title: 'nike t-shirt',
-//       color: 'sky blue',
-//     //   imageUrl: p3
-//     },
-//     {
-//       id: 4,
-//       price: '2000',
-//       title: 'nike t-shirt',
-//       color: 'sky blue',
-//     //   imageUrl: p4
-//     },
-//     {
-//       id: 5,
-//       price: '2000',
-//       title: 'nike t-shirt',
-//       color: 'sky blue',
-//     //   imageUrl: p3
-//     },
-//     {
-//       id: 5,
-//       price: '2000',
-//       title: 'nike t-shirt',
-//       color: 'sky blue',
-//     //   imageUrl: p4
-//     }
-//   ];
-  
-
-
-
-
-
-
-
-
-
-
+import { toast } from "react-toastify"
 
 
 
@@ -74,62 +16,124 @@ import {Subtotal} from "./subtotal"
 
 
 export const MyBagPage = () =>{
+  const { user,authTokens } = useContext(AuthContext);  
   const [bags, setBags] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [heartIsClicked,setheartIsClicked] = useState('');
 
+  const [quantityList, setQuantityList] = useState([]);
+  
   useEffect(() => {
-    const cartData = localStorage.getItem('cartData');
-    if (cartData) {
-      const parsedCartData = JSON.parse(cartData);
-      setBags(parsedCartData);
-      setQuantityList(Array(parsedCartData.length).fill(0));
-    }
+    fetchCartItems();
   }, []);
 
-    const [heartIsClicked,setheartIsClicked] = useState('');
-        function heartHandleClick(){
-            setheartIsClicked(!heartIsClicked);
-        }   
+  const fetchCartItems = async () => {
+    try {
+      const response = await axios.get('https://gymrat-app.onrender.com/store/cartitems/', {
+        headers: {
+          Authorization: 'JWT ' + authTokens, // Replace with your authentication tokens
+        },
+      });
+      setCartItems(response.data);
+    } catch (error) {
+      console.log('Failed to fetch cart items.', error);
+    }
+  };
 
+  const handleIncrement = async (index) => {
+    const newCartItems = [...cartItems];
+    newCartItems[index].quantity += 1;
+    setCartItems(newCartItems);
 
+    const cartItemId = newCartItems[index].id;
+    const newQuantity = newCartItems[index].quantity;
 
+    try {
+      await axios.put(
+        `https://gymrat-app.onrender.com/store/cartitems/${cartItemId}/`,
+        { quantity: newQuantity },
+        {
+          headers: {
+            Authorization: 'JWT ' + authTokens, // Replace with your authentication tokens
+          },
+        }
+      );
+      console.log('Cart item quantity updated successfully!');
+    } catch (error) {
+      console.log('Failed to update cart item quantity.', error);
+    }
+  };
 
-    
-  
-    const [quantityList, setQuantityList] = useState(Array(bags.length).fill(1)); 
+  const handleDecrement = async (index) => {
+    const newCartItems = [...cartItems];
+    if (newCartItems[index].quantity > 1) {
+      newCartItems[index].quantity -= 1;
+      setCartItems(newCartItems);
 
-    const handleIncrement = (index) => {
-      const newQuantityList = [...quantityList];
-      newQuantityList[index] = newQuantityList[index]+1; 
-      setQuantityList(newQuantityList);
-    };
-  
-    const handleDecrement = (index) => {
-      const newQuantityList = [...quantityList];
-      if (newQuantityList[index] > 1) {
-        newQuantityList[index] -= 1; // Decrement the quantity at the specified index
-        setQuantityList(newQuantityList);
+      const cartItemId = newCartItems[index].id;
+      const newQuantity = newCartItems[index].quantity;
+
+      try {
+        await axios.put(
+          `https://gymrat-app.onrender.com/store/cartitems/${cartItemId}/`,
+          { quantity: newQuantity },
+          {
+            headers: {
+              Authorization: 'JWT ' + authTokens, // Replace with your authentication tokens
+            },
+          }
+        );
+        console.log('Cart item quantity updated successfully!');
+      } catch (error) {
+        console.log('Failed to update cart item quantity.', error);
+      }
+    }
+  };
+
+  const handleDelete = async (index) => {
+    const cartItemId = cartItems[index].id;
+
+    try {
+      await axios.delete(`https://gymrat-app.onrender.com/store/cartitems/${cartItemId}/`, {
+        headers: {
+          Authorization: 'JWT ' + authTokens, // Replace with your authentication tokens
+        },
+      });
+      console.log('Cart item deleted successfully!');
+      const updatedCartItems = cartItems.filter((item, i) => i !== index);
+      setCartItems(updatedCartItems);
+    } catch (error) {
+      console.log('Failed to delete cart item.', error);
+    }
+  };
+
+  useEffect(() => {
+    // Fetch the user and authentication tokens (implement your own logic)
+    const updateCartItems = async () => {
+      try {
+        const response = await axios.get('https://gymrat-app.onrender.com/store/carts/', {
+          headers: {
+            Authorization: 'JWT ' + authTokens,
+          },
+        });
+        setCartItems(response.data);
+      } catch (error) {
+        console.log('Failed to fetch cart items.', error);
       }
     };
-    const subtotal = bags.reduce((total, bag, index) => {
-      const itemTotal = bag.product.price * quantityList[index];
-      return total + itemTotal;
-    }, 0);
 
-    const count = quantityList.reduce((acc, quantity) => acc + quantity, 0);
+    updateCartItems();
+  }, []);
+    const subtotal = cartItems.reduce((total, item, index) => {
+    const itemTotal = item.product.price * quantityList[index];
+    return total + itemTotal;
+  }, 0);
 
+  const count = quantityList.reduce((acc, quantity) => acc + quantity, 0);
 
-
-
-    function handleDelete(index) {
-      let previousCart = localStorage.getItem('cartData')
-      let cartJson = JSON.parse(previousCart);
-      cartJson.splice(index, 1);
-      let updatedCart = JSON.stringify(cartJson);
-      localStorage.setItem('cartData', updatedCart);
-      setBags(cartJson);
-    }
-
-
+  function heartHandleClick(){
+    setheartIsClicked(!heartIsClicked);
+} 
 
 
     return(
@@ -138,12 +142,12 @@ export const MyBagPage = () =>{
             <div className="myBagCards-list">
             <MyBag/>
             <div className="myBagCards-cards">
-            {bags && bags.map((bag, index) => (
-        <div className="myBag" key={index} >
+            {cartItems.map((bag,index) => (
+        <div className="myBag" key={bag.id} >
           <div className="myBag-left">
             <div className="heyhey">
               <img
-                src={require('D:/react/ecom-frontend/src/assets/Gymshark Official Store_ Men_s _ Women_s Workout Apparel.jpg').default}
+                src={bag.product.image}
                 alt="Favourites"
               />
             </div>
@@ -159,7 +163,7 @@ export const MyBagPage = () =>{
               <div className="rectangle-part1" onClick={() => handleDecrement(index)}>
                 -
               </div>
-              <div className="rectangle-part2">{quantityList[index]}</div>
+              <div className="rectangle-part2">{bag.quantity}</div>
               <div className="rectangle-part3" onClick={() => handleIncrement(index)}>
                 +
               </div>
@@ -170,7 +174,7 @@ export const MyBagPage = () =>{
               </div>
               <div className="icons">
                 <i
-                  className="fa fa-trash"onClick={() => handleDelete(index)} 
+                  className="fa fa-trash" onClick={() => handleDelete(index)} 
                   style={{ fontSize: '25px', color: '#C2C2C2',cursor:'pointer' }}
                 ></i>
                 <hr />

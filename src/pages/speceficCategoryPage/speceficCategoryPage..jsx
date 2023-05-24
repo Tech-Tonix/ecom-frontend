@@ -3,21 +3,41 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Filter24Filled } from '@fluentui/react-icons';
 import { Link } from "react-router-dom";
-import './speceficCategoryPage.css'
+import './speceficCategoryPage.css';
+
 
 export const SpeceficCategory = (props) => {
     const { id } = useParams();
-    console.log(id);
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [filterClicked, setFilterClicked] = useState(false);
+    const [categoryTitle, setCategoryTitle] = useState('');
 
     const getCategory = async () => {
         try {
-            const response = await axios.get(`https://gymrat-app.onrender.com/store/Categories/${id}/`);
-            const category = response.data;
-            const productsResponse = await axios.get(`https://gymrat-app.onrender.com/store/Products/?Category=${category.id}/`);
-            setProducts(productsResponse.data);
+            const categoryResponse = await axios.get(`https://gymrat-app.onrender.com/store/Categories/${id}/`);
+            const category = categoryResponse.data;
+            const categoryId = category.id;
+            const categoryTitle = category.title;
+            console.log("Selected Category ID:", categoryId);
+            
+            const productsResponse = await axios.get(`https://gymrat-app.onrender.com/store/products/`);
+            const allProducts = productsResponse.data;
+            console.log("All Products Response:", allProducts);
+            
+            const filteredProducts = allProducts.filter(product => {
+                return product.categories.some(categoryIdItem => categoryIdItem === categoryId);
+            });
+            console.log("Filtered Products:", filteredProducts);
+            
+            setProducts(filteredProducts);
+            setLoading(false);
+            setCategoryTitle(categoryTitle);
         } catch (error) {
             console.log(error);
+            setLoading(false);
+            
         }
     };
 
@@ -25,18 +45,35 @@ export const SpeceficCategory = (props) => {
         getCategory();
     }, [id]);
 
-    if (!products || products.length === 0) {
-        return <h1 style={{margin:"10rem 10rem"}}>Loading...</h1>;
+    const handleFilterClick = () => {
+        // Apply filtering logic here based on your requirements
+        // In this example, we filter products based on a certain condition
+        const filtered = products.filter((product) => product.unit_price < 100);
+        setFilteredProducts(filtered);
+        setFilterClicked(true);
+
+        // Display a message if no products match the filters
+        if (filtered.length === 0) {
+            console.log("No products match the selected filters");
+        }
+    };
+
+    if (loading) {
+        return <h1 style={{ margin: "10rem 10rem" }}>LOADING...</h1>;
+    }
+
+    if (filterClicked && filteredProducts.length === 0) {
+        return <h1 style={{ margin: "10rem 10rem" }}>NO PRODUCTS MATCH THE SELECTED FILTERS</h1>;
     }
 
     return (
         <div className="productsPage">
             <div className="showProducts">
-                <p className="showProducs_p-title">TRACKLIST <span>({products.length} results)</span></p>
+                <p className="showProducs_p-title">{categoryTitle} <span>({products.length} results)</span></p>
                 <hr />
                 <div className="showProducts-filterYourReasearch">
-                    <Filter24Filled color="#171717"/>
-                    <p>Filter your research </p>
+                    <Filter24Filled color="#171717" />
+                    <button onClick={handleFilterClick}>Filter your research</button>
                 </div>
             </div>
             <div className="showAllTheProducts">
@@ -44,12 +81,12 @@ export const SpeceficCategory = (props) => {
                     return (
                         <Link to={`/show-ProductsItems/${product?.id}`} key={product.id}>
                             <div className='root'>
-                                <div className='upper-side' style={{backgroundImage: `url(${product.image})`  ,backgroundPosition:'center',backgroundSize:'cover'}}>
+                                <div className='upper-side' style={{ backgroundImage: `url(${product.image})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                                     <button className='shop-btn'>Shop now</button>
                                 </div>
                                 <div className='lower-side'>
                                     <div>
-                                        <h5 style={{textAlign:'end'}} className='price-txt'>{product.unit_price} DZD</h5>
+                                        <h5 style={{ textAlign: 'end' }} className='price-txt'>{product.unit_price} DZD</h5>
                                     </div>
                                     <h4 className='product-title'>{product.name}</h4>
                                     <h4 className='prodoct-color-txt'>{product.description}</h4>

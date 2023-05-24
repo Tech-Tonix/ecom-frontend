@@ -63,7 +63,7 @@ export const LandingPage = () => {
   
             <div
               className="discountSection"
-              style={{ display: "flex", justifyContent: "space-evenly", margin: "0px 50px" }}
+              style={{ display: "flex", gap:'30px', margin: "0px 12%" }}
             >
               <DiscountCard />
               <DiscountCard />

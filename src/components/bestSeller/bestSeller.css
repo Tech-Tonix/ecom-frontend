@@ -3,7 +3,7 @@
 
 .bestSeller-section {
  overflow-x: auto;
- max-width: 98%;
+ max-width: 95%;
   width: 100%;
   margin-right: 40px;
   margin-left: 40px;
@@ -15,14 +15,14 @@
 }
 .bestSeller-section-title {
   height: 44px;
-  width: 100%;
+  width: 95%;
   border-left: 5.9px solid #171717;
   display:flex;
   justify-content:space-between;
   flex-direction: row;
   align-items: center;
   margin-bottom: 28px;
-  margin-left: 46%;
+ 
 }
 
 .bestSeller-section-cards {
@@ -30,7 +30,7 @@
   
   flex-direction: row;
   gap: 0px 79px;
-  width: 100%;
+  width: 95%;
  
   justify-content: space-between;
   margin-left: 0px;

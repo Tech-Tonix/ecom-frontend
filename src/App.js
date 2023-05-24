@@ -28,24 +28,25 @@ function App() {
         
 
           <Routes>
-          {/* <Route element={<PublicRoute/>}> */}
+          
           <Route path ='/' element={<LandingPage/>}/>
           <Route path='/Registration' element={<RegistrationPage/>}/>
+          <Route path='/Login' element={<LoginPage/>}/>
           <Route path='/magazin-club-privacy-policy' element={<PrivacyPolicy/>}/>
           <Route path='/show-ProductsItems' element ={<ShowProductsItems/>}/>
           <Route path="/category/:title/:id" element={<SpeceficCategory/>}/>
           <Route path="/show-ProductsItems/:id" element={<ProductPage/>}/>
           <Route path="/productList" element={<ProductList/>}/>
           <Route path='*' element={<h1 style={{marginTop:'300px',marginBottom:'300px'}}> PAGE NOT FOUND</h1>}/>
-          {/* </Route> */}
+          
+          
 
-
-          {/* <Route element={<PrivateRoute/>}> */}
-          <Route path='/Login' element={<LoginPage/>}/>
+          <Route element={<PrivateRoute/>}>
+          
           <Route path='/Order' element={<OrderPage/>}/>
           <Route path='/My-bag' element={<MyBagPage/>}/>
           <Route path='/My-wishlist' element={<MyWishListPage/>}/>
-          {/* </Route> */}
+          </Route>
 
           </Routes>
         </AuthProvider>
