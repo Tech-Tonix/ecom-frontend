@@ -1,0 +1,36 @@
+
+.text-mywishlist-container{
+    background-color:#FFF4ED;
+    max-width: 956px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items:baseline;  
+    margin: 30px;
+    border-radius: 5px;
+    font-family: Brandon Grotesque;
+    padding: 10px;
+
+}
+
+.text-mywishlist-title{
+    font-weight: 420;
+    font-size: 36px;
+    line-height: 51px;
+    letter-spacing: 0.065em;
+    color: #171717;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.text-mywishlist-description{
+    font-style: normal;
+    font-weight: 420;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0.065em;
+    color: #656565;
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}

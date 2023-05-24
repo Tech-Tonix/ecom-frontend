@@ -1,9 +1,13 @@
 
 .footer-wrapper{
     background-color: #ECECEC;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 .container{
     background-color: #ECECEC;
+    
 }
 .center-container{
     display: flex;

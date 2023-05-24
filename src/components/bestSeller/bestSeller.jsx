@@ -2,10 +2,10 @@
 import { useState,useEffect } from 'react';
 
 import { Card } from '../card/card';
-import p1 from 'D:/react/ecom-frontend/src/assets/Gymshark Official Store_ Men_s _ Women_s Workout Apparel.jpg';
-import p2 from 'D:/react/ecom-frontend/src/assets/pic1.jpg';
-import p3 from 'D:/react/ecom-frontend/src/assets/pic3-men.jpg';
-import p4 from "D:/react/ecom-frontend/src/assets/haha.jpg";
+import p1 from '../../assets/Gymshark Official Store_ Men_s _ Women_s Workout Apparel.jpg'
+import p2 from '../../assets/pic1.jpg'
+import p3 from '../../assets/pic3-men.jpg'
+import p4 from '../../assets/haha.jpg'
 import p5 from './assets/p5.jpg';
 import p6 from './assets/p6.jpg';
 

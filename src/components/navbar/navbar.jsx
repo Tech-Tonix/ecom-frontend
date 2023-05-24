@@ -17,9 +17,9 @@ export const NavBar = () => {
         {/*left section*/}
         <div className="navbar-section">
 
-          <a href="#">
+          <Link to="#">
             <span>HELP</span>
-          </a>
+          </Link>
 
           <a href="#">
             <img className="navbar-top-bar-icon" src={require('./assets/dz.svg').default} alt="Country"/>

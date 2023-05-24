@@ -3,15 +3,16 @@ import { MyBag } from "../../components/myBag/mybag"
 import './myBagPage.css'
 import { useState,useEffect,useContext } from "react"
 import {Subtotal} from "./subtotal"
+
+
+
+
+
+
+
+
 import axios from "axios"
 import AuthContext from '../../context/AuthContext'
-
-import { toast } from "react-toastify"
-
-
-
-
-
 
 
 
@@ -147,7 +148,6 @@ export const MyBagPage = () =>{
           <div className="myBag-left">
             <div className="heyhey">
               <img
-                src={bag.product.image}
                 alt="Favourites"
               />
             </div>

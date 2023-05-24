@@ -11,7 +11,7 @@
     background-color: rebeccapurple;
     border-radius: 5px;
     
-    background: url('D:\react\ecom-frontend\src\assets\pexels-gleb-krasnoborov-2628215.jpg');
+    background: url('../../assets/pexels-gleb-krasnoborov-2628215.jpg');
     background-position: 100% ;
         background-size: contain;
         background-attachment: fixed;  
@@ -61,7 +61,7 @@
         justify-content: flex-end;
         gap: 100px;
         background-color: rebeccapurple;
-        background: url('D:\react\ecom-frontend\src\assets\pexels-li-sun-371049.jpg');
+        background: url('../../assets/pexels-li-sun-371049.jpg');
         background-position: 120% ;
         background-size: contain;
         background-attachment: fixed;
