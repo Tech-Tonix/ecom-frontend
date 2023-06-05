@@ -28,8 +28,9 @@ const Filtersbrand = () => {
     <div className='filtersAndSortWrapperBrand'>
       <div className='contentwrapperPlusbtn'>
         <div className='filtersContainerBrand'>
+        <div className='h2WrapperFilter'>
           <h2 > Filter & Sort</h2>
-            
+        </div>
           <div className='HeaderPlusArrowPriceBrand'>
               <h3 className='titleFiltersbrand'>Price</h3>
               <ChevronRight20Filled className='arrowIconBrand'/>

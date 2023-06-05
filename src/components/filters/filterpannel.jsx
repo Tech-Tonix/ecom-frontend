@@ -44,8 +44,10 @@ const Filterpannel = () => {
     <div className='filtersAndSortWrapperpannel'>
       <div className='contentwrapperPlusbtnpannel'>
         <div className='filtersContainerpannel'>
+          
+          <div className='h2WrapperFilter'>
           <h2 > Filter & Sort</h2>
-
+          </div>
           <div className='HeaderPlusArrowPricepannel' onClick={handleClickPrice}>
               <h3 className='titleFilterspannel'>Price</h3>
               <ChevronRight20Filled className='arrowIconpannel'/>

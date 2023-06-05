@@ -44,7 +44,7 @@ const handleColorChange = (selectedColor) => {
   return (
     
     <div className='productsPage'>
-      {props.isFiltersVisible && <Filters/>}
+      {props.isFiltersVisible && <Filterpannel/>}
       <div  className= {` screen ${props.isFiltersVisible ? 'blur' : ''}`}>
       <div className='showProducts'>
         <p className="showProducts_p-title">TRACKLIST <span>({quantityy} results)</span></p>

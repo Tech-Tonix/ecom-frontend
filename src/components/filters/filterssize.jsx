@@ -22,8 +22,11 @@ const Filterssize = ({onSizeChange}) => {
     <div className='filtersAndSortWrapperSize'>
     <div className='contentwrapperPlusbtn'>
       <div className='filtersContainerSize'>
+      <div className='h2WrapperFilter'>
         <h2 > Filter & Sort</h2>
-          
+      </div>
+
+      
         <div className='HeaderPlusArrowPriceSize'>
             <h3 className='titleFilterssize'>Price</h3>
             <ChevronRight20Filled className='arrowIconSize'/>

@@ -18,7 +18,9 @@ const Filters = () => {
     <div className='filtersAndSortWrapperPrice'>
       <div className='contentwrapperPlusbtnPrice'>
         <div className='filtersContainerPrice'>
+        <div className='h2WrapperFilter'>
           <h2 > Filter & Sort</h2>
+       </div>
             
           <div className='HeaderPlusArrowPricePrice' onClick={handleArrowClickPrice}>
               <h3 className='titleFiltersPrice'>Price</h3>

@@ -29,8 +29,10 @@ const Filterscateg = () => {
     <div className='filtersAndSortWrapperCateg'>
       <div className='contentwrapperPlusbtn'>
         <div className='filtersContainerCateg'>
+        <div className='h2WrapperFilter'>
           <h2 > Filter & Sort</h2>
-            
+        </div>
+        
           <div className='HeaderPlusArrowPriceCateg'>
               <h3 className='titleFilterscateg'>Price</h3>
               <ChevronRight20Filled className='arrowIconCateg'/>
