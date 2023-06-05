@@ -1,100 +1,122 @@
-.heroSection2-container{
-    
-    margin-bottom: 100px;
-    height: 977px;
+.heroSection2-container {
+    position: relative;
+    margin-bottom: 70px;
+    margin-top: 70px;
+    height: 50rem;
     width: 100%;
     padding: 4rem 6rem;
-    background: url('../../assets/pexels-pixabay-260447.jpg');
+    
     background-position: center;
     background-size: cover;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-attachment: fixed;
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     text-align: left;
-    display: flex;
-}
-.heroSection-titles{
+  }
+  
+  .video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .heroSection2-content {
+    z-index: 1;
+  }
+  
+  .heroSection2-titles{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.heroSection-titles-h1{
+.heroSection2-titles-pp{
     padding-right: 20%;
-    font-family: 'Helvetica';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
-    font-weight: 700;
-    font-size: 80px;
-    line-height: 74px;
-    letter-spacing: 0.55px;
+    font-weight: bold;
+    font-size: 50px;
+    
+    letter-spacing: 0.35px;
     color: #F3F3F3;
 }
-.heroSection-titles p{
-    font-family: 'Helvetica';
+.heroSection2-titles-p{
+    font-family: 'Montserrat';
     font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
+    font-weight: 400;
+    font-size: 25px;
     line-height: 37px;
-
+    margin-bottom: 30px;
     color: #EDEDED;
-}
-.heroSection-buttons{
+}  
+  .heroSection2-buttons {
+    padding: 5px 5px ;
     display: flex;
-    
-    font-family: 'Helvetica';
-font-weight: 700;
-font-size: 16px;
-line-height: 18px;
-gap: 30px;
-color: #171717;
-
-}
-.heroSection-buttons button{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    gap: 30px;
+    color: #171717;
+  }
+  
+  .heroSection2-buttons button {
+    padding: 5px 5px;
     height: 70px;
-    width: 212px;
+    width: 300px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .heroSection2-buttons button:hover {
+    background-color: #f9f9f9;
+    color: #171717;
+    transform: scale(1.05);
+  }
+    @media screen and (max-width: 1150px) {
+    .heroSection2-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-
-@media screen and (max-width : 1150px) {
-        .heroSection{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+  }
+  
+  @media screen and (max-width: 650px) {
+    .heroSection2-titles-h1 {
+      font-size: 40px;
+      padding-left: 40px;
+      line-height: 60px;
     }
-@media screen and (max-width : 850px) {
-}
-    
-@media screen and (max-width : 650px) {
-    .heroSection-titles-h1{
-        font-size: 40px;
-
+  
+    .heroSection2-titles-p {
+      padding-left: 40px;
+      padding-top: 20px;
+      font-family: 'Helvetica';
+      font-weight: 500;
+      font-size: 23px;
+      line-height: 37px;
     }
-    .heroSection-titles-h1{
-        padding-left: 40px;
-        line-height: 60px;
+  
+    .heroSection2-buttons {
+      display: flex;
+      padding-left: 20px;
+      font-family: 'Helvetica';
+      font-size: 14px;
+      gap: 40px;
     }
-    .heroSection-titles p{
-        padding-left: 40px;
-        padding-top: 20px;
-        font-family: 'Helvetica';
-        font-weight: 500;
-        font-size: 23px;
-        line-height: 37px;
-        
-        
+  
+    .heroSection2-buttons button {
+      height: 70px;
+      width: 125px;
     }
-    .heroSection-buttons{
-        display: flex;
-        padding-left: 20px;
-        font-family: 'Helvetica';
-    font-size: 14px;
-    gap: 40px;
-    
-    }
-    .heroSection-buttons button{
-        height: 70px;
-        width: 125px;
-        }
-        
-    }
+  }
+  

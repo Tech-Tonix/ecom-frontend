@@ -210,7 +210,7 @@ export const AuthProvider = ({ children }) => {
     } catch(err) { 
       console.log(err.response.data); 
     } 
-    history("/"); 
+    history("/login"); 
   }; 
  
   const contextData = { 

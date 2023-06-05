@@ -4,12 +4,12 @@ import { Heart24Regular,Person24Regular,ShoppingBag24Regular,ReOrder24Regular,Ma
 import ProfilPic from '../../assets/ProfilePic.jpg'
 import { NavLink } from 'react-router-dom';
 import { Menu,MenuList, MenuItem, Paper } from '@material-ui/core';
-import { useState } from 'react';
-
+import { useState,useContext } from 'react';
+import AuthContext from '../../context/AuthContext'
 
 export const Categories = () => {
 
-
+  const { logoutUser } = useContext(AuthContext);
     const navLinkStyles = ({ isActive }) => {
         return {
             fontWeight: isActive ? "bold" : "bold",
@@ -111,7 +111,7 @@ export const Categories = () => {
                   open={isMenuSignOpen}
                   onClose={() => setIsMenuSignOpen(false)}
                 >
-                  <MenuItem onClick={() => console.log('Sign out clicked')}>
+                  <MenuItem onClick={logoutUser}>
                     Sign out 
                   </MenuItem>
 

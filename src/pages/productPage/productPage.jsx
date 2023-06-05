@@ -72,8 +72,8 @@ export const ProductPage =() =>{
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToShow: 3,
+    slidesToScroll: 2,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />
   };
@@ -106,6 +106,7 @@ export const ProductPage =() =>{
     try {
       const response = await axios.get('https://gymrat-app.onrender.com/store/products/');
       setProducts(response.data);
+      
     } catch (error) {
       console.log(error);
     }
@@ -122,6 +123,7 @@ export const ProductPage =() =>{
           `https://gymrat-app.onrender.com/store/products/${id}/`
         );
         setProduct(res.data);
+        console.log(res.data)
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -175,8 +177,7 @@ export const ProductPage =() =>{
       } else {
         // Product does not exist in the cart, add it
         cart.push({
-          id: product.id,
-          name: product.name,
+          product_id: product.id,
           quantity: quantity,
         });
       }
@@ -187,43 +188,111 @@ export const ProductPage =() =>{
       });
     }
   };
+  
+  const handleAddToWishlist = async (index) => {
+    if (user) {
+      try {
+        const response = await axios.post(
+          "https://gymrat-app.onrender.com/favorites/add-favorites/",
+          {
+            product_id: product.id,
+            quantity: quantity,
+          },
+          {
+            headers: {
+              Authorization: "JWT " + authTokens,
+            },
+          }
+        );
+        toast.success("Product added to wishlist!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } catch (error) {
+        toast.error("Failed to add product to wishlist.", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        console.log(error);
+      }
+    } else {
+      const wishlist = JSON.parse(sessionStorage.getItem("wishlist")) || [];
+      const existingProductIndex = wishlist.findIndex((item) => item.id === product.id);
+  
+      if (existingProductIndex === -1) {
+        // Product does not exist in the wishlist, add it
+        wishlist.push(product);
+        sessionStorage.setItem("wishlist", JSON.stringify(wishlist));
+        toast.success("Product added to wishlist!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        toast.error("Product already exists in wishlist.", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    }
+  };
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState('');
+
+  useEffect(() => {
+    // Retrieve comments from local storage on page load
+    const storedComments = localStorage.getItem(`comments_${product.id}`);
+    if (storedComments) {
+      setComments(JSON.parse(storedComments));
+    }
+  }, [product.id]);
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    if (newComment.trim() !== '') {
+      const updatedComments = [...comments, newComment];
+      setComments(updatedComments);
+      localStorage.setItem(`comments_${product.id}`, JSON.stringify(updatedComments));
+      setNewComment('');
+    }
+  };
+
+
 
     
   return(
 
-  <div className="productPage">
-      {!loading?
-    ( <div style={{display:'flex',flexDirection:'column'}}>
-      <div className="productPage-product" style={{display:'flex',gap:'50px',marginBottom:"70px",marginLeft:'10%'}}>
-      <div className="slider" style={{width:'150px'}}>
-      <Slider  {...settings2}>
-      {
-          products.map((product)=>{
-              
-              return (
-                      <Link to={`/show-ProductsItems/${product.id}/`} key={product.id}>
-                      <div className='root' style={{marginLeft:'25px',height:'120px',backgroundColor:'red',width:'100px'}}>
-                        <img src={product.image} alt="imggg" style={{height:'120',width:'100px'}} />
-                      </div>
-                      </Link>
-                  )
-                  
-              })
-
-          }
-              </Slider>
-              </div>
+    <div className="productPage">
+    {!loading ? (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className="productPage-product" style={{ display: 'flex', gap: '70px', marginBottom: "70px" }}>
+          <div className="images" style={{marginLeft:'70px'}}>
+          <div className="images2" style={{display:'flex'}}>
           <div className="productPage-image">
-              <img style={{width:'450px',height:'450px',borderRadius:'10px'}} src={product.image} alt="imaage" />
+            <img style={{ width: '350px', height: '350px', borderRadius: '10px' }} src={product.images.length > 0 ? product.images[0].image : ''} alt="imaage" />
           </div>
+          <div className="productPage-image">
+            <img style={{ width: '350px', height: '350px', borderRadius: '10px' }} src={product.images.length > 0 ? product.images[0].image : ''} alt="imaage" />
+          </div>
+          </div>
+          <div className="productPage-image" style={{marginLeft:'70px',display:'flex',justifyContent:'center'}} >
+            <img style={{ width: '450px', height: '350px', borderRadius: '10px' }} src={product.images.length > 0 ? product.images[0].image : ''} alt="imaage" />
+          </div>
+          
+          <div className="images2" style={{display:'flex'}}>
+          <div className="productPage-image">
+            <img style={{ width: '350px', height: '350px', borderRadius: '10px' }} src={product.images.length > 0 ? product.images[0].image : ''} alt="imaage" />
+          </div>
+          <div className="productPage-image">
+            <img style={{ width: '350px', height: '350px', borderRadius: '10px' }} src={product.images.length > 0 ? product.images[0].image : ''} alt="imaage" />
+          </div>
+          </div>
+          
+          </div>
+          
           <div className="productPage-details">
               <div className="productPage-details-title-reviews-price">
                   <div className="productPage-details-title-reviews">
                       <p>{product.name}</p>
-                      <div className="productPage-details-reviews">
+                      <div className="productPage-details-reviews" style={{display:'flex',alignItems:'center',gap:'20px'}}>
                           <StarRating/>
                           {/* <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> */}
-                          <hr  style={{height:'15px',color:'black'}}/>
+                          <hr  style={{height:'20px',color:'black'}}/>
                           <p className='p__reviews'>2 Reviews</p>
                       </div>
                   </div>
@@ -235,37 +304,37 @@ export const ProductPage =() =>{
                   <p className='color'>Color: <span>{selectedColor}</span></p>
                   <div className='productPage-details-colorSquares'>
                   {colors.map((color) => (
-      <div
-          key={color}
-          onClick={() => handleColorClick(color)}
-          style={{
-              display:'flex',
-              backgroundColor: "white",
-              width: "33px",
-              height: "33px",
-              borderRadius: "50%",
-              margin: "10px",
-              border: selectedColor === color ? "3px solid black" : "none",
-              position: "relative"
-          }}
-      >
-          <div
-              style={{
-                  backgroundColor: color,
-                  width: "25px",
-                  height: "25px",
-                  borderRadius: "50%",
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)"
-                                }}
-                            ></div>
-                        </div>
-                    ))}
+                  <div
+                      key={color}
+                      onClick={() => handleColorClick(color)}
+                      style={{
+                          display:'flex',
+                          backgroundColor: "white",
+                          width: "33px",
+                          height: "33px",
+                          borderRadius: "50%",
+                          margin: "10px",
+                          border: selectedColor === color ? "3px solid black" : "none",
+                          position: "relative"
+                      }}
+                  >
+                      <div
+                          style={{
+                              backgroundColor: color,
+                              width: "25px",
+                              height: "25px",
+                              borderRadius: "50%",
+                              position: "absolute",
+                              top: "50%",
+                              left: "50%",
+                              transform: "translate(-50%, -50%)"
+                                            }}
+                                        ></div>
+                                    </div>
+                                ))}
 
-                  </div>
-              </div>
+                              </div>
+                          </div>
               <div className="productPage-details-size">
                   <p className="p__size">Size: < span style={{fontSize:"20px"}}>{selectedSize}</span></p>
                   <div className='productPage-details-sizeSquares'>
@@ -292,13 +361,14 @@ export const ProductPage =() =>{
                   <div className="productPage-details-button">
                   <button onClick={handleAddToCart}>Add to Bag</button>
 
-                  <Heart48Filled  style={{color:heartColor?'#C2C2C2':'red',marginBottom:'9px'}}/>
+                  <Heart48Filled onClick={handleAddToWishlist} style={{color:heartColor?'#C2C2C2':'red',marginBottom:'9px'}}/>
                       
                   </div>
               </div>
-              <div className="productPage-details-description">
+              <div className="productPage-details-description" style={{width:'300px'}}>
               <p className="p__description" 
               style={{fontFamily: 'Brandon Grotesque',
+              width:'300px',
                   fontStyle: 'normal',
                   fontWeight: '450',
                   fontSize: '26px',
@@ -307,13 +377,52 @@ export const ProductPage =() =>{
                   color: '#171717'}}>
                   DESCRIPTION : 
               </p>
-              <p>{product.description}
-                  </p>
+              <p 
+              style={{maxWidth: '100%',
+              
+              wordWrap: 'break-word'
+        }}>{product.description}</p>
               </div>
           </div>
           </div>
+          <div className="productPage-comments">
+        <p style={{fontFamily: 'Brandon Grotesque',
+            fontStyle: 'normal',
+            fontWeight: '450',
+            fontSize: '32px',
+            lineHeight: '40px',
+            letterSpacing: '0.065em',
+
+            color: '#171717',marginBottom:'30px'}}>Comments:</p>
+        <ul className="comment-list">
+          {comments.map((comment, index) => (
+            <li key={index} className="comment" style={{margin:'-5px'}}>
+              <div>
+              {user && <p style={{color:'#4A4A4A'}}>mohamed:</p>}
+              
+              <div className="comment-saved-container" style={{backgroundColor:'white',borderRadius:'7px',padding:'5px', width: `${comment.length * 10}px`,color:'gray'}}>
+              {comment}
+              </div>
+              <p style={{fontSize:'11px' ,marginLeft:'3px',color:'#C2C2C2'}}>05-07-2023</p>
+              </div>
+              
+              
+            </li>
+          ))}
+        </ul>
+        <form onSubmit={handleCommentSubmit} className="comment-form">
+          <textarea
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder="Add a comment..."
+            className="comment-input"
+          ></textarea>
+          <button type="submit" className="comment-button">Submit</button>
+        </form>
+      </div>
           <div className='you-might-like'>
-          <div className="you-might-like-title" style={{display:'flex',justifyContent:'space-between',margin:'0 10%',alignItems:"center"}}>
+          
+          <div className="you-might-like-title" style={{display:'flex',justifyContent:'space-between',margin:' 30px 120px',alignItems:"center"}}>
             <p style={{
               fontSize: '32px',
               fontWeight: 'bold',
@@ -321,48 +430,31 @@ export const ProductPage =() =>{
               transition: 'all 0.2s'}}>
               You might like
             </p>
-            {/* <div style={{display:'flex',gap:'10px'}}><ArrowCircleLeft48Filled/>
-            <ArrowCircleRight48Filled/> </div> */}
-            
-                    
-          </div>
-          <div className="slider" style={{margin:'8px 8%'}}>
-          <Slider  {...settings}>
-          {
-              products.map((product)=>{
-                
-                  return (
-                      <Link to={`/show-ProductsItems/${product.id}/`} key={product.id}>
-                      <div className='root' style={{marginLeft:'25px'}}>
-                          <div className='upper-side' style={{backgroundImage: `url(${product.image})`  ,backgroundPosition:'center',backgroundSize:'cover'}}>
-                              
-                              <button className='shop-btn'>Shop now</button>
-                          </div>
-                          <div className='lower-side'>
-                              <div >
-                                  <h5 style={{textAlign:'end'}} className='price-txt'>{product.unit_price} DZD</h5>
-                              </div>
-                              <h4 className='product-title'>{product.name}</h4>
-                              <h4 className='prodoct-color-txt'>{product.description}</h4>
-                          </div>
-                      </div>
-                      </Link>
-                  )
                   
-              })
-
-          }
-              </Slider>
-              </div>
-
           </div>
-          
-
-                      </div>
-                      
-                      ):(<h1>LOADING...</h1>
-        )}
+          <div className="slider" style={{ marginLeft:'120px' }}>
+          <Slider {...settings}>
+          {products.map((product) => (
+            <div key={product.id} className='root' style={{ marginLeft: '25px' }}>
+              <div className='upper-side' style={{ backgroundImage: `url(${product.images.length > 0 ? product.images[0].image : ''})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+                <button className='shop-btn'>Shop now</button>
+              </div>
+              <div className='lower-side'>
+                <div>
+                  <h5 style={{ textAlign: 'end' }} className='price-txt'>{product.unit_price} DZD</h5>
+                </div>
+                <h4 className='product-title'>{product.name}</h4>
+                <h4 className='prodoct-color-txt'>{product.description}</h4>
+              </div>
+            </div>
+          ))}
+        </Slider>
+          </div>
+        </div>
       </div>
+    ) : (<h1>LOADING...</h1>)}
+  </div>
+  
       )
   }
 
