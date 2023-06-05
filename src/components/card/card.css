@@ -2,18 +2,22 @@
 
 .root {
   margin-bottom: 20px;
-  
+  transition: transform 0.3s ease-in-out;
 }
+
+.root:hover {
+  transform: scale(1.05);
+}
+
 .upper-side {
-  
-  width: 264px;
+  width: 290px;
   height: 365px;
   position: relative;
   margin-bottom: 14px;
- 
+  overflow: hidden;
 }
 .lower-side {
-  width: 259px;
+  width: 290px;
   height: 70px;
 }
 .shop-btn {

@@ -18,9 +18,11 @@ import { ProductList } from './pages/productList/productList';
 import Signout from './components/signOut/signout';
 import Filterpannel from './components/filters/filterpannel';
 import Filters from './components/filters/filters';
+
 import Trackingpage from './pages/trackingPage/trackingpage';
 import OrderHistoryPage from './pages/orderHistoryPage/orderHistoryPage';
 import { ActiveStepProvider } from './context/activeStepContext';
+
 
 
 function App() {
@@ -35,39 +37,55 @@ function App() {
 
 
   return (
+    <div className="App">
     <Router>
+
       <ActiveStepProvider>
+
       <div className= {`screen ${isFiltersVisible ? 'blur' : ''}`}>
         <NavBar  />
       </div>
         <AuthProvider>
           <Routes>
-            {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/Login" element={<LoginPage />} />
+            <Route path="/SignOut" element={<Signout />} />
             <Route path="/Registration" element={<RegistrationPage />} />
             <Route path="/magazin-club-privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/show-ProductsItemsleyna" element={<ShowProductsItems isFiltersVisible={isFiltersVisible} setIsFiltersVisible={setIsFiltersVisible}/>} />
+            <Route path="/show-ProductsItems" element={<ShowProductsItems isFiltersVisible={isFiltersVisible} setIsFiltersVisible={setIsFiltersVisible}/>} />
             <Route path="/category/:title/:id" element={<SpeceficCategory />} />
             <Route path="/show-ProductsItems/:id" element={<ProductPage />} />
             <Route path="/productList" element={<ProductList />} />
             <Route path="*" element={<h1 style={{ marginTop: '300px', marginBottom: '300px' }}>PAGE NOT FOUND</h1>} />
 
 
-            {/* Private Routes */}
-            <Route path="/Login" element={<LoginPage />} />
-            <Route path="/SignOut" element={<Signout />} />
-            <Route path="/OrderHistory" element={<OrderHistoryPage />} />
-            <Route path="/My-bag" element={<MyBagPage />} />
-            <Route path="/My-wishlist" element={<MyWishListPage />} />
-            <Route path='/TrackMyOrder' element={<Trackingpage/>}/>
+          <Route element={<PrivateRoute/>}>
+          <Route path="/OrderHistory" element={<OrderHistoryPage />} />
+          <Route path='/Order' element={<OrderPage/>}/>
+          <Route path='/TrackMyOrder' element={<Trackingpage/>}/>
+          <Route path="/OrderHistory" element={<OrderPage />} />
+          <Route path='/My-bag' element={<MyBagPage/>}/>
+          <Route path='/My-wishlist' element={<MyWishListPage/>}/>
+          </Route>
+
+
+
+
+
           </Routes>
-        </AuthProvider>
-        <div className= {`screen ${isFiltersVisible ? 'blur' : ''}`}>
+          </AuthProvider>
+
+          <div className= {`screen ${isFiltersVisible ? 'blur' : ''}`}>
         <Footer />
         </div>
+
         </ActiveStepProvider>
+
     </Router>
+    </div>
   );
 }
 
-export default App;
+export default App;    
+
+

@@ -1,15 +1,17 @@
 .myBagPage{
-    margin: 20% 0;
-    margin-left: 8%;
+    margin: 70px 0;
+    margin-left: 5%;
     flex-direction: row;
     display: flex;
-    gap: 60px; 
+     
     
     
 }
 .myBagCards-list{
+    margin-left: 2rem;
     display: flex;
-    gap: 30px;
+    width: 75%;
+    gap: 20px;
     flex-direction: column;
     
     

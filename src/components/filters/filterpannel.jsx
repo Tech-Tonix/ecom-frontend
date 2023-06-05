@@ -1,6 +1,6 @@
 import React from 'react'
 import './filterpannel.css'
-import { Select } from '@material-ui/core';
+
 import { ChevronRight20Filled } from '@fluentui/react-icons';
 import { useState } from 'react';
 import Filters from './filters';

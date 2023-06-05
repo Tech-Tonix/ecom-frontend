@@ -1,6 +1,9 @@
 import{useState,useContext,useEffect} from "react";
 import './registration.css'
 import AuthContext from '../../context/AuthContext'
+import { toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
+ 
 // import { useNavigate } from 'react-router-dom';
 
 import axios from "axios";
@@ -12,21 +15,22 @@ export const RegistrationPage = ()=>{
   const [birth_date,setBirthDay] = useState('')
   const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [password1, setPassword1] = useState('');
-  const [password2, setConfirmPassword2] = useState('');
+  const [password, setPassword] = useState('');
+  // const [password2, setConfirmPassword2] = useState('');
   const [phone_number, setPhoneNumber] = useState('');
   const [city, setCity] = useState('');
   const [address, setAddress] = useState('');
   const [postal_code, setPostalCode] = useState('');
   const [is_student, setIsStudent] = useState(false);
   const [is_member_club, setIsMemberClub] = useState(false);
+ 
   // const navigate = useNavigate();
   useEffect(() => { 
     setFirstName("") 
     setLastName("") 
     setEmail("") 
-    setPassword1("") 
-    setConfirmPassword2("")
+    setPassword("") 
+    setBirthDay("")
     setPhoneNumber("")
     setCity("")
     setAddress("")
@@ -37,25 +41,59 @@ export const RegistrationPage = ()=>{
   }, [login]) 
   
   
-  const handleCheckboxChange = (event) => {
-    setIsStudent(event.target.checked);
-  };
-  const handleRegister = async () => { 
-    if(first_name==="" || last_name==="" || birth_date==="" || email==="" || password1==="" ||   password2===""    ||  phone_number==="" || city==="" || postal_code===""  ) { 
-      alert("Some fields are missing") 
-      return 
-    } 
+  
+  const handleCheckboxChange = () => {
+    setIsStudent(!is_student);
 
-    setLoading(true) 
-    const res = await registerUser(first_name, password1,password2, last_name, email,birth_date, phone_number,city,postal_code) 
-    setLoading(false) 
-  } 
+  };
+  const handleCheckboxChange1 = () => {
+    setIsMemberClub(!is_member_club);
+  };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (
+        first_name === "" ||
+        last_name === "" ||
+        birth_date === "" ||
+        email === "" ||
+        password === "" ||
+        phone_number === "" ||
+        city === "" ||
+        postal_code === ""
+      ) {
+        alert("Please fill in all the required fields!");
+        return;
+      }
+
+      const userData = {
+        email,
+        password,
+        first_name,
+        last_name,
+        phone_number,
+        birth_date,
+        city,
+        address,
+        postal_code,
+        is_student,
+        is_member_club
+      };
+
+      setLoading(true);
+      await registerUser(userData);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred during registration.");
+    }
+  };
+
+
+    
    
   
-const handleSubmit = (e) => { 
-  e.preventDefault() 
-  handleRegister() 
-}  
 
 
 
@@ -178,19 +216,25 @@ const handleSubmit = (e) => {
           </div>
           <div className="registrationPage-input-box">
             <span className="registrationPage-details">Phone Number :</span>
-            <input type="text" placeholder="Enter your number" required value={phone_number} onChange={(e) => setPhoneNumber(e.target.value)}/>
+            <input type="text" placeholder="Enter your number"  value={phone_number} onChange={(e) => setPhoneNumber(e.target.value)} required/>
           </div>
           <div className="registrationPage-input-box">
             <span className="registrationPage-details">Password :</span>
-            <input type="text" placeholder="Enter your password"  value={password1} onChange={(e) => setPassword1(e.target.value)} required/>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
           </div>
-          <div className="registrationPage-input-box">
+          {/* <div className="registrationPage-input-box">
             <span className="registrationPage-details">Confirm Password :</span>
             <input type="text"  placeholder="Confirm your password" value={password2} onChange={(e) => setConfirmPassword2(e.target.value)} required />
-          </div>
+          </div> */}
           <div className="registrationPage-input-box">
             <span className="registrationPage-details">city :</span>
-            <input type="text" placeholder="Enter your password"  value={city} onChange={(e) => setCity(e.target.value)} required/>
+            <input type="text" placeholder="Enter your city"  value={city} onChange={(e) => setCity(e.target.value)} required/>
             {/* <span className="details">postal code</span>
             <input type="text" placeholder="Enter your postal code" required/> */}
           </div>
@@ -203,7 +247,12 @@ const handleSubmit = (e) => {
             <input type="text" placeholder="enter you postal code" required value={postal_code} onChange={(e) => setPostalCode(e.target.value)}/>
               <div className="registrationPage-student-checkbox">
                 <p className="registrationPage-p__student">Are you a student ?</p>
-                <input type="checkbox" onChange={handleCheckboxChange} />
+                <input
+                  type="checkbox"
+                  value={is_student}
+                  onChange={handleCheckboxChange}
+                />
+
               </div>
           </div>
           <div className="registrationPage-rectangle">
@@ -231,7 +280,11 @@ const handleSubmit = (e) => {
           </div>
           </div>
           <div className="registrationPage-upgrade_signUp__checkbox">
-            <input type="checkbox" value={is_student}  onChange={handleCheckboxChange}/>
+          <input
+          type="checkbox"
+          value={is_member_club}
+          onChange={handleCheckboxChange1}
+          />
             <p className="registrationPage-upgrade_signUp__checkbox__p">
             I’ve read and 
             accepted all the conditions.

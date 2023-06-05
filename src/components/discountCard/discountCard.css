@@ -1,5 +1,4 @@
-.discountCard{
-    margin-top: 50px;
+.discountCard {
     padding: 10% 0;
     height: 600px;
     width: 450px;
@@ -9,14 +8,21 @@
     justify-content: flex-end;
     gap: 170px;
     background-color: rebeccapurple;
-    background: url('../../assets/pexels-cottonbro-studio-4325439.jpg');
+    background: url('../../assets/discount1.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: repeat;
     background-attachment: scroll;
     border-radius: 5px;
-}
-.discountCard-title{
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .discountCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .discountCard-title {
     font-family: 'Helvetica';
     font-style: normal;
     font-weight: 700;
@@ -26,10 +32,21 @@
     letter-spacing: 7.55px;
     text-transform: uppercase;
     color: #F3F3F3;
-
-}
-
-.discountCard-button button{
+    position: relative;
+    z-index: 1;
+    animation: animatedText 5s linear infinite;
+  }
+  
+  @keyframes animatedText {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .discountCard-button button {
     height: 70px;
     width: 212px;
     font-family: 'Helvetica';
@@ -37,7 +54,6 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 18px;
-
     color: #F9F9F9;
-    }
-
+  }
+  

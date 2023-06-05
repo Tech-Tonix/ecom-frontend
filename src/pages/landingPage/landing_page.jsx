@@ -1,9 +1,9 @@
 import './landing_page.css'
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useContext } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { HeroSection } from '../../components/hero/heroSection'
-import {HeroSection2} from '../../components/hero/heroSection2'
+import {HeroSection2, HeroSection3} from '../../components/hero/heroSection2'
 import { Search } from '../../components/search/search'
 import { DiscountCard } from '../../components/discountCard/discountCard'
 import { ShopCard, ShopCard2 } from '../../components/shopCard/shopCard'
@@ -11,70 +11,83 @@ import {BestSeller} from '../../components/bestSeller/bestSeller'
 import { Card } from '../../components/card/card'
 import sports from '../../assets/bckground-search.png'
 import p1 from '../../components/bestSeller/assets/p6.jpg'
-export const LandingPage = () => {
-    const [products, setProducts] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
-    const handleSearch = (query) => {
-        const filteredProducts = products.filter((product) => {
-        return (
-            product.name.toLowerCase().includes(query.toLowerCase())
-        );
-        });
-        setSearchResults(filteredProducts);
-        setSearchQuery(query);
-    };
+import { SearchContext } from '../../components/navbar/searchContext'
+export const LandingPage = ( ) => {
+
+
+  // const [searchQuery, setSearchQuery] = useState('');
+  // const [searchResults, setSearchResults] = useState([]);
+
+  // const handleSearch = (query) => {
+  //   const filteredProducts = products.filter((product) => {
+  //     return product.name.toLowerCase().includes(query.toLowerCase());
+  //   });
+  //   setSearchResults(filteredProducts);
+  //   setSearchQuery(query);
+  // };
+  const { searchQuery } = useContext(SearchContext);
+  const [products, setProducts] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await axios.get("https://gymrat-app.onrender.com/store/products/");
-      setProducts(response.data);
+      try {
+        const response = await axios.get('https://gymrat-app.onrender.com/store/products/');
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
     };
     fetchProducts();
   }, []);
-      
-      
-  
-  
-  
+
+  useEffect(() => {
+    const filteredProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSearchResults(filteredProducts);
+  }, [searchQuery, products]);
     
   
     return (
       <div className="landingPage">
-        <div className='search__container'>
-            <div className='search__image'>
-                <img className='sports__image' src={sports} alt="sports" />
-            </div>
-            <div className="search__box">
-			    <img className="search__icon" src={require('../../components/search/assets/ic_fluent_search_24_filled.svg').default} alt="Country"/>
-			    <input className='input__area' type="text" placeholder="Search.." id="search" onChange={(e) => handleSearch(e.target.value)}/>
-		    </div>
-        </div>
         {searchQuery.length === 0 ? (
         <>
 
 
         <HeroSection />
   
-        
+            <div style={{display:'flex',flexDirection:'column',gap:'20px'}}>
+              <p style={{marginLeft:'95px',color:'#53565a',fontWeight:'500', fontFamily: 'Brandon Grotesque',fontSize:'20px'}}>MENS</p>
             <BestSeller title={"BEST SELLERS"} />
-            <BestSeller title={"New Realeases"} />
+            </div>
+            
+            
             <HeroSection2 />
-  
+            <div style={{display:'flex',flexDirection:'column',gap:'20px'}}>
+              <p style={{marginLeft:'95px',color:'#53565a',fontWeight:'500', fontFamily: 'Brandon Grotesque',fontSize:'20px'}}>WOMENS</p>
+            <BestSeller title={"New Realeases"} />
+            </div>
+
+
+            <div style={{display:'flex',flexDirection:'column',gap:'30px'}}>
+              <p style={{marginLeft:'180px',color:'#53565a',fontWeight:'500', fontFamily: 'Brandon Grotesque',fontSize:'30px',}}>DISCOUNTS</p>
             <div
               className="discountSection"
-              style={{ display: "flex", justifyContent: "space-evenly", margin: "0px 50px" }}
+              style={{ display: "flex", gap:'30px', margin: "0px 12%" }}
             >
               <DiscountCard />
               <DiscountCard />
               <DiscountCard />
             </div>
-            <div className="shopSection" style={{ display: "flex", gap: "50px", margin: "0 200px" }}>
+            </div>
+            <HeroSection3 />
+            <div className="shopSection" style={{ display: "flex", gap: "50px", margin: "0 200px" ,alignItems:'start'}}>
               <ShopCard myVariable="MEN" />
               <ShopCard2 myVariable="WOMEN" />
             </div>
           </>  ) : (
-          <div >
+          <div style={{marginTop:"150px"}}>
                 <h1 style={{ fontFamily: 'Brandon Grotesque',
                     fontStyle: 'normal',
                     fontWeight: '400',
