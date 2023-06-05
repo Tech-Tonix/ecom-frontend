@@ -1,0 +1,15 @@
+
+.oderHistoryCard{
+    width: 1000px;
+    height: 55px;
+    background-color: #fffbf9;
+    border-radius: 8px;
+    border: solid 1px rgb(206, 206, 206);
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 10px;
+
+}

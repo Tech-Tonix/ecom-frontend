@@ -5,7 +5,6 @@ import { RegistrationPage } from './pages/registration/registration';
 import { LoginPage } from './pages/loginPage/login_page';
 import { NavBar } from './components/navbar/navbar';
 import { Footer } from './components/footer/footer.jsx';
-import { OrderPage } from './pages/orderPage/orderPage';
 import { MyBagPage } from './pages/myBagPage/myBagPage';
 import { ShowProductsItems } from '../src/pages/showProductsItems/showProductsItems';
 import { PrivacyPolicy } from './pages/registration/privacyPolicy';
@@ -19,16 +18,25 @@ import { ProductList } from './pages/productList/productList';
 import Signout from './components/signOut/signout';
 import Filterpannel from './components/filters/filterpannel';
 import Filters from './components/filters/filters';
-
+import Trackingpage from './pages/trackingPage/trackingpage';
+import OrderHistoryPage from './pages/orderHistoryPage/orderHistoryPage';
+import { ActiveStepProvider } from './context/activeStepContext';
 
 
 function App() {
 
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
+  const  [activeStep, setActiveStep] = useState(1);
+
+  const setActiveStepValue = (step) =>{
+    setActiveStep(step);
+  }
+
 
 
   return (
     <Router>
+      <ActiveStepProvider>
       <div className= {`screen ${isFiltersVisible ? 'blur' : ''}`}>
         <NavBar  />
       </div>
@@ -44,17 +52,20 @@ function App() {
             <Route path="/productList" element={<ProductList />} />
             <Route path="*" element={<h1 style={{ marginTop: '300px', marginBottom: '300px' }}>PAGE NOT FOUND</h1>} />
 
+
             {/* Private Routes */}
             <Route path="/Login" element={<LoginPage />} />
             <Route path="/SignOut" element={<Signout />} />
-            <Route path="/OrderHistory" element={<OrderPage />} />
+            <Route path="/OrderHistory" element={<OrderHistoryPage />} />
             <Route path="/My-bag" element={<MyBagPage />} />
             <Route path="/My-wishlist" element={<MyWishListPage />} />
+            <Route path='/TrackMyOrder' element={<Trackingpage/>}/>
           </Routes>
         </AuthProvider>
         <div className= {`screen ${isFiltersVisible ? 'blur' : ''}`}>
         <Footer />
         </div>
+        </ActiveStepProvider>
     </Router>
   );
 }

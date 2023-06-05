@@ -6,6 +6,7 @@
     align-items: center;
     width: 220px ;
     height: 654px;
+
     
 }
 
@@ -23,6 +24,7 @@
     background: url('../../assets/portrait-homme-sport-assis-ballon-fitness.jpg');
     background-position: center;
     background-size: cover;
+    border-radius: 6px;
 }
 .categories{
     border: 50px ;

@@ -13,12 +13,19 @@ h2{
     font-family: Brandon Grotesque;
     font-weight: 400;
     text-align: center;
-    margin: 20px;
-    margin-bottom: 40px;
-    font-size: 28px;
     color: #252525;
 }
 
+
+.h2WrapperFilter{
+    width: 300px;
+    height: 80px;
+    margin: 20px;
+    margin-right: 5px;
+    display: flex;
+    font-size: 16px;
+    
+}
 
 .arrowIconpannel{
     transform: rotate(90deg); /* Corrected property name */
@@ -31,7 +38,7 @@ h2{
 
 
 .filtersContainerpannel{
-    margin-bottom: 50px;
+   
     margin-left:20 ;
   
 

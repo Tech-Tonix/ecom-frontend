@@ -30,7 +30,9 @@ const Filterscolor = ({onColorChange}) => {
     <div className='filtersAndSortWrapperColor'>
       <div className='contentwrapperPlusbtn'>
         <div className='filtersContainerColor'>
+        <div className='h2WrapperFilter'>
           <h2 > Filter & Sort</h2>
+        </div>
             
           <div className='HeaderPlusArrowPriceColor'>
               <h3 className='titleFilterscolor'>Price</h3>
