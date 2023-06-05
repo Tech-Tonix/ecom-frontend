@@ -3,16 +3,13 @@ import { useEffect, useState } from "react";
 import { Filter24Filled } from '@fluentui/react-icons';
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Filterpannel from "../../components/filters/filterpannel";
 import Filters from "../../components/filters/filters"; 
-import Filterscateg from "../../components/filters/filterscateg"; 
-import Filtersbrand from "../../components/filters/filtersbrand";
-import Filterscolor from "../../components/filters/filterscolor";
+
 
 
 
 import './showProductsItems.css'
-import Filterssize from "../../components/filters/filterssize";
+
 
 
 

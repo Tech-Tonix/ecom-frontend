@@ -29,10 +29,11 @@
   /* NORMAL STYLES */
   
   .navbar-header {
-    position: fixed;
+   
     width: 100%;
     z-index: 9999;
     font-family: 'Brandon Grotesque',sans-serif;
+    color: white;
   }
   
   .navbar-top-bar {
@@ -56,6 +57,7 @@
   .navbar-section{
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 0px 60px;
     transition: all 0.3s ease-in-out;
   }

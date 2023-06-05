@@ -1,40 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 .heroSection-container{
     
-    margin-bottom: 100px;
-    height: 877px;
+    margin-bottom: 70px;
+
+    height: 50rem;
     width: 100%;
     padding: 4rem 6rem;
-    background: url('../../assets/pexels-leon-ardho-1552252.jpg');
+    background: url('./assets/herosection1.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: repeat;
     background-attachment: fixed;
     flex-direction: column;
     display: flex;
-    justify-content: space-evenly;
+    gap: 40px;
+    justify-content: center;
     text-align: left;
     display: flex;
 }
+
+
+
+
+
+
+
 .heroSection-titles{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.heroSection-titles-h1{
+.heroSection-titles-pp{
     padding-right: 20%;
-    font-family: 'Helvetica';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
-    font-weight: 700;
-    font-size: 80px;
-    line-height: 74px;
-    letter-spacing: 0.55px;
+    font-weight: bold;
+    font-size: 50px;
+    
+    letter-spacing: 0.35px;
     color: #F3F3F3;
 }
-.heroSection-titles p{
-    font-family: 'Helvetica';
+.heroSection-titles-p{
+    font-family: 'Montserrat';
     font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
+    font-weight: 400;
+    font-size: 25px;
     line-height: 37px;
 
     color: #EDEDED;
@@ -42,18 +52,25 @@
 .heroSection-buttons{
     display: flex;
     
-    font-family: 'Helvetica';
-font-weight: 700;
-font-size: 16px;
-line-height: 18px;
-gap: 30px;
-color: #171717;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    gap: 30px;
+    color: #171717;
 
 }
 .heroSection-buttons button{
     height: 70px;
     width: 212px;
-    }
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.heroSection-buttons button:hover {
+  background-color: #f9f9f9;
+  color: #171717;
+  transform: scale(1.05);
+}
 
 @media screen and (max-width : 1150px) {
         .heroSection{

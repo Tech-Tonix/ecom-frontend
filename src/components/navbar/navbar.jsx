@@ -1,9 +1,18 @@
 import './navbar.css';
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link } from "react-router-dom"
-
+import { useLocation } from 'react-router-dom';
+import { SearchContext } from './searchContext';
 
 export const NavBar = () => {
+  const location = useLocation();
+  const { searchQuery, setSearchQuery } = useContext(SearchContext);
+
+  const handleChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+
     return(
         
 
@@ -18,23 +27,25 @@ export const NavBar = () => {
         <div className="navbar-section">
 
           <Link to="#">
-            <span>HELP</span>
+            <span>LOGO</span>
           </Link>
 
-          <a href="#">
-            <img className="navbar-top-bar-icon" src={require('./assets/dz.svg').default} alt="Country"/>
-          </a>
+          
         </div>
 
         {/*middle section*/}
         <div className="navbar-section">
-          <Link to='/'>
-            <h3><Link to='/'> LOGO</Link></h3>
-          </Link>
+        {location.pathname === '/' ? (
+                <div className="search__box">
+                  <img className="search__icon" src={require('../../components/search/assets/ic_fluent_search_24_filled.svg').default} alt="Country"/>
+                  <input className='input__area' type="text" placeholder="Search.." id="search"   value={searchQuery}onChange={handleChange} />
+                </div>
+              ) : (null)}
         </div>
 
         {/*right section*/}
         <div className="navbar-section">
+        
           
           <Link to='/My-wishlist'>
             <img className="navbar-top-bar-icon" src={require('./assets/ic_fluent_heart_24_regular.svg').default} alt="Favourites"/>
@@ -199,9 +210,7 @@ export const NavBar = () => {
 
 
         {/* NAVBAR */}
-        <Link to='/'> Home</Link>
-        <Link to='/Registration'> registration</Link>
-        <Link to='/Login'> Login</Link>
+        
     </div>
 
 
@@ -211,3 +220,4 @@ export const NavBar = () => {
 
 
 }
+
