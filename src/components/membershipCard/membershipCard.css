@@ -1,0 +1,102 @@
+  
+    .registrationPage-upgrade-card{
+        justify-content: space-between;
+        flex-direction: column;
+        display: flex;
+        margin: 3rem 4rem;
+        padding: 2rem 2rem;
+        box-sizing: border-box;
+        background: #F9F9F9;
+        border: 2px solid #4A4A4A;
+        border-radius: 5px;
+        height: 350px;
+        width: 450px;
+      }
+
+      
+    .registrationPage-upgrade_header{
+        align-items: center;}
+      .registrationPage-upgrade_header__title{
+        font-family: 'Brandon Grotesque';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 34px;
+        text-align: center;
+        letter-spacing: 0.065em;
+        text-transform: uppercase;
+        }
+      .registrationPage-upgrade_header__p{
+      font-family: 'Brandon Grotesque';
+      font-style: normal;
+      font-weight: 390;
+      font-size: 15px;
+      line-height: 29px;
+      text-align: center;
+      letter-spacing: 0.065em;
+      color: #171717;
+      }
+
+      
+  .registrationPage-upgrade_signUp__p{
+    display: inline;
+    font-family: 'Brandon Grotesque';
+    font-style: normal;
+    font-weight: 390;
+    font-size: 15px;
+    line-height: 29px;
+    letter-spacing: 0.065em;
+    
+    }
+    .registrationPage-upgrade_signUp__p span {
+      color: #3CA8D7;
+    }
+    
+    .registrationPage-upgrade_signUp__p a {
+      text-decoration: underline;
+    }
+    
+    
+    .registrationPage-upgrade_signUp__checkbox{
+       /* set the width of the checkbox */
+      height: 30px; /* set the height of the checkbox */
+      display: flex;
+      align-items: center;
+      
+    }
+    .registrationPage-upgrade_signUp__checkbox input[type="checkbox"] {
+      width: 20px; /* set the width of the checkbox */
+      height: 20px; /* set the height of the checkbox */ /* align the checkbox with the text */
+      background: #F3F3F3;
+      border: 1px solid #4A4A4A;
+      border-radius: 2px;
+    }
+    .registrationPage-upgrade_signUp__checkbox__p{
+      margin-left: 5px;
+      font-family: 'Brandon Grotesque';
+      font-style: normal;
+      font-weight: 390;
+      font-size: 15px;
+      letter-spacing: 0.065em;
+      color: #000000;
+      }
+
+      .registrationPage-upgrade-card{
+        margin:3rem 2rem ;
+        background-color: #FFF4ED;
+      }
+.-registrationPageupgrade_header__title{
+  font-size: 24px;
+  font-weight: 400;
+
+}
+
+.registrationPage-upgrade_header__p{
+  font-size: 15px;
+  margin-top: 0;
+  width: 400px;
+  
+
+
+
+}

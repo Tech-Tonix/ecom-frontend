@@ -21,6 +21,8 @@ import Filters from './components/filters/filters';
 import Trackingpage from './pages/trackingPage/trackingpage';
 import OrderHistoryPage from './pages/orderHistoryPage/orderHistoryPage';
 import { ActiveStepProvider } from './context/activeStepContext';
+import MyInfoPage from './pages/myInfoPage/myInfoPage';
+
 
 
 function App() {
@@ -60,6 +62,7 @@ function App() {
             <Route path="/My-bag" element={<MyBagPage />} />
             <Route path="/My-wishlist" element={<MyWishListPage />} />
             <Route path='/TrackMyOrder' element={<Trackingpage/>}/>
+            <Route path='/MyInfo' element={<MyInfoPage/>}/>
           </Routes>
         </AuthProvider>
         <div className= {`screen ${isFiltersVisible ? 'blur' : ''}`}>

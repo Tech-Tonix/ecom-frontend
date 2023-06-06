@@ -1,0 +1,59 @@
+.MyInfoContainer{
+    width: 916px;
+    height: 707px;
+    background-color: #FFF4ED;
+    border-radius: 5px;
+    padding: 50px;
+}
+h1{
+    margin-bottom: 15px;
+
+}
+
+
+.InfoSection{
+    margin-top: 50px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+
+  
+  .Info {
+    display: flex;
+    margin-bottom: 18px;
+  }
+  
+  .title {
+    font-weight: 400;
+    margin-right: 10px;
+    width: 100px; 
+  }
+  
+  .value {
+    margin-left: 150px;
+    color: rgb(68, 68, 68);
+  }
+
+  .edit-Label-Info{
+    margin-left: 250px; 
+    border-bottom: 1px solid black;
+
+  }
+
+.edit-input-Info{
+    width: 200px;
+    margin-left: 150px;
+    border: 0.5px solid #4d4d4d;
+
+}
+
+.save-button-Info{
+    color:#ff8d23 ;
+    margin-left: 260px ;
+    margin-top: 3px;
+    border-bottom: 0.5px solid #ff8d23;
+}
