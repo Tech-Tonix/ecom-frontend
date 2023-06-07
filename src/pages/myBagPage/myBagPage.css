@@ -59,13 +59,14 @@
 .myBagCards-orderButton{
     box-sizing: border-box;
     
-    
+    font-size: 16px;
+    position: absolute;
     width: 207px;
-    height: 64px;
+    height: 70px;
     
 
     background: #13BA33;
-    border: 1px solid #BDBDBD;
+    border: 1px solid #fffefe;
     border-radius: 5px;
     font-family: 'Brandon Grotesque';
     font-style: normal;
@@ -75,7 +76,7 @@
     letter-spacing: 0.065em;
     text-transform: uppercase;
 
-    color: #F3F3F3;
+    color: #ffffff;
     }
     .rectangle-container{
         display: flex;
@@ -214,3 +215,65 @@
         
     }
     
+.titleModal1{
+    font-size: 24px;
+    margin-bottom: 20px;
+
+
+}
+
+.CancelOptionBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    
+
+
+    
+
+}
+
+.ParagTrackModal2{
+    font-size: 18px;
+    color: #353535;
+    margin-bottom: 20px;
+
+
+}
+
+.wrapperTrackCpyetc{
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    gap: 50px;
+
+
+}
+
+.buttonCloseTrack{
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #1ea2ee;
+    cursor: pointer;
+    color: #F3F3F3;
+    position: absolute;
+    bottom: 5%;
+    right: 8%;
+}
+
+.myBagCards-orderButtonTrackModal{
+    position: absolute;
+    bottom: 5%;
+    left: 8%;
+    background-color: #13BA33;
+    border-radius: 5px;
+    width: 80px;
+    height: 40px;
+    color: #F3F3F3;
+    cursor: pointer;
+}
