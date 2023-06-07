@@ -1,34 +1,111 @@
 .TrackingPageWrapper{
-    margin: 70px 0;
-    width: 100%;
-
-    display: flex;
-    min-height: 100vh;
-    justify-content: center;
-    align-items: center;
+      margin: 70px 0;
+      margin-left: 5%;
+      display: flex;
 }
-
 
 .categoriesPannelTrackingPage{
-  flex: 1;
-  margin-right: -90px;
-  margin-left: 5%;
-  margin-top: -560px;
-  }
-
-  
-.trackingComponentContainer{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
+     flex: 1;
+    margin-right: -90px;
+    margin-top: -560px;
 }
 
-.tableTrackingComponent{
+.trackingComponentContainer{
+  flex:4 ;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  margin-left: 150px;
+}
+
+.newTrackingText{
+  margin-bottom: 50px;
+
+}
+
+
+.formeStylingTrack {
+  background-color: #FFF4ED;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-right: 100px;
+  margin-bottom: 50px;
+  width: 700px;
+  border-radius: 5px;
+  margin-top: 50px;
+  position: relative;
+}
+
+.iconContainerTruck {
+  position: absolute;
+  left: 20px;
+  top: 65px;
+}
+
+
+.iconContainer svg {
+  width: 32px;
+  height: 32px;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+
+.formeStylingTrack form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: "Brandon Grotesque";
+}
+
+.formeStylingTrack label {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.btnPlusInputTrack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.formeStylingTrack input {
+  margin-bottom: 10px;
+  width: 400px;
+}
+
+.formeStylingTrack button {
+  margin-top: 10px;
+  background-color: #161616;
+  border-radius: 5px;
+  width: 100px;
+  height: 45px;
+  align-self: center;
+  margin-bottom: 20px;
+  color: #FFF4ED;
+}
+
+.TrackingFieldNumberStatus{
+  width: 400px;
+  background-color: #FFF4ED;
+  height: 100px;
+  gap: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-left: 20px;
+  font-size: 18px;
+
+
+}
+
+.TrackcompoWrapperPage{
+  position: absolute;
   margin-top: 200px;
+  margin-left: -20px;
+
 
 }
