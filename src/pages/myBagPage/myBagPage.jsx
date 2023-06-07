@@ -8,6 +8,7 @@ import AuthContext from '../../context/AuthContext'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from 'react-modal';
+import { fontSize, textAlign } from "@mui/system"
 
 
 export const MyBagPage = () =>{
@@ -335,63 +336,93 @@ const openModal = () => {
           },
         }}
       >
-        <h2 style={{ color: '#333' }}>Order Confirmation</h2>
         
-        <p style={{ color: '#333' }}>some informations</p>
+        <h2 className="titleModal1">Order Confirmation</h2>
+        
+        <p style={{ color: '#333',
+                    marginBottom:'20px',
+                    fontSize:'18px',
+                    display:'block',
+                    padding:'8px',
+                    textAlign:'center'
+
+      }}>Awsome! You just have to confirm your oder </p>
+      <div className="CancelOptionBtn">
         <button
           style={{
-            background: '#1e90ff', // Button background color
+            background: '#00d800', // Button background color
             color: '#fff', // Button text color
             border: 'none',
             borderRadius: '4px',
             padding: '8px 16px',
             cursor: 'pointer',
+            display: 'block',
+            marginTop:'80px'
           }}
           onClick={handleOrder}
         >
-          confirm order
+          CONFIRM
         </button>
+        <button
+          style={{
+            background: '#e04000', // Button background color
+            color: '#fff', // Button text color
+            border: 'none',
+            borderRadius: '4px',
+            padding: '8px 16px',
+            cursor: 'pointer',
+           
+            display: 'block',
+            marginTop:'80px'
+          }}
+          
+        >
+          CANCEL
+        </button>
+        </div>
       </Modal>
       <Modal
         isOpen={isOpen2}
         onRequestClose={closeModal2}
         style={{
           content: {
-            width: '400px',
-            height: '300px',
+            width: '500px',
+            height: '500px',
             margin: 'auto',
             background: '#fff', // Background color
             borderRadius: '8px',
             padding: '20px',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Box shadow
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', 
+            zIndex:'80'
           },
         }}
       >
-        <h2 style={{ color: '#333' }}>Order tracking</h2>
-        {trackingNumber && (
-          <div>
-            <p style={{ color: '#777' }}>Tracking Number: {trackingNumber}</p>
-          <button className="myBagCards-orderButton" onClick={handleCopy}>
+        <div className="wrapperTrackCpyetc">
+        <h2 style={{ color: '#333',
+        marginBottom: '20px',
+
+      
+      }}>Order tracking</h2>
+       
+        <p style={{ color: '#333',
+      width:'400px',
+      textAlign:'center',
+      fontSize:'18px' }}>You can track your order using this Tracking Code in the Track Order Page,You'll be updated during the hole process of Delievery! </p>
+       {trackingNumber && (
+          <div className="TrackingNumberSecondModal">
+            <p className="ParagTrackModal2">Tracking Number: {trackingNumber}</p>
+          <button className="myBagCards-orderButtonTrackModal" onClick={handleCopy}>
             {copied ? 'Copied' : 'Copy'}
           </button>
             
           </div>
           
         )}
-        <p style={{ color: '#333' }}>some informations</p>
-        <button
-          style={{
-            background: '#1e90ff', // Button background color
-            color: '#fff', // Button text color
-            border: 'none',
-            borderRadius: '4px',
-            padding: '8px 16px',
-            cursor: 'pointer',
-          }}
-          onClick={closeModalss}
+        <button className="buttonCloseTrack" onClick={closeModalss}
         >
           close
         </button>
+        </div>
       </Modal>
             
             </div>
