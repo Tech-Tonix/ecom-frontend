@@ -40,14 +40,14 @@ export const Categories = () => {
     <div className="categories-wrapper">
       {/* User profile picture*/}
       <div className="profile-pic-container">
-        <img src={ProfilPic} alt="Profile picture displayed" />
+        <img src={ProfilPic} alt="Profilepicturedisplayed" />
       </div>
       {/*Categories*/}
       <div className="categories">
         <ul>
         <li>
             <div>
-              <NavLink style={navLinkStyles} to="/Myinfo" >
+              <NavLink style={navLinkStyles} to="/Profile" >
                 <Person24Regular  className="icons" />
                 <span className="categorie-text" style={{ marginLeft: "25px" }}>
                   My Info

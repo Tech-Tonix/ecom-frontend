@@ -69,7 +69,7 @@
   font-family: 'Brandon Grotesque', sans-serif;
   font-size: 15px;
   font-weight: 420;
-  line-height: 21.45px;
+  line-height: 15.00px;
 }
 .product-title {
   font-family: 'Brandon Grotesque', sans-serif;
@@ -77,10 +77,11 @@
   height: 29px;
   color: #4a4a4a;
   font-weight: 390;
-  font-size: 20px;
-  line-height: 28.6px;
+  font-size: 16px;
+  line-height: 20.6px;
   display: flex;
   justify-items: start;
+  margin-bottom: 15px;
 }
 .prodoct-color-txt {
   font-family: 'Brandon Grotesque', sans-serif;

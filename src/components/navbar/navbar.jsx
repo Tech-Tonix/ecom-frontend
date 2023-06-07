@@ -3,9 +3,12 @@ import { useState,useContext } from "react";
 import { Link } from "react-router-dom"
 import { useLocation } from 'react-router-dom';
 import { SearchContext } from './searchContext';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ratpic from '../../assets/logo black.png'
 export const NavBar = () => {
   const location = useLocation();
+ 
   const { searchQuery, setSearchQuery } = useContext(SearchContext);
 
   const handleChange = (e) => {
@@ -26,9 +29,10 @@ export const NavBar = () => {
         {/*left section*/}
         <div className="navbar-section">
 
-          <Link to="#">
-            <span>LOGO</span>
-          </Link>
+        <Link to="#">
+  <img src={ratpic} alt="inventory" style={{ width: '140px', height: 'auto' }} />
+</Link>
+
 
           
         </div>
@@ -81,26 +85,26 @@ export const NavBar = () => {
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Men</header>
                 <ul className="navbar-mega-links">
-                  <li><a href="#">Athletic wear</a></li>
-                  <li><a href="#">Best sellers</a></li>
-                  <li><a href="#">Team sports</a></li>
-                  <li><a href="#">Outdoor gear</a></li>
-                  <li><a href="#">Tracksuit</a></li>
-                  <li><a href="#">All men sales</a></li>
-                  <li><a href="#">Running shoes</a></li>
+                  <li><a href="/category/:id">Athletic wear</a></li>
+                  <li><a href="/category/:id">Best sellers</a></li>
+                  <li><a href="/category/:id">Team sports</a></li>
+                  <li><a href="/category/:id">Outdoor gear</a></li>
+                  <li><a href="/category/:id">Tracksuit</a></li>
+                  <li><a href="/category/:id">All men sales</a></li>
+                  <li><a href="/category/:id">Running shoes</a></li>
                 </ul>
               </div>
 
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Women</header>
                     <ul className="navbar-mega-links">
-                    <li><a href="#">All women sales</a></li>
-                    <li><a href="#">Best sellers</a></li>
-                    <li><a href="#">Yoga and pilates</a></li>
-                    <li><a href="#">Outdoor gear</a></li>
-                    <li><a href="#">Hoodies and jackets</a></li>
-                    <li><a href="#">Running shoes</a></li>
-                    <li><a href="#">Athletic wear</a></li>
+                    <li><a href="/category/:id">All women sales</a></li>
+                    <li><a href="/category/:id">Best sellers</a></li>
+                    <li><a href="/category/:id">Yoga and pilates</a></li>
+                    <li><a href="/category/:id">Outdoor gear</a></li>
+                    <li><a href="/category/:id">Hoodies and jackets</a></li>
+                    <li><a href="/category/:id">Running shoes</a></li>
+                    <li><a href="/category/:id">Athletic wear</a></li>
                   </ul>
               </div>
 
@@ -116,41 +120,41 @@ export const NavBar = () => {
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Strength</header>
                 <ul className="navbar-mega-links">
-                  <li><a href="#">Shop All</a></li>
-                  <li><a href="#">Barebell</a></li>
-                  <li><a href="#">Pull-up bars</a></li>
-                  <li><a href="#">Plates</a></li>
-                  <li><a href="#">Kettlebell</a></li>
+                  <li><a href="/category/:id">Shop All</a></li>
+                  <li><a href="/category/:id">Barebell</a></li>
+                  <li><a href="/category/:id">Pull-up bars</a></li>
+                  <li><a href="/category/:id">Plates</a></li>
+                  <li><a href="/category/:id">Kettlebell</a></li>
                 </ul>
               </div>
 
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Cardio machines</header>
                 <ul className="navbar-mega-links">
-                  <li><a href="#">Shop All</a></li>
-                  <li><a href="#">Stationary bikes</a></li>
-                  <li><a href="#">Treadmills</a></li>
+                  <li><a href="/category/:id">Shop All</a></li>
+                  <li><a href="/category/:id">Stationary bikes</a></li>
+                  <li><a href="/category/:id">Treadmills</a></li>
                 </ul>
               </div>
 
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Yoga</header>
                 <ul className="navbar-mega-links">
-                  <li><a href="#">Shop All</a></li>
-                  <li><a href="#">Resistance</a></li>
-                  <li><a href="#">Bags</a></li>
-                  <li><a href="#">Headwear</a></li>
+                  <li><a href="/category/:id">Shop All</a></li>
+                  <li><a href="/category/:id">Resistance</a></li>
+                  <li><a href="/category/:id">Bags</a></li>
+                  <li><a href="/category/:id">Headwear</a></li>
                 </ul>
               </div>
 
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Accessories</header>
                 <ul className="navbar-mega-links">
-                  <li><a href="#">Shop All</a></li>
-                  <li><a href="#">Socks</a></li>
-                  <li><a href="#">Bags</a></li>
-                  <li><a href="#">Headwear</a></li>
-                  <li><a href="#">Gloves</a></li>
+                  <li><a href="/category/:id">Shop All</a></li>
+                  <li><a href="/category/:id">Socks</a></li>
+                  <li><a href="/category/:id">Bags</a></li>
+                  <li><a href="/category/:id">Headwear</a></li>
+                  <li><a href="/category/:id">Gloves</a></li>
                 </ul>
               </div>
 
@@ -166,30 +170,30 @@ export const NavBar = () => {
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Protein</header>
                 <ul className="navbar-mega-links">
-                  <li><a href="#">Shop All</a></li>
-                  <li><a href="#">Whey</a></li>
-                  <li><a href="#">Creatine</a></li>
-                  <li><a href="#">BCAAs</a></li>
+                  <li><a href="/category/:id">Shop All</a></li>
+                  <li><a href="/category/:id">Whey</a></li>
+                  <li><a href="/category/:id">Creatine</a></li>
+                  <li><a href="/category/:id">BCAAs</a></li>
                 </ul>
               </div>
 
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Muscle recovery</header>
                     <ul className="navbar-mega-links">
-                    <li><a href="#">Shop All</a></li>
-                    <li><a href="#">Vitamins</a></li>
-                    <li><a href="#">Pre-Workout supplements</a></li>
-                    <li><a href="#">Post-Workout supplements</a></li>
+                    <li><a href="/category/:id">Shop All</a></li>
+                    <li><a href="/category/:id">Vitamins</a></li>
+                    <li><a href="/category/:id">Pre-Workout supplements</a></li>
+                    <li><a href="/category/:id">Post-Workout supplements</a></li>
                   </ul>
               </div>
 
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Personal care</header>
                     <ul className="navbar-mega-links">
-                    <li><a href="#">Fat burners</a></li>
-                    <li><a href="#">Weight loss</a></li>
-                    <li><a href="#">Hair-Skin vitamins</a></li>
-                    <li><a href="#">Headwear</a></li>
+                    <li><a href="/category/:id">Fat burners</a></li>
+                    <li><a href="/category/:id">Weight loss</a></li>
+                    <li><a href="/category/:id">Hair-Skin vitamins</a></li>
+                    <li><a href="/category/:id">Headwear</a></li>
                   </ul>
               </div>
 

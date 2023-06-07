@@ -7,6 +7,7 @@ import axios from "axios"
 import AuthContext from '../../context/AuthContext'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Modal from 'react-modal';
 
 
 export const MyBagPage = () =>{
@@ -16,6 +17,13 @@ export const MyBagPage = () =>{
   const [heartIsClicked,setheartIsClicked] = useState('');
   let [count, setCount] = useState([]);
   const [quantityList, setQuantityList] = useState([]);
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(trackingNumber)
+      .then(() => setCopied(true))
+      .catch(() => setCopied(false));
+  };
+
   
 
   const handleIncrement = async (index) => {
@@ -56,7 +64,7 @@ export const MyBagPage = () =>{
       const itemToUpdate = newCartItems[index];
       const cartItemId = itemToUpdate.product.id;
       const newQuantity = newCartItems[index].quantity;
-
+      
       try {
         await axios.put(
           `https://gymrat-app.onrender.com/store/update-cartitem/${cartItemId}/`,
@@ -72,6 +80,7 @@ export const MyBagPage = () =>{
         const newQuantityList = [...quantityList];
         newQuantityList[index] -= 1;
         setQuantityList(newQuantityList);
+        
       } catch (error) {
         console.log('Failed to update cart item quantity.', error);
       }
@@ -98,6 +107,7 @@ export const MyBagPage = () =>{
         const updatedCartItems = [...cartItems];
         updatedCartItems.splice(index, 1);
         setCartItems(updatedCartItems);
+        
   
         // Update the count by subtracting the deleted quantity
         setCount((prevCount) => prevCount - deletedQuantity);
@@ -112,6 +122,7 @@ export const MyBagPage = () =>{
   };
   
   useEffect(() => {
+    
     const updateCartItems = async () => {
       try {
         const response = await axios.get('https://gymrat-app.onrender.com/store/carts/', {
@@ -120,6 +131,7 @@ export const MyBagPage = () =>{
           },
         });
         setCartItems(response.data);
+        
         const initialQuantities = response.data.map((item) => item.quantity);
         setQuantityList(initialQuantities);
       } catch (error) {
@@ -128,6 +140,7 @@ export const MyBagPage = () =>{
     };
 
     updateCartItems();
+    
   }, []);
 
   const subtotal = cartItems.reduce((total, item, index) => {
@@ -138,37 +151,62 @@ export const MyBagPage = () =>{
   
   function heartHandleClick(){
     setheartIsClicked(!heartIsClicked);
+    
 } 
-  const handleOrder = async () => {
-    try {
-      const response = await axios.post(
-        'https://gymrat-app.onrender.com/store/orders/',
-        null,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'JWT ' + authTokens,
-          },
-        }
-      );
-      
-      if (response.status === 201) {
-        
-        setCartItems([]);
-        
-        toast.success('Order placed successfully!');
-      } else {
-         
-        setCartItems([]);
-        setCount(0)
-        toast.error('Failed to place order.');
+
+const [trackingCode, setTrackingCode] = useState('');
+const [trackingNumber, setTrackingNumber] = useState('');
+const handleOrder = async () => {
+  try {
+    const response = await axios.post(
+      'https://gymrat-app.onrender.com/store/orders/',
+      null,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'JWT ' + authTokens,
+        },
       }
-    } catch (error) {
+    );
+
+    if (response.status === 201) {
       setCartItems([]);
+      const { tracking_number } = response.data; // Retrieve the tracking_number attribute from the response
+        setTrackingNumber(tracking_number);
+      toast.success('Order placed successfully!');
+      openModal2(); // Show the popup when the order is placed successfully
+    } else {
+      setCartItems([]);
+      setCount(0);
       toast.error('Failed to place order.');
     }
+  } catch (error) {
+    setCartItems([]);
+    toast.error('Failed to place order.');
+  }
+};
+const [isOpen, setIsOpen] = useState(false);
+const [isOpen2, setIsOpen2] = useState(false);
+const openModal = () => {
+  if (cartItems.length >0) {
+    setIsOpen(true);
+  }
+};
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  const openModal2 = () => {
+    setIsOpen2(true);
   };
 
+  const closeModal2 = () => {
+    setIsOpen2(false);
+  };
+  const closeModalss = () => {
+    setIsOpen2(false);
+    setIsOpen(false);
+  };
 
     return(
       user ? (
@@ -183,15 +221,18 @@ export const MyBagPage = () =>{
               bag.product.color?(<div className="myBag" key={bag.id} >
               <div className="myBag-left">
                 <div className="heyhey">
-                  <img src={bag.product.name} alt="" />
+                  <img src={bag.product.image_urls && bag.product.image_urls[0]} alt="hahaha" style={{height:'auto',width:'150px',marginRight:'20px'}}/>
                 </div>
                 <div className="myBag-img-details">
-                  <p className="__title">{bag.product.name}</p>
-                  <p className="__p"> {bag.product.description}</p>
-                  <p className="__p">color: {JSON.stringify(bag.product.color)}</p>
+                <p className="__title">
+                          {bag.product.name} <span style={{fontSize:'12px',color:'#747474'}}>({bag.product.inventory} item available)</span>
+                        </p>
+
                   
-                  <p className="__p">size: {JSON.stringify(bag.product.size)}</p>
-                  <p className="__p"> {bag.product_id}</p>
+                  <p className="__p">color: {bag.product.color}</p>
+
+                  <p className="__p">size: {bag.product.size}</p>
+                  
                 </div>
               </div>
               <div className="myBag-right">
@@ -199,14 +240,14 @@ export const MyBagPage = () =>{
                   <div className="rectangle-part1" onClick={() => handleDecrement(index)}>
                     -
                   </div>
-                  <div className="rectangle-part2">{bag.product.quantity}</div>
+                  <div className="rectangle-part2">{bag.quantity}</div>
                   <div className="rectangle-part3" onClick={() => handleIncrement(index)}>
                     +
                   </div>
                 </div> 
                 <div className="price">
                   <div style={{ paddingRight: '30px' }}>
-                    <p>{bag.product.unit_price}</p>
+                    <p>{bag.product.unit_price*170}DZD</p>
                   </div>
                   <div className="icons">
                     <i
@@ -229,12 +270,12 @@ export const MyBagPage = () =>{
             </div>):(<div className="myBag" key={bag.id} >
           <div className="myBag-left">
             <div className="heyhey">
-              <img src={bag.product.image} alt="" />
+            <img src={bag.product.image_urls && bag.product.image_urls[0]} alt="hahaha" />
             </div>
             <div className="myBag-img-details">
-              <p className="__title">{bag.product.name}</p>
+              <p className="__title">{bag.product.name}<span style={{fontSize:'12px',color:'#747474'}}>({bag.product.inventory} item available)</span></p>
               <p className="__p"> {bag.product.description}</p>
-              <p className="__p"> product id :{bag.product_id}</p>
+              
               
             </div>
           </div>
@@ -250,7 +291,7 @@ export const MyBagPage = () =>{
             </div> 
             <div className="price">
               <div style={{ paddingRight: '30px' }}>
-                <p>{bag.product.unit_price} DZD</p>
+                <p>{bag.product.unit_price*170} DZD</p>
               </div>
               <div className="icons">
                 <i
@@ -275,10 +316,83 @@ export const MyBagPage = () =>{
       ))}
             
             </div>
-                <Subtotal subtotal={subtotal} count={count}/>
+                <Subtotal subtotal={subtotal*170} count={count}/>
                     <div style={{display:"flex",justifyContent:"flex-end"}}>
-                    <button className='myBagCards-orderButton' onClick={handleOrder}>Order</button>
+                    <button className='myBagCards-orderButton' onClick={openModal}>Order</button>
                     </div>
+                    <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        style={{
+          content: {
+            width: '400px',
+            height: '300px',
+            margin: 'auto',
+            background: '#fff', // Background color
+            borderRadius: '8px',
+            padding: '20px',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Box shadow
+          },
+        }}
+      >
+        <h2 style={{ color: '#333' }}>Order Confirmation</h2>
+        
+        <p style={{ color: '#333' }}>some informations</p>
+        <button
+          style={{
+            background: '#1e90ff', // Button background color
+            color: '#fff', // Button text color
+            border: 'none',
+            borderRadius: '4px',
+            padding: '8px 16px',
+            cursor: 'pointer',
+          }}
+          onClick={handleOrder}
+        >
+          confirm order
+        </button>
+      </Modal>
+      <Modal
+        isOpen={isOpen2}
+        onRequestClose={closeModal2}
+        style={{
+          content: {
+            width: '400px',
+            height: '300px',
+            margin: 'auto',
+            background: '#fff', // Background color
+            borderRadius: '8px',
+            padding: '20px',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Box shadow
+          },
+        }}
+      >
+        <h2 style={{ color: '#333' }}>Order tracking</h2>
+        {trackingNumber && (
+          <div>
+            <p style={{ color: '#777' }}>Tracking Number: {trackingNumber}</p>
+          <button className="myBagCards-orderButton" onClick={handleCopy}>
+            {copied ? 'Copied' : 'Copy'}
+          </button>
+            
+          </div>
+          
+        )}
+        <p style={{ color: '#333' }}>some informations</p>
+        <button
+          style={{
+            background: '#1e90ff', // Button background color
+            color: '#fff', // Button text color
+            border: 'none',
+            borderRadius: '4px',
+            padding: '8px 16px',
+            cursor: 'pointer',
+          }}
+          onClick={closeModalss}
+        >
+          close
+        </button>
+      </Modal>
             
             </div>
             

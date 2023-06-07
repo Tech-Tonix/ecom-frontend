@@ -1,47 +1,60 @@
-import React from 'react'
-import './orderHistoryCompo.css'; 
-import { useContext } from 'react';
-import ActiveStepContext from '../../context/activeStepContext';
+// import React from 'react';
+// import './orderHistoryCompo.css';
+// import { useContext, useState, useEffect } from 'react';
+// import ActiveStepContext from '../../context/activeStepContext';
+// import axios from 'axios';
 
+// function OrderHistoryCompo({ dataOrderHistory }) {
+//   const { activeStep } = useContext(ActiveStepContext);
+//   const [productDetails, setProductDetails] = useState(null);
 
-function OrderHistoryCompo({dataOrderHistory}) {
+//   useEffect(() => {
+//     fetchProductDetails();
+//   }, []);
 
+//   const fetchProductDetails = async () => {
+//     try {
+//       const response = await axios.get(`https://gymrat-app.onrender.com/store/products/${dataOrderHistory.items[0].product[0]}`);
+//       const product = response.data;
+//       setProductDetails(product);
+//     } catch (error) {
+//       console.error('Error fetching product details:', error);
+//     }
+//   };
 
-  const {activeStep} = useContext(ActiveStepContext);
+//   if (!dataOrderHistory || !productDetails) {
+//     return null;
+//   }
 
+//   let status = '';
 
-  if(!dataOrderHistory){
-    return null; 
-  }
-  let status = ''; 
+//   switch (activeStep) {
+//     case 1:
+//       status = 'Order Placed';
+//       break;
+//     case 2:
+//       status = 'Packed';
+//       break;
+//     case 3:
+//       status = 'Shipped';
+//       break;
+//     case 4:
+//       status = 'Delivered';
+//       // break;
+//     default:
+//       status = 'Unknown';
+//       break;
+//   }
 
-  switch(activeStep) {
-    case 1:
-      status = 'Order Placed'; 
-      break; 
-    case 2: 
-    status = 'Packed';
-    break;
-    case 3: 
-    status = 'Shipped';
-    break;
-    case 4: 
-    status = 'Delivered';
-    break;
-    default:
-      status = 'Unknown';
-      break;
-  }
-  
-  return (
-        <div className='oderHistoryCard'>
-            <p>{dataOrderHistory.id}</p>
-            <img src={dataOrderHistory.image} alt={dataOrderHistory.name}/>
-            <p>{dataOrderHistory.name}</p>
-            <p>{status}</p>
-            <p>{dataOrderHistory.date}</p>
-        </div>
-  )
-}
+//   return (
+//     <div className='orderHistoryCard'>
+//       <p>{'dataOrderHistory.id'}</p>
+//       <img src={productDetails.image} alt={productDetails.name} />
+//       <p>{'productDetails.name'}</p>
+//       <p>{'status'}</p>
+//       <p>{'dataOrderHistory.placed_at'}</p>
+//     </div>
+//   );
+// }
 
-export default OrderHistoryCompo
+// export default OrderHistoryCompo;

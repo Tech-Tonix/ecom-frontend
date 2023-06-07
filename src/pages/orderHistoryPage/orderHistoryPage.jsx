@@ -1,33 +1,59 @@
-import React, { useState } from 'react'
-import './orderHistoryPage.css'
-import { Categories } from '../../components/categoriespannel/categories'
-import OrderHistoryCompo from '../../components/orderHistoryCompo/orderHistoryCompo'
-import { DatePicker } from '@fluentui/react'
-import { defaultCalendarNavigationIcons } from '@fluentui/react'
-
-
-
+import React, { useState, useEffect, useContext } from 'react';
+import './orderHistoryPage.css';
+import { Categories } from '../../components/categoriespannel/categories';
+import OrderHistoryCompo from '../../components/orderHistoryCompo/orderHistoryCompo';
+import { DatePicker } from '@fluentui/react';
+import ActiveStepContext from '../../context/activeStepContext';
+import axios from 'axios';
+import AuthContext from '../../context/AuthContext';
 
 function OrderHistoryPage() {
-
   const [selectedDate, setSelectedDate] = useState(null);
+  const [orderHistory, setOrderHistory] = useState([]);
+  const [productDetails, setProductDetails] = useState({});
+  const { activeStep } = useContext(ActiveStepContext);
+  const { user, authTokens } = useContext(AuthContext);
+  const [orderToDelete, setOrderToDelete] = useState();
+  let status = '';
 
-  const dataOrderHistory = [
-    {
-      id: 1,
-      image: 'image-url-1',
-      name: 'Object 1',
-      status: 'Active',
-      date: '2023-06-01',
-    },
-    {
-      id: 2,
-      image: 'image-url-2',
-      name: 'Object 2',
-      status: 'Inactive',
-      date: '2023-06-02',
-    },
-  ];
+  switch (activeStep) {
+    case 1:
+      status = 'Order Placed';
+      break;
+    case 2:
+      status = 'Packed';
+      break;
+    case 3:
+      status = 'Shipped';
+      break;
+    case 4:
+      status = 'Delivered';
+      break;
+    default:
+      status = 'Unknown';
+      break;
+  }
+
+  useEffect(() => {
+    fetchOrderHistory();
+  }, []);
+
+  const fetchOrderHistory = async () => {
+    try {
+      const response = await axios.get('https://gymrat-app.onrender.com/store/orders/', {
+        headers: {
+          Authorization: `JWT ${authTokens}`,
+        },
+      });
+      const data = response.data;
+      setOrderHistory(data);
+      setOrderToDelete(data[0].id)
+      console.log("hhh",data[0].id)
+      
+    } catch (error) {
+      console.error('Error fetching order history:', error);
+    }
+  };
 
   const formatDate = (date) => {
     const year = date.getFullYear();
@@ -42,8 +68,25 @@ function OrderHistoryPage() {
   };
 
   const filteredOrderHistoryDate = selectedDate
-    ? dataOrderHistory.filter((item) => item.date === selectedDate)
-    : dataOrderHistory;
+    ? orderHistory.filter((item) => item.date === selectedDate)
+    : orderHistory;
+
+  const handleCancelOrder = async () => {
+    
+    try {
+      await axios.delete(
+        `https://gymrat-app.onrender.com/store/orders/delete/${orderToDelete}/`,
+        {
+          headers: {
+            Authorization: `JWT ${authTokens}`,
+          },
+        }
+      );
+      fetchOrderHistory(); // Fetch updated order history after cancellation
+    } catch (error) {
+      console.error('Error canceling order:', error);
+    }
+  };
 
   return (
     <div className='OrderHistoryWrapper'>
@@ -53,19 +96,42 @@ function OrderHistoryPage() {
 
       <div className='OrderHistoryCompoWrapper'>
         <div className='calendarIconPlusDatePicker'>
-        <svg viewbox="0 0 40 40" width="40" height="40" stroke="#171717" fill="#171717"><path d="M11.2 17.6a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2z"  /><path d="M12.8 20.8a1.6 1.6 0 1 1-3.2 0 1.6 1.6 0 0 1 3.2 0z"  /><path d="M16 17.6a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2z"  /><path d="M17.6 20.8a1.6 1.6 0 1 1-3.2 0 1.6 1.6 0 0 1 3.2 0z"  /><path d="M20.8 17.6a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2z"  /><path d="M27.2 8.8A4 4 0 0 0 23.2 4.8h-14.4A4 4 0 0 0 4.8 8.8v14.4A4 4 0 0 0 8.8 27.2h14.4a4 4 0 0 0 4-4v-14.4zM6.4 11.2h19.2v12a2.4 2.4 0 0 1-2.4 2.4h-14.4A2.4 2.4 0 0 1 6.4 23.2V11.2z m2.4-4.8h14.4A2.4 2.4 0 0 1 25.6 8.8V9.6H6.4v-0.8A2.4 2.4 0 0 1 8.8 6.4z"  /></svg>
-        <div className='datePickerContainer'>
-          <DatePicker onSelectDate={handleDateChange} />
-        </div>
+          {/* Calendar icon SVG */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'start' }}>
+            <div>
+              <p style={{ fontWeight: '420', fontSize: '30px', lineHeight: '51px', letterSpacing: '0.065em', color: '#171717', fontFamily: 'Brandon Grotesque' }}>
+                ORDER HISTORY
+              </p>
+              <p style={{ fontSize: '14px', color: '#999' }}>
+                NOTE: You can cancel an order only within 24 hours of placing it.
+              </p>
+            </div>
+            <div className='datePickerContainer'>
+              <p>pick a date</p>
+              <DatePicker onSelectDate={handleDateChange} />
+            </div>
+          </div>
         </div>
         <div>
-          {filteredOrderHistoryDate.map((item) => (
-            <OrderHistoryCompo key={item.id} dataOrderHistory={item} />
-          ))}
+          {filteredOrderHistoryDate.length > 0 ? (
+            filteredOrderHistoryDate.map((item, index) => {
+              const product = productDetails[index] || {};
+              return (
+                <div key={item.id} className='orderHistoryCard' style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                  <p>{index + 1}</p>
+                  <p>{status}</p>
+                  <p>{item.placed_at}</p>
+                  <button onClick={() => handleCancelOrder(item.id, item.order_item_id)}>cancel order</button>
+                </div>
+              );
+            })
+          ) : (
+            <p style={{ margin: '250px', fontSize: '35px' }}>:/ YOU DIDN'T PLACE ANY ORDER</p>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export default OrderHistoryPage
+export default OrderHistoryPage;

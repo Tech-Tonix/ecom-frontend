@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export const Card = (product) => {
 
-
+console.log("hhhhhhhhhhhhhhhhhh",product)
 
     const [shouldLoadImages, setShouldLoadImages] = useState(false);
     const { ref, inView } = useInView({
@@ -14,27 +14,32 @@ export const Card = (product) => {
         rootMargin: '0px 0px 200px 0px',
         onChange: (inView) => setShouldLoadImages(inView),
       });
-    const {imgUrl, productPrice, productName, productColor} = product;
-    return (
-        <Link to={`/product-page/${product?.id}`}>
-        <div className='root'>
-        
+      const { productId,productInventory, imgUrl, productPrice, productName, productColor } = product;
 
-            <div className='upper-side' style={{backgroundImage: shouldLoadImages ?`url(${imgUrl})`:null  ,backgroundPosition:'center',backgroundSize:'cover' }} ref={ref} >
-                
-                <button className='shop-btn'>Shop now</button>
+      return (
+        <Link to={`/show-ProductsItems/${productId}/`} key={productId}>
+          <div className='root'>
+            <div
+              className='upper-side'
+              style={{
+                backgroundImage: shouldLoadImages ? `url(${imgUrl})` : null,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+              }}
+              ref={ref}
+            >
+              <button className='shop-btn'>Shop now</button>
             </div>
             <div className='lower-side'>
-                <div className='status-price'>
-                    <h5 className='Status-txt'>New</h5>
-                    <h5 className='price-txt'>{productPrice} DZD</h5>
-                </div>
-                <h4 className='product-title'>{productName}</h4>
-                <h4 className='prodoct-color-txt'>{productColor}</h4>
+              <div className='status-price'>
+                <h5 className='Status-txt'>New</h5>
+                <h5 className='price-txt'>{productPrice} DZD</h5>
+              </div>
+              <h4 className='product-title'>{productName}</h4>
+              <h4 className='prodoct-color-txt'>{productColor}</h4>
             </div>
-           
-        </div>
-        
+          </div>
         </Link>
-    );
+      );
+
 };

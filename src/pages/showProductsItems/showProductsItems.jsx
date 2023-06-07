@@ -9,6 +9,7 @@ import Filters from "../../components/filters/filters";
 
 
 import './showProductsItems.css'
+import Filterpannel from "../../components/filters/filterpannel";
 
 
 
@@ -68,7 +69,7 @@ const handleColorChange = (selectedColor) => {
             return (
               <Link to={`/show-ProductsItems/${product.id}/`} key={product.id}>
                 <div className='root'>
-                  <div className='upper-side' style={{ backgroundImage: `url(${product.image})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+                  <div className='upper-side' style={{ backgroundImage: `url(${product.image_urls[0]})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                     <button className='shop-btn'>Shop now</button>
                   </div>
                   <div className='lower-side'>
@@ -76,7 +77,7 @@ const handleColorChange = (selectedColor) => {
                       <h5 style={{ textAlign: 'end' }} className='price-txt'>{product.unit_price} DZD</h5>
                     </div>
                     <h4 className='product-title'>{product.name}</h4>
-                    <h4 className='prodoct-color-txt'>{product.description}</h4>
+                    <h4 className='prodoct-color-txt'>{product.color}</h4>
                   </div>
                 </div>
               </Link>

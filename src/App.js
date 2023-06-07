@@ -22,6 +22,9 @@ import Filters from './components/filters/filters';
 import Trackingpage from './pages/trackingPage/trackingpage';
 import OrderHistoryPage from './pages/orderHistoryPage/orderHistoryPage';
 import { ActiveStepProvider } from './context/activeStepContext';
+import { SearchProvider } from './components/navbar/searchContext';
+import MyInfoPage from './pages/myInfoPage/myInfoPage';
+// import { OrderPage } from 'c:/users/amir/desktop/ecom-frontend/src/pages/orderpage/orderpage';
 
 
 
@@ -39,11 +42,10 @@ function App() {
   return (
     <div className="App">
     <Router>
-
+    <SearchProvider>
       <ActiveStepProvider>
-
       <div className= {`screen ${isFiltersVisible ? 'blur' : ''}`}>
-        <NavBar  />
+        <NavBar  activeStep={activeStep}/>
       </div>
         <AuthProvider>
           <Routes>
@@ -53,21 +55,22 @@ function App() {
             <Route path="/Registration" element={<RegistrationPage />} />
             <Route path="/magazin-club-privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/show-ProductsItems" element={<ShowProductsItems isFiltersVisible={isFiltersVisible} setIsFiltersVisible={setIsFiltersVisible}/>} />
-            <Route path="/category/:title/:id" element={<SpeceficCategory />} />
+            <Route path="/category/:id" element={<SpeceficCategory />} />
             <Route path="/show-ProductsItems/:id" element={<ProductPage />} />
             <Route path="/productList" element={<ProductList />} />
+            <Route path='/Profile' element={<MyInfoPage/>}/>
             <Route path="*" element={<h1 style={{ marginTop: '300px', marginBottom: '300px' }}>PAGE NOT FOUND</h1>} />
 
-
           <Route element={<PrivateRoute/>}>
-          <Route path="/OrderHistory" element={<OrderHistoryPage />} />
-          <Route path='/Order' element={<OrderPage/>}/>
+          
+          {/* <Route path='/Order' element={<OrderPage/>}/> */}
+          
           <Route path='/TrackMyOrder' element={<Trackingpage/>}/>
-          <Route path="/OrderHistory" element={<OrderPage />} />
+          <Route path="/OrderHistory" element={<OrderHistoryPage />} />
+          
           <Route path='/My-bag' element={<MyBagPage/>}/>
           <Route path='/My-wishlist' element={<MyWishListPage/>}/>
           </Route>
-
 
 
 
@@ -78,9 +81,8 @@ function App() {
           <div className= {`screen ${isFiltersVisible ? 'blur' : ''}`}>
         <Footer />
         </div>
-
         </ActiveStepProvider>
-
+        </SearchProvider>
     </Router>
     </div>
   );

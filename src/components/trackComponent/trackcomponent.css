@@ -1,9 +1,7 @@
 .TrackerCompoWrapper {
-  width: 886px;
+  width: 1200px;
   height: 800px;
-  position: absolute;
-  top: 30%;
-  right: 15%;
+ 
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -36,14 +34,14 @@
 .textTrackComponent{
   background-color: #FFF4ED;
   border-radius: 5px;
-  width: 956px;
+  width: 65%;
   height: 140px;
   display: flex;
   flex-direction: column;
   align-items:baseline;  
   padding: 10px;
   position: absolute;
-  margin-bottom: 655px;
+  margin-bottom: 515px;
 }
 .textTrackComponent p {
   font-style: normal;
@@ -58,7 +56,7 @@
 }
 
 .textTrackTitle{
-font-weight: 420;
+  font-weight: 420;
     font-size: 36px;
     line-height: 51px;
     letter-spacing: 0.065em;

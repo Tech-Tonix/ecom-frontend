@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 import { HeroSection } from '../../components/hero/heroSection'
 import {HeroSection2, HeroSection3} from '../../components/hero/heroSection2'
 import { Search } from '../../components/search/search'
-import { DiscountCard } from '../../components/discountCard/discountCard'
+import { DiscountCard, DiscountCard2, DiscountCard3 } from '../../components/discountCard/discountCard'
 import { ShopCard, ShopCard2 } from '../../components/shopCard/shopCard'
-import {BestSeller} from '../../components/bestSeller/bestSeller'
+import {BestSeller, BestSeller2} from '../../components/bestSeller/bestSeller'
 import { Card } from '../../components/card/card'
 import sports from '../../assets/bckground-search.png'
 import p1 from '../../components/bestSeller/assets/p6.jpg'
@@ -65,8 +65,8 @@ export const LandingPage = ( ) => {
             
             <HeroSection2 />
             <div style={{display:'flex',flexDirection:'column',gap:'20px'}}>
-              <p style={{marginLeft:'95px',color:'#53565a',fontWeight:'500', fontFamily: 'Brandon Grotesque',fontSize:'20px'}}>WOMENS</p>
-            <BestSeller title={"New Realeases"} />
+              <p style={{marginLeft:'95px',color:'#53565a',fontWeight:'500', fontFamily: 'Brandon Grotesque',fontSize:'20px'}}>ACCESSORIES</p>
+            <BestSeller2 title={"New Realeases"} />
             </div>
 
 
@@ -77,8 +77,8 @@ export const LandingPage = ( ) => {
               style={{ display: "flex", gap:'30px', margin: "0px 12%" }}
             >
               <DiscountCard />
-              <DiscountCard />
-              <DiscountCard />
+              <DiscountCard2 />
+              <DiscountCard3 />
             </div>
             </div>
             <HeroSection3 />
@@ -87,7 +87,7 @@ export const LandingPage = ( ) => {
               <ShopCard2 myVariable="WOMEN" />
             </div>
           </>  ) : (
-          <div style={{marginTop:"150px"}}>
+          <div style={{marginTop:"80px",marginLeft:'50px',width:"90%"}}>
                 <h1 style={{ fontFamily: 'Brandon Grotesque',
                     fontStyle: 'normal',
                     fontWeight: '400',
@@ -102,7 +102,7 @@ export const LandingPage = ( ) => {
                 <div style={{marginLeft:  '50px',
     
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(6, 1fr)',
+                    gridTemplateColumns: 'repeat(4, 1fr)',
                     gap: '30px',
                     justifyContent:'space-between'
                     }}>
@@ -113,16 +113,16 @@ export const LandingPage = ( ) => {
                     <Link to={`/show-ProductsItems/${product.id}/`} key={product.id}>
                     <div className='root'>
                         <div className='upper-side' >
-                           <img style={{    width: '264px',height: '365px'}} src={p1} alt="" />
+                           <img style={{    width: '264px',height: '365px'}} src={product.image_urls[0]} alt="" />
                             <button className='shop-btn'>Shop now</button>
                         </div>
                         <div className='lower-side'>
                             <div style={{display:'flex',justifyContent:'space-evenly'}}>
                                 <h4 className='product-title'>{product.name}</h4>
-                                <h5 style={{textAlign:'end'}} className='price-txt'>{product.unit_price} DZD</h5>
+                                <h5 style={{textAlign:'end',marginRight:'10px'}} className='price-txt'>{product.unit_price} DZD</h5>
                             </div>
                             
-                            <h4 className='prodoct-color-txt'>{product.description}</h4>
+                            <h4 className='prodoct-color-txt'>{product.color}</h4>
                         </div>
                     </div>
                     </Link>

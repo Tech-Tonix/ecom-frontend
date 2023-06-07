@@ -14,6 +14,7 @@ import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons
 
 import AuthContext from '../../context/AuthContext';
 import { toast } from 'react-toastify';
+import LoadingSpinner from '../../components/spinner/loadingSpinner';
 
 
 
@@ -102,6 +103,11 @@ export const ProductPage =() =>{
   const [products, setProducts] = useState([]);
   const colors = ["red", "blue", "green", "yellow"];
   const sizes = ["XS", "S", "M", "L","XL","XXL"]; 
+
+  const [currentProduct, setCurrentProduct] = useState(null);
+
+  
+
   const getProducts = async () => {
     try {
       const response = await axios.get('https://gymrat-app.onrender.com/store/products/');
@@ -122,6 +128,7 @@ export const ProductPage =() =>{
         const res = await axios.get(
           `https://gymrat-app.onrender.com/store/products/${id}/`
         );
+        setCurrentProduct(product);
         setProduct(res.data);
         console.log(res.data)
         setLoading(false);
@@ -141,7 +148,6 @@ export const ProductPage =() =>{
   };
 
   const handleAddToCart = async () => {
-    
     if (user) {
       try {
         const response = await axios.post(
@@ -149,6 +155,8 @@ export const ProductPage =() =>{
           {
             product_id: product.id,
             quantity: quantity,
+            size: selectedSize,
+            color: selectedColor, // Include the selected color in the request payload
           },
           {
             headers: {
@@ -156,6 +164,7 @@ export const ProductPage =() =>{
             },
           }
         );
+
         toast.success("Product added to cart!", {
           position: toast.POSITION.TOP_CENTER,
         });
@@ -167,9 +176,7 @@ export const ProductPage =() =>{
       }
     } else {
       const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-      const existingProductIndex = cart.findIndex(
-        (item) => item.id === product.id
-      );
+      const existingProductIndex = cart.findIndex((item) => item.id === product.id);
   
       if (existingProductIndex !== -1) {
         // Product already exists in the cart, update the quantity
@@ -179,6 +186,9 @@ export const ProductPage =() =>{
         cart.push({
           product_id: product.id,
           quantity: quantity,
+          size: selectedSize,
+          color: selectedColor,
+           // Include the selected color in the cart item
         });
       }
   
@@ -188,6 +198,7 @@ export const ProductPage =() =>{
       });
     }
   };
+  
   
   const handleAddToWishlist = async (index) => {
     if (user) {
@@ -235,69 +246,78 @@ export const ProductPage =() =>{
   const [newComment, setNewComment] = useState('');
 
   useEffect(() => {
-    // Retrieve comments from local storage on page load
-    const storedComments = localStorage.getItem(`comments_${product.id}`);
-    if (storedComments) {
-      setComments(JSON.parse(storedComments));
-    }
-  }, [product.id]);
+    fetchComments();
+  }, []);
 
-  const handleCommentSubmit = (e) => {
-    e.preventDefault();
-    if (newComment.trim() !== '') {
-      const updatedComments = [...comments, newComment];
-      setComments(updatedComments);
-      localStorage.setItem(`comments_${product.id}`, JSON.stringify(updatedComments));
-      setNewComment('');
+  const fetchComments = async () => {
+    getProducts()
+    try {
+      const response = await axios.get(`https://gymrat-app.onrender.com/products/${product.id}/rating/`);
+      const data = response.data;
+      const commentsList = data.map((review) => review.content);
+      setComments(commentsList);
+    } catch (error) {
+      console.error('Error fetching comments:', error);
     }
   };
 
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    if (newComment.trim() === '') {
+      return;
+    }
 
-
-    
+    try {
+      const response = await axios.post(`https://gymrat-app.onrender.com/products/${product.id}/rating-create/`, {
+        description: newComment,
+      });
+      const data = response.data;
+      setComments([...comments, data.content]);
+      setNewComment('');
+    } catch (error) {
+      console.error('Error posting comment:', error);
+    }
+  };    
   return(
 
     <div className="productPage">
     {!loading ? (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div className="productPage-product" style={{ display: 'flex', gap: '70px', marginBottom: "70px" }}>
-          <div className="images" style={{marginLeft:'70px'}}>
-          <div className="images2" style={{display:'flex'}}>
+          <div className="images" style={{marginLeft:'70px',gap:'30px'}}>
+          <div className="images2" style={{display:'flex',gap:'10px',marginBottom:'10px'}}>
           <div className="productPage-image">
-            <img style={{ width: '350px', height: '350px', borderRadius: '10px' }} src={product.images.length > 0 ? product.images[0].image : ''} alt="imaage" />
+          {product.image_urls[0] &&<img style={{ width: '250px', height: '300px', borderRadius: '5px' }} src={product.image_urls[0]} alt="imaage" />}
           </div>
           <div className="productPage-image">
-            <img style={{ width: '350px', height: '350px', borderRadius: '10px' }} src={product.images.length > 0 ? product.images[0].image : ''} alt="imaage" />
+          {product.image_urls[1] &&<img style={{ width: '250px', height: '300px', borderRadius: '5px' }} src={product.image_urls[1] } alt="imaage" />}
           </div>
-          </div>
-          <div className="productPage-image" style={{marginLeft:'70px',display:'flex',justifyContent:'center'}} >
-            <img style={{ width: '450px', height: '350px', borderRadius: '10px' }} src={product.images.length > 0 ? product.images[0].image : ''} alt="imaage" />
           </div>
           
-          <div className="images2" style={{display:'flex'}}>
+          <div className="images2" style={{display:'flex',gap:'10px'}}>
           <div className="productPage-image">
-            <img style={{ width: '350px', height: '350px', borderRadius: '10px' }} src={product.images.length > 0 ? product.images[0].image : ''} alt="imaage" />
+          {product.image_urls[2] &&<img style={{ width: '250px', height: '300px', borderRadius: '5px' }} src={product.image_urls[2]} alt=''/>}
           </div>
           <div className="productPage-image">
-            <img style={{ width: '350px', height: '350px', borderRadius: '10px' }} src={product.images.length > 0 ? product.images[0].image : ''} alt="imaage" />
+          {product.image_urls[3] &&<img style={{ width: '250px', height: '300px', borderRadius: '5px' }} src={ product.image_urls[3]} alt="imaage" />}
           </div>
           </div>
           
           </div>
           
-          <div className="productPage-details">
+          <div className="productPage-details" >
               <div className="productPage-details-title-reviews-price">
                   <div className="productPage-details-title-reviews">
                       <p>{product.name}</p>
-                      <div className="productPage-details-reviews" style={{display:'flex',alignItems:'center',gap:'20px'}}>
+                      <div className="productPage-details-reviews" style={{display:'flex',gap:'20px',height:'40px',alignItems:'center'}}>
                           <StarRating/>
                           {/* <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> */}
                           <hr  style={{height:'20px',color:'black'}}/>
-                          <p className='p__reviews'>2 Reviews</p>
+                          <p className='p__reviews'>{product.reviews.length} Reviews</p>
                       </div>
                   </div>
                   <div className="productPage-details-price">
-                      <p>{product.unit_price} DZD</p>
+                      <p>{product.unit_price*170} DZD</p>
                   </div>
               </div>
               <div className="productPage-details-color">
@@ -365,10 +385,10 @@ export const ProductPage =() =>{
                       
                   </div>
               </div>
-              <div className="productPage-details-description" style={{width:'300px'}}>
+              <div className="productPage-details-description" >
               <p className="p__description" 
               style={{fontFamily: 'Brandon Grotesque',
-              width:'300px',
+              width:'500px',
                   fontStyle: 'normal',
                   fontWeight: '450',
                   fontSize: '26px',
@@ -380,46 +400,62 @@ export const ProductPage =() =>{
               <p 
               style={{maxWidth: '100%',
               
-              wordWrap: 'break-word'
+              wordWrap: 'break-word',
         }}>{product.description}</p>
               </div>
           </div>
           </div>
           <div className="productPage-comments">
-        <p style={{fontFamily: 'Brandon Grotesque',
-            fontStyle: 'normal',
-            fontWeight: '450',
-            fontSize: '32px',
-            lineHeight: '40px',
-            letterSpacing: '0.065em',
-
-            color: '#171717',marginBottom:'30px'}}>Comments:</p>
-        <ul className="comment-list">
-          {comments.map((comment, index) => (
-            <li key={index} className="comment" style={{margin:'-5px'}}>
-              <div>
-              {user && <p style={{color:'#4A4A4A'}}>mohamed:</p>}
-              
-              <div className="comment-saved-container" style={{backgroundColor:'white',borderRadius:'7px',padding:'5px', width: `${comment.length * 10}px`,color:'gray'}}>
-              {comment}
+      <p
+        style={{
+          fontFamily: 'Brandon Grotesque',
+          fontStyle: 'normal',
+          fontWeight: '450',
+          fontSize: '32px',
+          lineHeight: '40px',
+          letterSpacing: '0.065em',
+          color: '#171717',
+          marginBottom: '30px',
+        }}
+      >
+        Comments:
+      </p>
+      <div>
+      <ul className="comment-list">
+        {comments.map((comment, index) => (
+          <li key={index} className="comment" style={{ margin: '-5px' }}>
+            <div>
+              {user && <p style={{ color: '#4A4A4A' }}>mohamed:</p>}
+              <div
+                className="comment-saved-container"
+                style={{
+                  backgroundColor: 'white',
+                  borderRadius: '7px',
+                  padding: '5px',
+                  width: `${comment.length * 10}px`,
+                  color: 'gray',
+                }}
+              >
+                {comment}
               </div>
-              <p style={{fontSize:'11px' ,marginLeft:'3px',color:'#C2C2C2'}}>05-07-2023</p>
-              </div>
-              
-              
-            </li>
-          ))}
-        </ul>
-        <form onSubmit={handleCommentSubmit} className="comment-form">
-          <textarea
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Add a comment..."
-            className="comment-input"
-          ></textarea>
-          <button type="submit" className="comment-button">Submit</button>
-        </form>
-      </div>
+              <p style={{ fontSize: '11px', marginLeft: '3px', color: '#C2C2C2' }}>05-07-2023</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <form onSubmit={handleCommentSubmit} className="comment-form">
+        <textarea
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          placeholder="Add a comment..."
+          className="comment-input"
+        ></textarea>
+        <button type="submit" className="comment-button">
+          Submit
+        </button>
+      </form>
+    </div>
+    </div>
           <div className='you-might-like'>
           
           <div className="you-might-like-title" style={{display:'flex',justifyContent:'space-between',margin:' 30px 120px',alignItems:"center"}}>
@@ -432,27 +468,42 @@ export const ProductPage =() =>{
             </p>
                   
           </div>
-          <div className="slider" style={{ marginLeft:'120px' }}>
-          <Slider {...settings}>
-          {products.map((product) => (
-            <div key={product.id} className='root' style={{ marginLeft: '25px' }}>
-              <div className='upper-side' style={{ backgroundImage: `url(${product.images.length > 0 ? product.images[0].image : ''})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
-                <button className='shop-btn'>Shop now</button>
-              </div>
-              <div className='lower-side'>
-                <div>
-                  <h5 style={{ textAlign: 'end' }} className='price-txt'>{product.unit_price} DZD</h5>
-                </div>
-                <h4 className='product-title'>{product.name}</h4>
-                <h4 className='prodoct-color-txt'>{product.description}</h4>
-              </div>
-            </div>
-          ))}
-        </Slider>
+          <div className="slider" style={{ marginLeft:'120px',marginRight:'120px' }}>
+                      <Slider {...settings}>
+              {products
+                .filter((product) => (product.category >1 && product.category[0]) === (currentProduct.category >1 && currentProduct.category[0]))
+                .slice(0, 12)
+                .map((product) => (
+                  <div key={product.id} className='root'>
+                    <div
+                      className='upper-side'
+                      style={{
+                        backgroundImage: `url(${
+                          product.image_urls.length > 0 ? product.image_urls[0] : ''
+                        })`,
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
+                      }}
+                    >
+                      <button className='shop-btn'>Shop now</button>
+                    </div>
+                    <div className='lower-side'>
+                      <div>
+                        <h5 style={{ textAlign: 'end' }} className='price-txt'>
+                          {product.unit_price} DZD
+                        </h5>
+                      </div>
+                      <h4 className='product-title'>{product.name}</h4>
+                      <h4 className='prodoct-color-txt'>{product.color}</h4>
+                    </div>
+                  </div>
+                ))}
+            </Slider>
+
           </div>
         </div>
       </div>
-    ) : (<h1>LOADING...</h1>)}
+    ) : (<LoadingSpinner/>)}
   </div>
   
       )

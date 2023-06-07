@@ -1,8 +1,7 @@
 .TrackingPageWrapper{
-    margin-top: 30%;
-    margin-bottom: 30%;
+    margin: 70px 0;
     width: 100%;
-    height: 100vh;
+
     display: flex;
     min-height: 100vh;
     justify-content: center;
@@ -11,10 +10,10 @@
 
 
 .categoriesPannelTrackingPage{
-    flex: 1;
-    margin-right: -90px;
-    margin-left: 50px;
-    margin-top: -560px;
+  flex: 1;
+  margin-right: -90px;
+  margin-left: 5%;
+  margin-top: -560px;
   }
 
   

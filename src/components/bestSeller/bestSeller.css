@@ -5,8 +5,6 @@
   overflow-x: auto;
   max-width: 97%;
   width: 100%;
-
-  margin-bottom: 81px;
   padding-left: 96px;
 }
 .bestSeller-section::-webkit-scrollbar {
@@ -14,7 +12,7 @@
 }
 .bestSeller-section-title {
   height: 44px;
-  width: 95%;
+  width: 90%;
   border-left: 5.9px solid #171717;
   display:flex;
   justify-content:space-between;
@@ -44,4 +42,11 @@
   font-size: 40px;
   line-height: 57.2px;
   color: #171717;
+}
+
+.loading-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust the height as needed */
 }

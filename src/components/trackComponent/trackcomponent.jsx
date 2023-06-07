@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
-import './trackcomponent.css';
-import {
-  Stepper,
-  Step,
-  StepLabel,
-  makeStyles,
-} from "@material-ui/core";
+import React, { useState, useEffect } from 'react';
+import { Stepper, Step, StepLabel, makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
 import { Checkmark24Filled } from '@fluentui/react-icons';
-import OrderHistoryCompo from '../orderHistoryCompo/orderHistoryCompo';
 
+import './trackcomponent.css';
 
-
-export default function Trackcomponent() {
+export default function Trackcomponent({ orderStatus }) {
   const [activeStep, setActiveStep] = useState(1);
+
+  useEffect(() => {
+    if (orderStatus === 'P') {
+      setActiveStep(1);
+    } else if (orderStatus === 'A') {
+      setActiveStep(2);
+    } else if (orderStatus === 'S') {
+      setActiveStep(3);
+    } else if (orderStatus === 'D') {
+      setActiveStep(4);
+    }
+  }, [orderStatus]);
 
   const useStyles = makeStyles(() => ({
     root: {
       backgroundColor: '#eaeaf0',
       padding: 8,
-      borderRadius: '100%'
+      borderRadius: '100%',
     },
     active: {
       color: '#11111',
@@ -38,7 +43,6 @@ export default function Trackcomponent() {
       2: <Checkmark24Filled />,
       3: <Checkmark24Filled />,
       4: <Checkmark24Filled />,
-
     };
 
     return (
@@ -53,32 +57,25 @@ export default function Trackcomponent() {
     );
   };
 
-
   return (
     <div className='TrackerCompoWrapper'>
-      <div className='textTrackComponent'>
-          <h1 className='textTrackTitle'>Track your order</h1>
-          <p className='textTrackContent'>Keeping track of your order is important! So here's a real time state update of your purchases</p>
-      </div>
-                
-        
       <div className='StepperWrapper'>
-      <Stepper activeStep={activeStep}>
-        <Step>
-          <StepLabel StepIconComponent={CustomStepIcon}>Order Placed</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel StepIconComponent={CustomStepIcon}>Packed</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel StepIconComponent={CustomStepIcon}>Shipped</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel StepIconComponent={CustomStepIcon}>Delivered</StepLabel>
-        </Step>
-      </Stepper>
+        <Stepper activeStep={activeStep}>
+          <Step>
+            <StepLabel StepIconComponent={CustomStepIcon}>Order Placed</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel StepIconComponent={CustomStepIcon}>Packed</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel StepIconComponent={CustomStepIcon}>Shipped</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel StepIconComponent={CustomStepIcon}>Delivered</StepLabel>
+          </Step>
+        </Stepper>
       </div>
-      <OrderHistoryCompo activeStep={activeStep}/>
+      
     </div>
   );
 }
