@@ -3,7 +3,7 @@
 
 .bestSeller-section {
   overflow-x: auto;
-  max-width: 97%;
+  max-width: 95%;
   width: 100%;
   padding-left: 96px;
 }
@@ -19,15 +19,16 @@
   flex-direction: row;
   align-items: center;
   margin-bottom: 28px;
+  overflow: hidden;
  
 }
 
 .bestSeller-section-cards {
   display: flex; 
-  
+  overflow: auto;
   flex-direction: row;
   gap: 0px 79px;
-  width: 95%;
+  width: 100%;
  
   justify-content: space-between;
   margin-left: 0px;
@@ -42,6 +43,8 @@
   font-size: 40px;
   line-height: 57.2px;
   color: #171717;
+  overflow: hidden;
+
 }
 
 .loading-spinner-container {

@@ -96,7 +96,7 @@ export const Categories = () => {
                 </span>
               </NavLink>
           </li>
-
+          
           <li>
             <div className="categorie-container">
               <div className="categorie-item" onClick={handleMenuToggle}>

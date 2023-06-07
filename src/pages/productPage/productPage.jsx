@@ -101,6 +101,7 @@ export const ProductPage =() =>{
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const [products, setProducts] = useState([]);
+  const [productId, setProductId] = useState();
   const colors = ["red", "blue", "green", "yellow"];
   const sizes = ["XS", "S", "M", "L","XL","XXL"]; 
 
@@ -129,7 +130,10 @@ export const ProductPage =() =>{
           `https://gymrat-app.onrender.com/store/products/${id}/`
         );
         setCurrentProduct(product);
+        
         setProduct(res.data);
+        const fetchedProductId = res.data.id; // Replace with the actual property containing the ID
+        setProductId(fetchedProductId)
         console.log(res.data)
         setLoading(false);
       } catch (error) {
@@ -245,22 +249,27 @@ export const ProductPage =() =>{
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
 
-  useEffect(() => {
-    fetchComments();
-  }, []);
-
-  const fetchComments = async () => {
-    getProducts()
-    try {
-      const response = await axios.get(`https://gymrat-app.onrender.com/products/${product.id}/rating/`);
-      const data = response.data;
-      const commentsList = data.map((review) => review.content);
-      setComments(commentsList);
-    } catch (error) {
-      console.error('Error fetching comments:', error);
-    }
-  };
-
+ 
+  // const fetchComments = async (id) => {
+  //   try {
+  //     const response = await axios.get(`https://gymrat-app.onrender.com/review/products/${id}/rating/`);
+  //     const data = response.data;
+  //     const commentsList = data.map((review) => review.content);
+  //     setComments(commentsList);
+  //   } catch (error) {
+  //     console.error('Error fetching comments:', error);
+  //   }
+  // };
+  
+  // useEffect(() => {
+  //   getProducts();
+  // }, []);
+  
+  // useEffect(() => {
+    
+  //     fetchComments(productId);
+   
+  // }, [productId]);
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (newComment.trim() === '') {
@@ -268,8 +277,8 @@ export const ProductPage =() =>{
     }
 
     try {
-      const response = await axios.post(`https://gymrat-app.onrender.com/products/${product.id}/rating-create/`, {
-        description: newComment,
+      const response = await axios.post(`https://gymrat-app.onrender.com/review/products/${productId}/rating-create/`, {
+        content: newComment,
       });
       const data = response.data;
       setComments([...comments, data.content]);

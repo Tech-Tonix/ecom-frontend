@@ -221,7 +221,7 @@ const openModal = () => {
               bag.product.color?(<div className="myBag" key={bag.id} >
               <div className="myBag-left">
                 <div className="heyhey">
-                  <img src={bag.product.image_urls && bag.product.image_urls[0]} alt="hahaha" style={{height:'auto',width:'150px',marginRight:'20px'}}/>
+                  <img src={bag.product.image_urls && bag.product.image_urls[0]} alt="hahaha" style={{height:'auto',width:'150px',}}/>
                 </div>
                 <div className="myBag-img-details">
                 <p className="__title">

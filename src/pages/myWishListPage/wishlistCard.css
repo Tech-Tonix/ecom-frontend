@@ -2,10 +2,11 @@
     margin: 12px;
     background-color: #FFF4ED;
     width: 345px;
-    height: 250px;
+    height: fit-content;
     border-radius: 5px;
     display: flex;
     position: relative;
+    padding-bottom: 15px;
 }
 
 

@@ -58,13 +58,13 @@ function App() {
             <Route path="/category/:id" element={<SpeceficCategory />} />
             <Route path="/show-ProductsItems/:id" element={<ProductPage />} />
             <Route path="/productList" element={<ProductList />} />
-            <Route path='/Profile' element={<MyInfoPage/>}/>
+            
             <Route path="*" element={<h1 style={{ marginTop: '300px', marginBottom: '300px' }}>PAGE NOT FOUND</h1>} />
 
           <Route element={<PrivateRoute/>}>
           
           {/* <Route path='/Order' element={<OrderPage/>}/> */}
-          
+          <Route path='/Profile' element={<MyInfoPage/>}/>
           <Route path='/TrackMyOrder' element={<Trackingpage/>}/>
           <Route path="/OrderHistory" element={<OrderHistoryPage />} />
           

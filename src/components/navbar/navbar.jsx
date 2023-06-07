@@ -6,10 +6,12 @@ import { SearchContext } from './searchContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ratpic from '../../assets/logo black.png'
+
 export const NavBar = () => {
   const location = useLocation();
  
   const { searchQuery, setSearchQuery } = useContext(SearchContext);
+  
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
@@ -55,10 +57,11 @@ export const NavBar = () => {
             <img className="navbar-top-bar-icon" src={require('./assets/ic_fluent_heart_24_regular.svg').default} alt="Favourites"/>
           </Link>
           
-          
-          <Link to='/'>
+          {<Link to='/profile'>
             <img className="navbar-top-bar-icon" src={require('./assets/ic_fluent_person_24_regular.svg').default} alt="Profile"/>
           </Link>
+          }
+          
           
           
           <Link to='/My-bag'>
@@ -85,23 +88,23 @@ export const NavBar = () => {
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Men</header>
                 <ul className="navbar-mega-links">
-                  <li><a href="/category/:id">Athletic wear</a></li>
-                  <li><a href="/category/:id">Best sellers</a></li>
-                  <li><a href="/category/:id">Team sports</a></li>
-                  <li><a href="/category/:id">Outdoor gear</a></li>
-                  <li><a href="/category/:id">Tracksuit</a></li>
-                  <li><a href="/category/:id">All men sales</a></li>
-                  <li><a href="/category/:id">Running shoes</a></li>
+                  <li><a href="/category/14">T-shirts</a></li>
+                  <li><a href="/category/11">Joggers</a></li>
+                  <li><a href="/category/8">Equipments</a></li>
+                  <li><a href="/category/15">jackets</a></li>
+                  <li><a href="/category/6">Mens Baselayer</a></li>
+                  <li><a href="/category/7">All men sales</a></li>
+                  <li><a href="/category/4">Running shoes</a></li>
                 </ul>
               </div>
 
               <div className="navbar-row">
                 <header className="navbar-sub-category-title">Women</header>
                     <ul className="navbar-mega-links">
-                    <li><a href="/category/:id">All women sales</a></li>
+                    <li><a href="/category/:17">Accessories</a></li>
                     <li><a href="/category/:id">Best sellers</a></li>
                     <li><a href="/category/:id">Yoga and pilates</a></li>
-                    <li><a href="/category/:id">Outdoor gear</a></li>
+                    <li><a href="/category/8">Equipments</a></li>
                     <li><a href="/category/:id">Hoodies and jackets</a></li>
                     <li><a href="/category/:id">Running shoes</a></li>
                     <li><a href="/category/:id">Athletic wear</a></li>

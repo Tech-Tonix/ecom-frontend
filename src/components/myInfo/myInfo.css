@@ -22,17 +22,18 @@
   .profile-Info {
     display: flex;
     margin-bottom: 30px;
+    color: rgb(48, 48, 48);
   }
   
   .info-title {
     font-weight: 400;
     margin-right: 10px;
-    width: 100px; 
+    width: 120px; 
   }
   
   .value {
     margin-left: 150px;
-    color: rgb(68, 68, 68);
+    color: rgb(131, 131, 131);
   }
 
   .edit-Label-Info{

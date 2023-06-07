@@ -14,7 +14,7 @@
     flex: 1;
     margin-right: -90px;
     margin-left: 5%;
-    margin-top: -560px;
+    margin-top: -615px;
 }
 
 .MyInfoAndMemberShipWrapper{
@@ -27,8 +27,8 @@
 
 .MyInfoWrapper{
     position: absolute;
-    top: 30%;
-    right: 13%;
+    top: 28.75%;
+    right: 25%;
 }
 
 .MemberShipWrapper{

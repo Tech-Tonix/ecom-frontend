@@ -205,12 +205,12 @@ export const MyWishListPage = () =>{
           <div className="card-container-wishlist" key={wishCard.id}>
             <Delete24Regular className="deleteIcon" onClick={()=>handleDelete(index)} />
             <div className="cardImgContainer">
-              <img src={wishCard.product.image} alt="product_image" className="cardImage" />
+              {<img src={wishCard.product.image_urls && wishCard.product.image_urls[0]} alt="product_image" className="cardImage" />}
             </div>
             <div className="cardContent-btn-wrapper">
               <div className="cardContent-wishlist">
                 <h2 className="cardTitle">{wishCard.product.name}</h2>
-                <p className="cardPrice">{wishCard.product.unit_price}</p>
+                <p className="cardPrice">{wishCard.product.unit_price*170} DZD</p>
 
                 <div className="colorOfItems">
                   <Select value={selectedColor} onChange={handleColorChange} IconComponent={ChevronRight24Filled}>
