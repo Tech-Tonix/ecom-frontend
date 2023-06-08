@@ -25,6 +25,7 @@ import { ActiveStepProvider } from './context/activeStepContext';
 import { SearchProvider } from './components/navbar/searchContext';
 import MyInfoPage from './pages/myInfoPage/myInfoPage';
 // import { OrderPage } from 'c:/users/amir/desktop/ecom-frontend/src/pages/orderpage/orderpage';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -40,7 +41,12 @@ function App() {
 
 
   return (
+    
     <div className="App">
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
     <Router>
     <SearchProvider>
       <ActiveStepProvider>

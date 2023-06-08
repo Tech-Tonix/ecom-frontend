@@ -12,9 +12,11 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { ChevronRight24Filled } from '@fluentui/react-icons';
 import { Delete24Regular } from '@fluentui/react-icons';
-import { toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 import './wishlistCard.css'
+import { Link } from "react-router-dom";
+
 
 
 
@@ -110,10 +112,10 @@ export const MyWishListPage = () =>{
     if (newWishList[index].quantity > 1) {
       newWishList[index].quantity -= 1;
       setWishList(newWishList);
-
+  
       const wishItemId = newWishList[index].product.id;
       const newQuantity = newWishList[index].quantity;
-
+  
       try {
         await axios.put(
           `https://gymrat-app.onrender.com/store/update-wishlistitem/${wishItemId}/`,
@@ -125,16 +127,23 @@ export const MyWishListPage = () =>{
           }
         );
         console.log('Wishlist item quantity updated successfully!');
-
+  
         const newQuantityList = [...quantityList];
         newQuantityList[index] -= 1;
         setQuantityList(newQuantityList);
+  
+        toast.success('Wishlist item quantity updated successfully!', {
+          position: toast.POSITION.TOP_CENTER,
+        });
       } catch (error) {
         console.log('Failed to update wishlist item quantity.', error);
+        toast.error('Failed to update wishlist item quantity.', {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     }
   };
-
+  
   const handleAddToCart1 = async (index) => {
     const itemToAdd = wishList[index];
     console.log(itemToAdd);
@@ -152,16 +161,13 @@ export const MyWishListPage = () =>{
         }
       );
       console.log('Product added to cart successfully!');
-      toast.success('Product added to cart!', {
-        position: toast.POSITION.TOP_CENTER,
-      });
+      toast.success('Product added to cart!');
     } catch (error) {
       console.log('Failed to add product to cart.', error);
-      toast.error('Failed to add product to cart.', {
-        position: toast.POSITION.TOP_CENTER,
-      });
+      toast.error('Failed to add product to cart.');
     }
   };
+  
      
 
 
@@ -183,16 +189,24 @@ export const MyWishListPage = () =>{
         const updatedWishList = [...wishList];
         updatedWishList.splice(index, 1);
         setWishList(updatedWishList);
+  
+        toast.success('Wishlist item deleted!');
       }
     } catch (error) {
       console.error('Error deleting wishlist item:', error);
+      toast.error('Failed to delete wishlist item.');
     }
   };
+  
   
 
   
   return (
   <div className="MyWishListPageWrapper">
+     <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
     <div className="categoriesPannelWishListPage">
       <Categories />
     </div>
@@ -205,7 +219,7 @@ export const MyWishListPage = () =>{
           <div className="card-container-wishlist" key={wishCard.id}>
             <Delete24Regular className="deleteIcon" onClick={()=>handleDelete(index)} />
             <div className="cardImgContainer">
-              {<img src={wishCard.product.image_urls && wishCard.product.image_urls[0]} alt="product_image" className="cardImage" />}
+              <Link to={"/show-ProductsItems/"+wishCard.product.id}>{<img src={wishCard.product.image_urls && wishCard.product.image_urls[0]} alt="product_image" className="cardImage" />}</Link>
             </div>
             <div className="cardContent-btn-wrapper">
               <div className="cardContent-wishlist">

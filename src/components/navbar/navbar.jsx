@@ -31,7 +31,7 @@ export const NavBar = () => {
         {/*left section*/}
         <div className="navbar-section">
 
-        <Link to="#">
+        <Link to="/">
   <img src={ratpic} alt="inventory" style={{ width: '140px', height: 'auto' }} />
 </Link>
 

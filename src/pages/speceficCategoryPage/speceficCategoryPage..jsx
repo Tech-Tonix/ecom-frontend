@@ -11,6 +11,7 @@ export const SpeceficCategory = (props) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [sortingOrder, setSortingOrder] = useState([]);
   const [filterClicked, setFilterClicked] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState('');
 
@@ -45,17 +46,29 @@ export const SpeceficCategory = (props) => {
   }, [id]);
 
   const handleFilterClick = () => {
-    // Apply filtering logic here based on your requirements
-    // In this example, we filter products based on a certain condition
-    const filtered = products.filter((product) => product.unit_price === 64);
-    setFilteredProducts(filtered);
+    // Determine the next sorting order based on the current state
+    const nextSortingOrder = sortingOrder === "asc" ? "desc" : "asc";
+  
+    // Apply sorting logic based on the sorting order
+    const sorted = products.sort((a, b) => {
+      if (nextSortingOrder === "asc") {
+        return a.unit_price - b.unit_price;
+      } else {
+        return b.unit_price - a.unit_price;
+      }
+    });
+  
+    // Update the state variables
+    setFilteredProducts(sorted);
+    setSortingOrder(nextSortingOrder);
     setFilterClicked(true);
-
+  
     // Display a message if no products match the filters
-    if (filtered.length === 0) {
+    if (sorted.length === 0) {
       console.log("No products match the selected filters");
     }
   };
+    
 
   if (loading) {
     return <LoadingSpinner />;
@@ -72,7 +85,7 @@ export const SpeceficCategory = (props) => {
         <hr />
         <div className="showProducts-filterYourReasearch">
           <Filter24Filled color="#171717" />
-          <button onClick={handleFilterClick}>Filter your research</button>
+          <button onClick={handleFilterClick} style={{fontSize:'25px'}}>Filter your research by lower to higher price or the opposite </button>
         </div>
       </div>
       <div className="showAllTheProducts">

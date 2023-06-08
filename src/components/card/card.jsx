@@ -33,7 +33,7 @@ console.log("hhhhhhhhhhhhhhhhhh",product)
             <div className='lower-side'>
               <div className='status-price'>
                 <h5 className='Status-txt'>New</h5>
-                <h5 className='price-txt'>{productPrice} DZD</h5>
+                <h5 className='price-txt'>{productPrice*170} DZD</h5>
               </div>
               <h4 className='product-title'>{productName}</h4>
               <h4 className='prodoct-color-txt'>{productColor}</h4>

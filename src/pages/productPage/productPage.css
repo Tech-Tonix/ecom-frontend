@@ -24,11 +24,20 @@
 .product-details-image {
     height: 600px;
     width: 50%;
-    background-image: url('../../assets/portrait-homme-sport-assis-ballon-fitness.jpg');
+    transition: transform 0.5s ease-in-out;
 
 }
+.product-details-image:hover{
 
+    transform: scale(1.05);transition: transform 0.5s ease-in-out;
+}
 
+.productPage-image{
+    transition: transform 0.5s ease-in-out;
+}
+.productPage-image:hover{
+    transform: scale(1.05);
+}
 
 .productPage-details-title-reviews-price{
     display: flex;

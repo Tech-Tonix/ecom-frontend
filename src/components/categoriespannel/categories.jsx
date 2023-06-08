@@ -1,7 +1,7 @@
 import React from 'react';
 import './categories.css';
 import { Heart24Regular,Person24Regular,ShoppingBag24Regular,ReOrder24Regular,Map24Regular,SignOut24Regular } from '@fluentui/react-icons';
-import ProfilPic from '../../assets/ProfilePic.jpg'
+import ProfilPic from '../../assets/programmer.png'
 import { NavLink } from 'react-router-dom';
 import { Menu,MenuList, MenuItem, Paper } from '@material-ui/core';
 import { useState,useContext } from 'react';

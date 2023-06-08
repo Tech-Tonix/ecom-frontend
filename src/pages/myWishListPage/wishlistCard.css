@@ -7,11 +7,15 @@
     display: flex;
     position: relative;
     padding-bottom: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+.card-container-wishlist:hover{
+
+    transform: scale(1.05); 
 }
 
-
 .cardImgContainer{
-    width: 140px;
+    width: 160px;
     height:190px ;
     border-radius: 5px;
     display: flex;
@@ -22,10 +26,16 @@
 }
 
 .cardImage{
+
     width: 100%;
     height: 100%;
     border-radius: 5px;
     margin-top: 30px;
+    transition: transform 0.3s ease-in-out;
+
+}
+.cardImage:hover{
+    transform: scale(1.05); 
 }
 
 .cardContent-wishlist{

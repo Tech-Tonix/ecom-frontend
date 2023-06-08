@@ -5,10 +5,12 @@ import { useState,useEffect,useContext } from "react"
 import {Subtotal} from "./subtotal"
 import axios from "axios"
 import AuthContext from '../../context/AuthContext'
-import { toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from 'react-modal';
 import { fontSize, textAlign } from "@mui/system"
+import { toast,Toaster } from "react-hot-toast"
+import { Link } from "react-router-dom"
 
 
 export const MyBagPage = () =>{
@@ -113,12 +115,11 @@ export const MyBagPage = () =>{
         // Update the count by subtracting the deleted quantity
         setCount((prevCount) => prevCount - deletedQuantity);
   
-        toast.success('Product deleted from cart!', {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.success('Product deleted from cart!');
       }
     } catch (error) {
       console.error('Error deleting cart item:', error);
+      toast.error('Product have not been deleted from cart!');
     }
   };
   
@@ -143,6 +144,40 @@ export const MyBagPage = () =>{
     updateCartItems();
     
   }, []);
+  const handleAddToWishlist1 = async (index) => {
+    const itemToAdd = cartItems[index];
+    console.log(itemToAdd)
+    if (user) {
+      try {
+        const response = await axios.post(
+          "https://gymrat-app.onrender.com/favorites/add-favorites/",
+          {
+            product_id: itemToAdd.product.id,
+            quantity: itemToAdd.quantity,
+          },
+          {
+            headers: {
+              Authorization: "JWT " + authTokens,
+            },
+          }
+        );
+        
+        toast.success("Product added to wishlist!");
+        
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to add product to wishlist. Please try again.");
+      }
+    } else {
+      toast.error("You need to be logged in to add products to the wishlist.");
+    }
+  };
+  
+
+
+
+
+
 
   const subtotal = cartItems.reduce((total, item, index) => {
     const itemTotal = item.product.unit_price * quantityList[index];
@@ -150,14 +185,24 @@ export const MyBagPage = () =>{
   }, 0);
 
   
-  function heartHandleClick(){
-    setheartIsClicked(!heartIsClicked);
-    
-} 
+  
 
 const [trackingCode, setTrackingCode] = useState('');
 const [trackingNumber, setTrackingNumber] = useState('');
+
+
+
+
+const exceedsInventory = cartItems.some(
+  (item) => item.quantity > item.inventory
+);
+
 const handleOrder = async () => {
+  if (exceedsInventory) {
+    toast.error('Cannot order more than available inventory.');
+    return;
+  }
+
   try {
     const response = await axios.post(
       'https://gymrat-app.onrender.com/store/orders/',
@@ -172,58 +217,69 @@ const handleOrder = async () => {
 
     if (response.status === 201) {
       setCartItems([]);
-      const { tracking_number } = response.data; // Retrieve the tracking_number attribute from the response
-        setTrackingNumber(tracking_number);
-      toast.success('Order placed successfully!');
-      openModal2(); // Show the popup when the order is placed successfully
+      const { tracking_number } = response.data;
+      setTrackingNumber(tracking_number);
+      openModal2();
     } else {
-      setCartItems([]);
-      setCount(0);
-      toast.error('Failed to place order.');
+      toast.error('Cannot order more than available inventory.');
     }
   } catch (error) {
-    setCartItems([]);
-    toast.error('Failed to place order.');
+    toast.error('Cannot order more than available inventory.');
   }
 };
+
+
 const [isOpen, setIsOpen] = useState(false);
 const [isOpen2, setIsOpen2] = useState(false);
+
 const openModal = () => {
-  if (cartItems.length >0) {
+  if (cartItems.length > 0) {
     setIsOpen(true);
   }
 };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-  const openModal2 = () => {
-    setIsOpen2(true);
-  };
+const openModal2 = () => {
+  setIsOpen2(true);
+};
 
-  const closeModal2 = () => {
-    setIsOpen2(false);
-  };
-  const closeModalss = () => {
-    setIsOpen2(false);
-    setIsOpen(false);
-  };
+const closeModal = () => {
+  setIsOpen(false);
+};
 
+const closeModal2 = () => {
+  setIsOpen2(false);
+};
+
+const closeModalss = () => {
+  setIsOpen2(false);
+  setIsOpen(false);
+};
     return(
       user ? (
 
         <div className="myBagPage">
+          <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
+
+
             <div style={{marginTop:'-560'}}><Categories /></div>
             <div className="myBagCards-list">
               <div ><MyBag/></div>
             
             <div className="myBagCards-cards">
             {cartItems.map((bag,index) => (
-              bag.product.color?(<div className="myBag" key={bag.id} >
+              bag.product.color?(
+              
+              
+              <div className="myBag" key={bag.id} >
               <div className="myBag-left">
+              <Link to={'/show-ProductsItems/'+bag.product.id}>
                 <div className="heyhey">
                   <img src={bag.product.image_urls && bag.product.image_urls[0]} alt="hahaha" style={{height:'auto',width:'150px',}}/>
                 </div>
+                </Link>
                 <div className="myBag-img-details">
                 <p className="__title">
                           {bag.product.name} <span style={{fontSize:'12px',color:'#747474'}}>({bag.product.inventory} item available)</span>
@@ -256,19 +312,15 @@ const openModal = () => {
                       style={{ fontSize: '25px', color: '#C2C2C2',cursor:'pointer' }}
                     ></i>
                     <hr />
-                    <i
-                      className="fa fa-heart" 
-                      style={{
-                        fontSize: '25px',
-                        color: heartIsClicked ? 'red' : '#C2C2C2',
-                        border: '1px ',
-                      }}
-                      onClick={heartHandleClick}
-                    ></i>
+                    
                   </div>
                 </div>
               </div>
-            </div>):(<div className="myBag" key={bag.id} >
+              
+            </div>
+            )
+           
+            :(<div className="myBag" key={bag.id} >
           <div className="myBag-left">
             <div className="heyhey">
             <img src={bag.product.image_urls && bag.product.image_urls[0]} alt="hahaha" />
@@ -307,7 +359,7 @@ const openModal = () => {
                     color: heartIsClicked ? 'red' : '#C2C2C2',
                     border: '1px ',
                   }}
-                  onClick={heartHandleClick}
+                  onClick={handleAddToWishlist1}
                 ></i>
               </div>
             </div>
@@ -348,37 +400,40 @@ const openModal = () => {
 
       }}>Awsome! You just have to confirm your oder </p>
       <div className="CancelOptionBtn">
-        <button
-          style={{
-            background: '#00d800', // Button background color
-            color: '#fff', // Button text color
-            border: 'none',
-            borderRadius: '4px',
-            padding: '8px 16px',
-            cursor: 'pointer',
-            display: 'block',
-            marginTop:'80px'
-          }}
-          onClick={handleOrder}
-        >
-          CONFIRM
-        </button>
-        <button
-          style={{
-            background: '#e04000', // Button background color
-            color: '#fff', // Button text color
-            border: 'none',
-            borderRadius: '4px',
-            padding: '8px 16px',
-            cursor: 'pointer',
-           
-            display: 'block',
-            marginTop:'80px'
-          }}
-          
-        >
-          CANCEL
-        </button>
+      <button
+  style={{
+    background: '#00d800', // Button background color
+    color: '#fff', // Button text color
+    border: 'none',
+    borderRadius: '4px',
+    padding: '8px 16px',
+    cursor: 'pointer',
+    display: 'block',
+    marginTop: '80px'
+  }}
+  onClick={() => {
+    handleOrder();
+    closeModal();
+  }}
+>
+  CONFIRM
+</button>
+<button
+  style={{
+    background: '#e04000', // Button background color
+    color: '#fff', // Button text color
+    border: 'none',
+    borderRadius: '4px',
+    padding: '8px 16px',
+    cursor: 'pointer',
+    display: 'block',
+    marginTop: '80px'
+  }}
+  onClick={closeModal}
+>
+  CANCEL
+</button>
+
         </div>
       </Modal>
       <Modal

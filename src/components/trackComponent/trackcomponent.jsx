@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Stepper, Step, StepLabel, makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
-import { Checkmark24Filled } from '@fluentui/react-icons';
+import { Checkmark32Filled } from '@fluentui/react-icons';
 
 import './trackcomponent.css';
 
@@ -39,10 +39,10 @@ export default function Trackcomponent({ orderStatus }) {
     const { active, completed } = props;
 
     const stepIcons = {
-      1: <Checkmark24Filled />,
-      2: <Checkmark24Filled />,
-      3: <Checkmark24Filled />,
-      4: <Checkmark24Filled />,
+      1: <Checkmark32Filled />,
+      2: <Checkmark32Filled />,
+      3: <Checkmark32Filled />,
+      4: <Checkmark32Filled />,
     };
 
     return (

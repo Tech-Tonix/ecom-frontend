@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom';
 import './heroSection.css'
 import Typical from 'react-typical'
 
@@ -22,7 +23,10 @@ export const HeroSection = () => {
                 <p className="heroSection-titles-p"> <Typical wrapper="span" steps={steps} loop={100} className={'caca'} /></p>
             </div>
             <div className="heroSection-buttons">
+            <Link to='/category/9'>
             <button type="button" style={{background: '#F9F9F9',borderRadius: '30px',color:'#171717'}} id="leftButton" > SHOP NEW RELEASES</button>
+            
+            </Link>
             <button type="button" style={{background: '#4A4A4A',borderRadius: '30px',color:'#F9F9F9'}} id="rightButton"> LEARN MORE</button>
             </div>
         </div>

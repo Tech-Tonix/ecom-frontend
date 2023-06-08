@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
  
 // import { useNavigate } from 'react-router-dom';
 
-import axios from "axios";
 export const RegistrationPage = ()=>{
   const {  registerUser } = useContext(AuthContext)
   const [login , setlogin]=useState(false) 
@@ -103,87 +102,7 @@ export const RegistrationPage = ()=>{
 
 
 
-  // const registerUserr = (e) => {
-    
-  //       fetch('https://gymrat-app.onrender.com/rest-auth/registration/', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(Response.data),
-  //   })
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         console.log('User registered successfully');
-  //       } else {
-  //         throw new Error('Registration failed');
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-    
-    // const handleRegister = async (event) => {
-      
-    //   event.preventDefault();
-    //   // token = localStorage.getItem("token")
-    //   try {
-    //     const response = await axios.post('https://gymrat-app.onrender.com/rest-auth/registration/', { first_name,last_name,email,password1,password2,phone_number,city,address,postal_code,is_student},
-    //    {
-    //     // headers: { "Content-Type": 'application/json', Authorization: "Bearer "+ token },
-    //   });
-
-    //   localStorage.setItem("token", response.data.token)
-    //   localStorage.setItem("user")
-    //   } catch (error) {
-    //   }
-      
-
-    // };
-
-    // fetch('https://gymrat-app.onrender.com/rest-auth/registration/', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       console.log('User registered successfully');
-    //     } else {
-    //       throw new Error('Registration failed');
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-
-
-    // const [inputValue, setInputValue] = useState('');
-    // const [inputValue2, setInputValue2] = useState('');
-    // const handleInputChange = (event) => {
-    // const { value } = event.target;
-    // const regex = /^[0-9\b]+$/; // Regular expression to allow only numeric characters
-
-    // if (value === '' || regex.test(value)) {
-    //   setInputValue(value);
-      
-    // }
-    // };
-    // const handleInputChange2 = (event) => {
-    // const { value } = event.target;
-    // const regex = /^[0-9\b]+$/; // Regular expression to allow only numeric characters
-
-    // if (value === '' || regex.test(value)) {
-    //   setInputValue2(value);
-      
-    // }
-    // };
-
-
-
+ 
     return (
     <div className="registrationPage">
     <div className="registrationPage-body">
@@ -228,15 +147,11 @@ export const RegistrationPage = ()=>{
               required
             />
           </div>
-          {/* <div className="registrationPage-input-box">
-            <span className="registrationPage-details">Confirm Password :</span>
-            <input type="text"  placeholder="Confirm your password" value={password2} onChange={(e) => setConfirmPassword2(e.target.value)} required />
-          </div> */}
+         
           <div className="registrationPage-input-box">
             <span className="registrationPage-details">city :</span>
             <input type="text" placeholder="Enter your city"  value={city} onChange={(e) => setCity(e.target.value)} required/>
-            {/* <span className="details">postal code</span>
-            <input type="text" placeholder="Enter your postal code" required/> */}
+         
           </div>
           <div className="registrationPage-input-box">
             <span className="registrationPage-details">address :</span>

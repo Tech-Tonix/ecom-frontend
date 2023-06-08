@@ -12,10 +12,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Heart48Filled } from '@fluentui/react-icons';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
-import AuthContext from '../../context/AuthContext';
-import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import LoadingSpinner from '../../components/spinner/loadingSpinner';
-
+import toast, { Toaster } from 'react-hot-toast';
+import AuthContext from '../../context/AuthContext';
 
 
 
@@ -89,7 +89,7 @@ export const ProductPage =() =>{
     nextArrow: <CustomNextArrow />
   };
 
-  const { user,authTokens } = useContext(AuthContext);  
+  
 
   let [heartColor,setHeartColor]=useState(true)
   const [product, setProduct] = useState({})
@@ -106,7 +106,28 @@ export const ProductPage =() =>{
   const sizes = ["XS", "S", "M", "L","XL","XXL"]; 
 
   const [currentProduct, setCurrentProduct] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
+  const { user,authTokens } = useContext(AuthContext);
 
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axios.get('https://gymrat-app.onrender.com/auth/users/me/', {
+          headers: {
+            Authorization: 'JWT ' + authTokens,
+          },
+        });
+        setUserInfo(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
+ 
   
 
   const getProducts = async () => {
@@ -160,7 +181,7 @@ export const ProductPage =() =>{
             product_id: product.id,
             quantity: quantity,
             size: selectedSize,
-            color: selectedColor, // Include the selected color in the request payload
+            color: selectedColor,
           },
           {
             headers: {
@@ -168,40 +189,16 @@ export const ProductPage =() =>{
             },
           }
         );
-
-        toast.success("Product added to cart!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.success("Product added to cart!");
       } catch (error) {
-        toast.error("Failed to add product to cart.", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.error("Failed to add product to cart. Please try again.");
         console.log(error);
       }
     } else {
-      const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-      const existingProductIndex = cart.findIndex((item) => item.id === product.id);
-  
-      if (existingProductIndex !== -1) {
-        // Product already exists in the cart, update the quantity
-        cart[existingProductIndex].quantity += quantity;
-      } else {
-        // Product does not exist in the cart, add it
-        cart.push({
-          product_id: product.id,
-          quantity: quantity,
-          size: selectedSize,
-          color: selectedColor,
-           // Include the selected color in the cart item
-        });
-      }
-  
-      sessionStorage.setItem("cart", JSON.stringify(cart));
-      toast.success("Product added to cart!", {
-        position: toast.POSITION.TOP_CENTER,
-      });
+      toast.error("Please log in to add items to your bag.");
     }
   };
+  
   
   
   const handleAddToWishlist = async (index) => {
@@ -219,77 +216,57 @@ export const ProductPage =() =>{
             },
           }
         );
-        toast.success("Product added to wishlist!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        setHeartColor(false);
+        toast.success("Product added to wishlist!");
+  
       } catch (error) {
-        toast.error("Failed to add product to wishlist.", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.error("Failed to add product to wishlist. Please try again.");
         console.log(error);
       }
     } else {
-      const wishlist = JSON.parse(sessionStorage.getItem("wishlist")) || [];
+      toast.error("Please log in to add items to your wishlist.");
+    }
+    
+    if (sessionStorage.getItem("wishlist")) {
+      const wishlist = JSON.parse(sessionStorage.getItem("wishlist"));
       const existingProductIndex = wishlist.findIndex((item) => item.id === product.id);
-  
-      if (existingProductIndex === -1) {
-        // Product does not exist in the wishlist, add it
-        wishlist.push(product);
-        sessionStorage.setItem("wishlist", JSON.stringify(wishlist));
-        toast.success("Product added to wishlist!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      } else {
-        toast.error("Product already exists in wishlist.", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+      if (existingProductIndex !== -1) {
+        toast.error("Product is already added to wishlist.");
+        return;
       }
     }
   };
+      
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
 
- 
-  // const fetchComments = async (id) => {
-  //   try {
-  //     const response = await axios.get(`https://gymrat-app.onrender.com/review/products/${id}/rating/`);
-  //     const data = response.data;
-  //     const commentsList = data.map((review) => review.content);
-  //     setComments(commentsList);
-  //   } catch (error) {
-  //     console.error('Error fetching comments:', error);
-  //   }
-  // };
-  
-  // useEffect(() => {
-  //   getProducts();
-  // }, []);
-  
-  // useEffect(() => {
-    
-  //     fetchComments(productId);
-   
-  // }, [productId]);
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    if (newComment.trim() === '') {
-      return;
+  useEffect(() => {
+    // Retrieve comments from local storage on page load
+    const storedComments = localStorage.getItem(`comments_${product.id}`);
+    if (storedComments) {
+      setComments(JSON.parse(storedComments));
     }
+  }, [product.id]);
 
-    try {
-      const response = await axios.post(`https://gymrat-app.onrender.com/review/products/${productId}/rating-create/`, {
-        content: newComment,
-      });
-      const data = response.data;
-      setComments([...comments, data.content]);
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    if (newComment.trim() !== '') {
+      const updatedComments = [...comments, { content: newComment, user: userInfo }];
+      setComments(updatedComments);
+      localStorage.setItem(`comments_${product.id}`, JSON.stringify(updatedComments));
       setNewComment('');
-    } catch (error) {
-      console.error('Error posting comment:', error);
     }
-  };    
+  };
+  
   return(
 
     <div className="productPage">
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
+
+
     {!loading ? (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div className="productPage-product" style={{ display: 'flex', gap: '70px', marginBottom: "70px" }}>
@@ -322,7 +299,7 @@ export const ProductPage =() =>{
                           <StarRating/>
                           {/* <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> */}
                           <hr  style={{height:'20px',color:'black'}}/>
-                          <p className='p__reviews'>{product.reviews.length} Reviews</p>
+                          <p className='p__reviews'>{comments.length} Reviews</p>
                       </div>
                   </div>
                   <div className="productPage-details-price">
@@ -415,55 +392,54 @@ export const ProductPage =() =>{
           </div>
           </div>
           <div className="productPage-comments">
-      <p
-        style={{
-          fontFamily: 'Brandon Grotesque',
-          fontStyle: 'normal',
-          fontWeight: '450',
-          fontSize: '32px',
-          lineHeight: '40px',
-          letterSpacing: '0.065em',
-          color: '#171717',
-          marginBottom: '30px',
-        }}
-      >
-        Comments:
-      </p>
-      <div>
-      <ul className="comment-list">
-        {comments.map((comment, index) => (
-          <li key={index} className="comment" style={{ margin: '-5px' }}>
-            <div>
-              {user && <p style={{ color: '#4A4A4A' }}>mohamed:</p>}
-              <div
-                className="comment-saved-container"
-                style={{
-                  backgroundColor: 'white',
-                  borderRadius: '7px',
-                  padding: '5px',
-                  width: `${comment.length * 10}px`,
-                  color: 'gray',
-                }}
-              >
-                {comment}
+      
+      <div className="productPage-comments">
+        <p style={{fontFamily: 'Brandon Grotesque',
+            fontStyle: 'normal',
+            fontWeight: '450',
+            fontSize: '32px',
+            lineHeight: '40px',
+            letterSpacing: '0.065em',
+
+            color: '#171717',marginBottom:'30px'}}>Comments:</p>
+        <ul className="comment-list">
+          {comments.map((comment, index) => (
+            <li key={index} className="comment" style={{ margin: '-5px' }}>
+              <div>
+                {comment.user && (
+                  <p style={{ color: '#4A4A4A' }}>{comment.user.first_name}:</p>
+                )}
+
+                <div
+                  className="comment-saved-container"
+                  style={{
+                    backgroundColor: 'white',
+                    borderRadius: '7px',
+                    padding: '5px',
+                    width: `${comment.length * 10}px`,
+                    color: 'gray',
+                  }}
+                >
+                  {comment.content}
+                </div>
+                <p style={{ fontSize: '11px', marginLeft: '3px', color: '#C2C2C2' }}>
+                  08-06-2023
+                </p>
               </div>
-              <p style={{ fontSize: '11px', marginLeft: '3px', color: '#C2C2C2' }}>05-07-2023</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <form onSubmit={handleCommentSubmit} className="comment-form">
-        <textarea
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-          placeholder="Add a comment..."
-          className="comment-input"
-        ></textarea>
-        <button type="submit" className="comment-button">
-          Submit
-        </button>
-      </form>
-    </div>
+            </li>
+  ))}
+</ul>
+
+        <form onSubmit={handleCommentSubmit} className="comment-form">
+          <textarea
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder="Add a comment..."
+            className="comment-input"
+          ></textarea>
+          <button type="submit" className="comment-button">Submit</button>
+        </form>
+      </div>
     </div>
           <div className='you-might-like'>
           
@@ -477,13 +453,13 @@ export const ProductPage =() =>{
             </p>
                   
           </div>
-          <div className="slider" style={{ marginLeft:'120px',marginRight:'120px' }}>
+          <div className="slider" style={{ marginLeft:'20px',marginRight:'120px' }}>
                       <Slider {...settings}>
               {products
                 .filter((product) => (product.category >1 && product.category[0]) === (currentProduct.category >1 && currentProduct.category[0]))
                 .slice(0, 12)
                 .map((product) => (
-                  <div key={product.id} className='root'>
+                  <div key={product.id} className='root' style={{marginLeft:'20px'}}>
                     <div
                       className='upper-side'
                       style={{

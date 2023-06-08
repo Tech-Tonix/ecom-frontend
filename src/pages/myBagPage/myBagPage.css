@@ -3,10 +3,12 @@
     margin-left: 5%;
     flex-direction: row;
     display: flex;
-     
+    
     
     
 }
+
+
 .myBagCards-list{
     margin-left: 2rem;
     display: flex;
@@ -134,13 +136,17 @@
     .heyhey{
         width: 122px;
         height: 171;
-        
+        transition: transform 0.5s ease-in-out;
     }
     .heyhey img{
+        transition: transform 0.5s ease-in-out;
         height: 100%;
         width: 100%;
     }
-    
+    .heyhey:hover {
+   
+        transform: scale(1.05); 
+      }
     .myBag-left{
         font-family: 'Brandon Grotesque';
     font-style: normal;

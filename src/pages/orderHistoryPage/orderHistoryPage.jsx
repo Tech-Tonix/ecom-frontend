@@ -6,6 +6,7 @@ import { DatePicker } from '@fluentui/react';
 import ActiveStepContext from '../../context/activeStepContext';
 import axios from 'axios';
 import AuthContext from '../../context/AuthContext';
+import { Toaster, toast } from 'react-hot-toast';
 
 function OrderHistoryPage() {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -82,7 +83,8 @@ function OrderHistoryPage() {
           },
         }
       );
-      fetchOrderHistory(); // Fetch updated order history after cancellation
+      fetchOrderHistory(); 
+      toast.success('order canceled successfully !')
     } catch (error) {
       console.error('Error canceling order:', error);
     }
@@ -90,6 +92,12 @@ function OrderHistoryPage() {
 
   return (
     <div className='OrderHistoryWrapper'>
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
+
+
       <div className='CategoriesWrapperHistoryPage'>
         <Categories />
       </div>

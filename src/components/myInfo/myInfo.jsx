@@ -3,6 +3,7 @@ import './myInfo.css';
 import LoadingSpinner from '../spinner/loadingSpinner';
 import axios from 'axios';
 import AuthContext from '../../context/AuthContext';
+import { Toaster,toast } from 'react-hot-toast';
 function MyInfo({ userInfo,fetchUserInfo }) {
   const [editAddress, setEditAddress] = useState(false);
   const { user,authTokens } = useContext(AuthContext);
@@ -28,31 +29,40 @@ function MyInfo({ userInfo,fetchUserInfo }) {
 
     fetchUserInfo();
   }, []);
+
+
   const handleSaveAddress = () => {
-   
-    axios.put('https://gymrat-app.onrender.com/auth/users/me/',
-     { address: newAddress ,city:userInfo.city,first_name:userInfo.first_name,postal_code:userInfo.postal_code},
-     {
-      headers: {
-        Authorization: 'JWT ' + authTokens,
-      },
-    })
+    axios
+      .put(
+        'https://gymrat-app.onrender.com/auth/users/me/',
+        {
+          address: newAddress,
+          city: userInfo.city,
+          first_name: userInfo.first_name,
+          postal_code: userInfo.postal_code
+        },
+        {
+          headers: {
+            Authorization: 'JWT ' + authTokens
+          }
+        }
+      )
       .then(response => {
-        
         const updatedUserInfo = { ...userInfo, address: newAddress };
-        
         setUpdtaedUserInfo(updatedUserInfo);
         setEditAddress(false);
+        toast.success('Address updated successfully!',);
       })
       .catch(error => {
         console.error(error);
+        toast.error('Failed to update address. Please try again.',);
       });
-      
   };
-
+  
   const handleAddressChange = event => {
     setNewAddress(event.target.value);
   };
+  
 
   if (!userInfo) {
     return <div style={{marginRight:'500px',marginTop:'200px'}}><LoadingSpinner /></div>;
@@ -69,6 +79,12 @@ function MyInfo({ userInfo,fetchUserInfo }) {
 
   return (
     <div className='MyInfoContainer'>
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
+
+
       <div className='TitleSection'>
         <p style={{ fontWeight: '420', fontSize: '36px', lineHeight: '51px', letterSpacing: '0.065em', color: '#171717', marginBottom: '10px', marginTop: '5px' }}>My Info</p>
         <p>Edit your information, login details, and preferences</p>
