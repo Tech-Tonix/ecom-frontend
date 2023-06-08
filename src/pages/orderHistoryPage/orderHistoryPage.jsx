@@ -96,32 +96,23 @@ function OrderHistoryPage() {
 
       <div className='OrderHistoryCompoWrapper'>
         <div className='calendarIconPlusDatePicker'>
-          {/* Calendar icon SVG */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'start' }}>
-            <div>
-              <p style={{ fontWeight: '420', fontSize: '30px', lineHeight: '51px', letterSpacing: '0.065em', color: '#171717', fontFamily: 'Brandon Grotesque' }}>
-                ORDER HISTORY
-              </p>
-              <p style={{ fontSize: '14px', color: '#999' }}>
-                NOTE: You can cancel an order only within 24 hours of placing it.
-              </p>
-            </div>
             <div className='datePickerContainer'>
-              <p>pick a date</p>
-              <DatePicker onSelectDate={handleDateChange} />
+            <svg viewbox="0 0 48 48" width="48" height="48" stroke="currentColor" fill="currentColor"><path d="M31.2 26.4a2.4 2.4 0 1 1 0-4.8 2.4 2.4 0 0 1 0 4.8Zm-2.4 4.8a2.4 2.4 0 1 0 4.8 0 2.4 2.4 0 0 0-4.8 0Zm-4.8-4.8a2.4 2.4 0 1 1 0-4.8 2.4 2.4 0 0 1 0 4.8Zm-2.4 4.8a2.4 2.4 0 1 0 4.8 0 2.4 2.4 0 0 0-4.8 0Zm-4.8-4.8a2.4 2.4 0 1 1 0-4.8 2.4 2.4 0 0 1 0 4.8ZM7.2 13.2A6 6 0 0 1 13.2 7.2h21.6A6 6 0 0 1 40.8 13.2v21.6a6 6 0 0 1-6 6h-21.6A6 6 0 0 1 7.2 34.8v-21.6ZM38.4 16.8H9.6v18A3.6 3.6 0 0 0 13.2 38.4h21.6a3.6 3.6 0 0 0 3.6-3.6V16.8Zm-3.6-7.2h-21.6A3.6 3.6 0 0 0 9.6 13.2V14.4h28.8v-1.2A3.6 3.6 0 0 0 34.8 9.6Z"  /></svg>
+              <DatePicker onSelectDate={handleDateChange}  className='datePickerStyling' />
             </div>
-          </div>
         </div>
-        <div>
+        
+
+        <div className='OrderTableRows'>
           {filteredOrderHistoryDate.length > 0 ? (
             filteredOrderHistoryDate.map((item, index) => {
               const product = productDetails[index] || {};
               return (
-                <div key={item.id} className='orderHistoryCard' style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                <div key={item.id} className='orderHistoryColumn' style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                   <p>{index + 1}</p>
                   <p>{status}</p>
                   <p>{item.placed_at}</p>
-                  <button onClick={() => handleCancelOrder(item.id, item.order_item_id)}>cancel order</button>
+                  <button className='CancelBtnTrack' onClick={() => handleCancelOrder(item.id, item.order_item_id)}>cancel</button>
                 </div>
               );
             })
@@ -129,6 +120,9 @@ function OrderHistoryPage() {
             <p style={{ margin: '250px', fontSize: '35px' }}>:/ YOU DIDN'T PLACE ANY ORDER</p>
           )}
         </div>
+        <p style={{ fontSize: '14px', color: '#e9080881' }}>
+                NOTE: You can cancel an order only within 24 hours of placing it.
+        </p>
       </div>
     </div>
   );
